@@ -79,6 +79,12 @@ Object eval(Object l, Environment env) {
       if (null(test_value)) return eval(else_part, env);
       return eval(then_part, env);
     }
+    if (Object_to_string(f) == "setq") {
+      Object bound_symbol = cadr(l);
+      Object bound_part = caddr(l);
+      env.add_new_binding(Object_to_string(bound_symbol), bound_part);
+      return eval(bound_symbol, env);
+    }
   }
   // It is a function applied to arguments
   Object vals = eval_list(cdr(l), env);
