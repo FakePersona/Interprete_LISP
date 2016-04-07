@@ -70,6 +70,7 @@ Object eval(Object l, Environment env) {
   assert(listp(l));
   Object f = car(l);
   if (symbolp(f)) {
+    if (Object_to_string(f) == "lambda") return l;
     if (Object_to_string(f) == "quote") return cadr(l);
     if (Object_to_string(f) == "if") {
       Object test_part = cadr(l);
@@ -115,7 +116,6 @@ Object apply(Object f, Object lvals, Environment env) {
     Object new_f = env.find_value(Object_to_string(f));
     return apply(new_f, lvals, env);
   }
-  assert(listp(f));
   if (Object_to_string(car(f)) == "lambda") {
     Object lpars = cadr(f);
     Object body = caddr(f);
@@ -123,6 +123,7 @@ Object apply(Object f, Object lvals, Environment env) {
     new_env.extend_env(lpars, lvals);
     return eval(body, new_env);
   }
+  assert(listp(f));
   throw Evaluation_Exception(f, env, "Cannot apply a list");
   assert(false);
 }
