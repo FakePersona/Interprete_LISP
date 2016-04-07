@@ -1,11 +1,8 @@
 #include "object.hh"
 #include "env.hh"
 #include "eval.hh"
+#include "read.hh"
 #include <stdio.h>
-
-extern Object just_read;
-extern "C" int yyparse();
-extern "C" FILE *yyin;
 
 void toplevel()
 {
@@ -21,8 +18,7 @@ void toplevel()
   Environment env;
   do {
     cout << "Lisp? " << flush;
-    yyparse();
-    Object l = just_read;
+    Object l = read();
     if (Object_to_string(car(l)) == "setq") {
       Object bound_symbol = cadr(l);
       Object bound_part = caddr(l);
@@ -30,6 +26,6 @@ void toplevel()
       eval(bound_symbol, env);
     } else
     cout << eval(l, env) << endl;
-  } while (!feof(yyin));
+  } while (!end_input());
 }
 
