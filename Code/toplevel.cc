@@ -1,6 +1,7 @@
 #include "object.hh"
 #include "env.hh"
 #include "eval.hh"
+#include "read.hh"
 #include <stdio.h>
 #include <stdexcept>
 
@@ -10,10 +11,6 @@ public:
     runtime_error("Directive error") {
   }
 };
-
-extern Object just_read;
-extern "C" int yyparse();
-extern "C" FILE *yyin;
 
 void handle_directive(Object l,Environment* env) {
   if (listp(l) && Object_to_string(car(l)) == "setq") {
@@ -36,13 +33,12 @@ void toplevel()
 
   do {
     cout << "Lisp? " << flush;
-    yyparse();
     try {
-    Object l = just_read;
+    Object l = read();
     handle_directive(l,&env);
     cout << eval(l, env) << endl;
     } catch (Continue_Directive){
     }
-  } while (!feof(yyin));
+  } while (!end_input());
 }
 
