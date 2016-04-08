@@ -60,6 +60,18 @@ Object eval(Object l, Environment env);
 Object apply(Object f, Object lvals, Environment env);
 Object eval_list(Object largs, Environment env);
 
+Object do_progn(Object lvals, Environment env) {
+  if (null(cdr(lvals)))
+    {
+      return eval(car(lvals),env);
+    }
+  else
+    {
+      eval(car(lvals),env);
+      return do_progn(cdr(lvals),env);
+    }
+}
+
 Object eval(Object l, Environment env) {
   clog << "\teval: " << l << env << endl;
 
@@ -80,6 +92,10 @@ Object eval(Object l, Environment env) {
       if (null(test_value)) return eval(else_part, env);
       return eval(then_part, env);
     }
+    if (Object_to_string(f) == "progn")
+      {
+        return do_progn(cdr(l),env);
+      }
   }
   // It is a function applied to arguments
   Object vals = eval_list(cdr(l), env);

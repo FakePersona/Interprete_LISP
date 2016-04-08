@@ -38,7 +38,7 @@ void toplevel()
     handle_directive(l,&env);
     cout << eval(l, env) << endl;
     } catch (Continue_Directive){
-    }
+    } 
   } while (!end_input());
 }
 
