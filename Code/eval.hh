@@ -6,6 +6,21 @@
 
 using namespace std;
 
+class Evaluation_Exception: public runtime_error {
+private:
+  Object obj;
+  Environment env;
+  string message;
+public:
+  Evaluation_Exception(Object _obj, Environment _env, string _message):
+    runtime_error("Evaluation error:" + _message) {
+    obj = _obj;
+    env = _env;
+    message = _message;
+  }
+  virtual ~Evaluation_Exception() throw () {}
+};
+
 bool numberp(Object l);
 bool stringp(Object l);
 bool symbolp(Object l);
