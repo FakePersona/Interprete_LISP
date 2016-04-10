@@ -2,6 +2,7 @@
 
 #include "object.hh"
 #include "env.hh"
+#include <stdexcept>
 
 using namespace std;
 

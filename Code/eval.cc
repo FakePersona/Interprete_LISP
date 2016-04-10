@@ -2,6 +2,7 @@
 #include <string>
 #include <cassert>
 #include "eval.hh"
+#include "subr.hh"
 
 using namespace std;
 
@@ -108,18 +109,6 @@ Object eval_list(Object largs, Environment env) {
 }
 
 
-Object do_plus(Object lvals) {
-  int a = Object_to_number(car(lvals));
-  int b = Object_to_number(cadr(lvals));
-  return number_to_Object(a + b);
-}
-
-Object do_times(Object lvals) {
-  int a = Object_to_number(car(lvals));
-  int b = Object_to_number(cadr(lvals));
-  return number_to_Object(a * b);
-}
-
 Object apply(Object f, Object lvals, Environment env) {
   clog << "\tapply: " << f << " " << lvals << env << endl;
 
@@ -127,10 +116,12 @@ Object apply(Object f, Object lvals, Environment env) {
   if (numberp(f)) throw Evaluation_Exception(f, env, "Cannot apply a number");
   if (stringp(f)) throw Evaluation_Exception(f, env, "Cannot apply a string");
   if (symbolp(f)) {
-    if (Object_to_string(f) == "+") return do_plus(lvals);
-    if (Object_to_string(f) == "*") return do_times(lvals);
-    Object new_f = env.find_value(Object_to_string(f));
-    return apply(new_f, lvals, env);
+	try{
+		return handle_subr(f, lvals);
+	}catch (Not_Subr){
+		Object new_f = env.find_value(Object_to_string(f));
+		return apply(new_f, lvals, env);
+	}
   }
   if (Object_to_string(car(f)) == "lambda") {
     Object lpars = cadr(f);
