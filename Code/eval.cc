@@ -82,6 +82,20 @@ Object do_if(Object l, Environment env) {
   return eval(then_part, env);
 }
 
+Object do_andthen(Object lvals, Environment env) {
+  Object part1 = car(lvals);
+  Object part2 = cadr(lvals);
+  if  (!null(eval(part1,env)))
+    {
+      return eval(part2,env);
+    }
+  else
+    {
+      return nil();
+    }
+}
+
+
 Object eval(Object l, Environment env) {
   clog << "\teval: " << l << env << endl;
 
@@ -94,13 +108,9 @@ Object eval(Object l, Environment env) {
   if (symbolp(f)) {
     if (Object_to_string(f) == "lambda") return l;
     if (Object_to_string(f) == "quote") return cadr(l);
-    if (Object_to_string(f) == "if") {
-      return do_if(l,env);
-    }
-    if (Object_to_string(f) == "progn")
-      {
-        return do_progn(cdr(l),env);
-      }
+    if (Object_to_string(f) == "andthen") return do_andthen(cdr(l),env);
+    if (Object_to_string(f) == "if") return do_if(l,env);
+    if (Object_to_string(f) == "progn") return do_progn(cdr(l),env);
   }
   // It is a function applied to arguments
   Object vals = eval_list(cdr(l), env);
