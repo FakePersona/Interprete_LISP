@@ -58,10 +58,10 @@ Object do_progn(Object lvals, Environment env) {
     }
 }
 
-Object do_if(Object l, Environment env) {
-  Object test_part = cadr(l);
-  Object then_part = caddr(l);
-  Object else_part = cadddr(l);
+Object do_if(Object lvals, Environment env) {
+  Object test_part = car(lvals);
+  Object then_part = cadr(lvals);
+  Object else_part = caddr(lvals);
   Object test_value = eval(test_part, env);
   if (null(test_value)) return eval(else_part, env);
   return eval(then_part, env);
@@ -80,6 +80,25 @@ Object do_andthen(Object lvals, Environment env) {
     }
 }
 
+Object do_cond(Object lvals, Environment env) {
+  if (null(lvals))
+    {
+      return nil();
+    }
+  else
+    {
+      Object test_part = car(car(lvals));
+      Object then_part = cadr(car(lvals));
+      if (!null(eval(test_part,env)))
+        {
+          return eval(then_part,env);
+        }
+      else
+        {
+          return do_cond(cdr(lvals), env);
+        }
+    }
+}
 
 Object eval(Object l, Environment env) {
   clog << "\teval: " << l << env << endl;
@@ -94,7 +113,8 @@ Object eval(Object l, Environment env) {
     if (Object_to_string(f) == "lambda") return l;
     if (Object_to_string(f) == "quote") return cadr(l);
     if (Object_to_string(f) == "andthen") return do_andthen(cdr(l),env);
-    if (Object_to_string(f) == "if") return do_if(l,env);
+    if (Object_to_string(f) == "if") return do_if(cdr(l),env);
+    if (Object_to_string(f) == "cond") return do_cond(cdr(l),env);
     if (Object_to_string(f) == "progn") return do_progn(cdr(l),env);
   }
   // It is a function applied to arguments
