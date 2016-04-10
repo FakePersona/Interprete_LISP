@@ -73,6 +73,15 @@ Object do_progn(Object lvals, Environment env) {
     }
 }
 
+Object do_if(Object l, Environment env) {
+  Object test_part = cadr(l);
+  Object then_part = caddr(l);
+  Object else_part = cadddr(l);
+  Object test_value = eval(test_part, env);
+  if (null(test_value)) return eval(else_part, env);
+  return eval(then_part, env);
+}
+
 Object eval(Object l, Environment env) {
   clog << "\teval: " << l << env << endl;
 
@@ -86,12 +95,7 @@ Object eval(Object l, Environment env) {
     if (Object_to_string(f) == "lambda") return l;
     if (Object_to_string(f) == "quote") return cadr(l);
     if (Object_to_string(f) == "if") {
-      Object test_part = cadr(l);
-      Object then_part = caddr(l);
-      Object else_part = cadddr(l);
-      Object test_value = eval(test_part, env);
-      if (null(test_value)) return eval(else_part, env);
-      return eval(then_part, env);
+      return do_if(l,env);
     }
     if (Object_to_string(f) == "progn")
       {
