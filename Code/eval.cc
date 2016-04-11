@@ -111,7 +111,7 @@ Object eval(Object l, Environment env) {
   Object f = car(l);
   if (symbolp(f)) {
     if (Object_to_string(f) == "lambda") return l;
-    if (Object_to_string(f) == "quote") return cadr(l);
+    if (Object_to_string(f) == "quote") return cdr(l);
     if (Object_to_string(f) == "andthen") return do_andthen(cdr(l),env);
     if (Object_to_string(f) == "if") return do_if(cdr(l),env);
     if (Object_to_string(f) == "cond") return do_cond(cdr(l),env);
