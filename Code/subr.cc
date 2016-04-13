@@ -42,8 +42,8 @@ Object do_cons(Object lvals) {
 }
 
 Object do_eq(Object lvals) {
-	Object a = car(lvals);
-	Object b = cadr(lvals);
+  int a = Object_to_number(car(lvals));
+  int b = Object_to_number(cadr(lvals));
 	if (a == b){
 		return number_to_Object(1);
 	}
@@ -73,6 +73,10 @@ Object handle_subr(Object f,Object lvals){
 	}
 	if (Object_to_string(f) == "=") {
 		return do_eq(lvals);
+	}
+  if (Object_to_string(f) == "newline") {
+    printf("\n");
+    return nil();
 	}
 	throw Not_Subr();
 }
