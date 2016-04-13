@@ -2,6 +2,7 @@
 #include <string>
 #include <cassert>
 #include "eval.hh"
+#include "toplevel.hh"
 #include "subr.hh"
 
 using namespace std;
@@ -101,7 +102,9 @@ Object do_cond(Object lvals, Environment env) {
 }
 
 Object eval(Object l, Environment env) {
-  clog << "\teval: " << l << env << endl;
+
+  if (debug)
+    clog << "\teval: " << l << env << endl;
 
   if (null(l)) return l;
   if (numberp(l)) return l;
@@ -116,6 +119,10 @@ Object eval(Object l, Environment env) {
     if (Object_to_string(f) == "if") return do_if(cdr(l),env);
     if (Object_to_string(f) == "cond") return do_cond(cdr(l),env);
     if (Object_to_string(f) == "progn") return do_progn(cdr(l),env);
+    if (Object_to_string(f) == "debug") {
+      debug = true;
+      return nil();
+    }
   }
   // It is a function applied to arguments
   Object vals = eval_list(cdr(l), env);

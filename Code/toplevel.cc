@@ -2,8 +2,13 @@
 #include "env.hh"
 #include "eval.hh"
 #include "read.hh"
+#include "toplevel.hh"
 #include <stdio.h>
 #include <stdexcept>
+
+bool debug = false;
+
+
 
 class Continue_Directive: public runtime_error {
 public:
