@@ -123,6 +123,11 @@ Object eval(Object l, Environment env) {
       debug = true;
       return nil();
     }
+    if (Object_to_string(f) == "printenv") {
+      clog << env << endl;
+      return nil();
+    }
+
   }
   // It is a function applied to arguments
   Object vals = eval_list(cdr(l), env);
