@@ -42,14 +42,32 @@ Object do_cons(Object lvals) {
 }
 
 Object do_eq(Object lvals) {
-  int a = Object_to_number(car(lvals));
-  int b = Object_to_number(cadr(lvals));
-	if (a == b){
-		return number_to_Object(1);
+  Object a = car(lvals);
+  Object b = cadr(lvals);
+	if (is_empty(a) && is_empty(b)){
+		return bool_to_Object(true);
 	}
-	else{
-		return nil();
+	if (numberp(a) && numberp(b)){
+		return bool_to_Object(Object_to_number(a) == Object_to_number(b));
 	}
+	if (symbolp(a) && symbolp(b)){
+		return bool_to_Object(Object_to_string(a) == Object_to_string(b));
+	}
+	if (stringp(a) && stringp(b)){
+		return bool_to_Object(Object_to_string(a) == Object_to_string(b));
+	}
+	if (listp(a) && listp(b)){
+		return bool_to_Object(a == b);
+		/*return bool_to_Object((Object_to_bool(do_eq(car(a), car(b))))
+							&& Object_to_bool(do_eq(cdr(a), cdr(b))));*/
+	}
+	return bool_to_Object(false);
+}
+
+Object do_concat(Object lvals) {
+	Object a = car(lvals);
+	Object b = cadr(lvals);
+	return string_to_Object(Object_to_string(a) + Object_to_string(b));
 }
 
 Object handle_subr(Object f,Object lvals){
@@ -77,6 +95,9 @@ Object handle_subr(Object f,Object lvals){
   if (Object_to_string(f) == "newline") {
     printf("\n");
     return nil();
+  }
+	if (Object_to_string(f) == "concat") {
+		return do_concat(lvals);
 	}
 	throw Not_Subr();
 }
