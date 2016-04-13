@@ -64,6 +64,12 @@ Object do_eq(Object lvals) {
 	return bool_to_Object(false);
 }
 
+Object do_concat(Object lvals) {
+	Object a = car(lvals);
+	Object b = cadr(lvals);
+	return string_to_Object(Object_to_string(a) + Object_to_string(b));
+}
+
 Object handle_subr(Object f,Object lvals){
 	if (Object_to_string(f) == "+") {
 		return do_plus(lvals);
@@ -85,6 +91,9 @@ Object handle_subr(Object f,Object lvals){
 	}
 	if (Object_to_string(f) == "=") {
 		return do_eq(lvals);
+	}
+	if (Object_to_string(f) == "concat") {
+		return do_concat(lvals);
 	}
 	throw Not_Subr();
 }
