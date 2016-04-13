@@ -16,6 +16,8 @@ bool is_empty(Object l);
 Object number_to_Object(int n);
 Object string_to_Object(string s);
 Object symbol_to_Object(string s);
+Object bool_to_Object(bool b);
 
 int Object_to_number(Object l);
 string Object_to_string(Object l);
+bool Object_to_bool(Object l);

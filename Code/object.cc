@@ -55,8 +55,17 @@ Object symbol_to_Object(string s) {
   return p;
 }
 
+Object bool_to_Object(bool b){
+	if (b) return number_to_Object(1);
+	return nil();
+}
+
 int Object_to_number(Object l) {
   return l -> to_number();
+}
+
+bool Object_to_bool(Object l){
+	return (!null(l));
 }
 
 string Object_to_string(Object l) {

@@ -44,12 +44,24 @@ Object do_cons(Object lvals) {
 Object do_eq(Object lvals) {
 	Object a = car(lvals);
 	Object b = cadr(lvals);
-	if (a == b){
-		return number_to_Object(1);
+	if (is_empty(a) && is_empty(b)){
+		return bool_to_Object(true);
 	}
-	else{
-		return nil();
+	if (numberp(a) && numberp(b)){
+		return bool_to_Object(Object_to_number(a) == Object_to_number(b));
 	}
+	if (symbolp(a) && symbolp(b)){
+		return bool_to_Object(Object_to_string(a) == Object_to_string(b));
+	}
+	if (stringp(a) && stringp(b)){
+		return bool_to_Object(Object_to_string(a) == Object_to_string(b));
+	}
+	if (listp(a) && listp(b)){
+		return bool_to_Object(a == b);
+		/*return bool_to_Object((Object_to_bool(do_eq(car(a), car(b))))
+							&& Object_to_bool(do_eq(cdr(a), cdr(b))));*/
+	}
+	return bool_to_Object(false);
 }
 
 Object handle_subr(Object f,Object lvals){
