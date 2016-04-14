@@ -101,10 +101,7 @@ Object do_cond(Object lvals, Environment env) {
     }
 }
 
-Object eval(Object l, Environment env) {
-
-  if (debug)
-    clog << "\teval: " << l << env << endl;
+Object eval_aux(Object l, Environment env) {
 
   if (null(l)) return l;
   if (numberp(l)) return l;
@@ -134,6 +131,34 @@ Object eval(Object l, Environment env) {
   return apply(f, vals, env);
 }
 
+Object eval(Object l, Environment env) {
+  if (!debug)
+    {
+      return eval_aux(l,env);
+    }
+  else
+    {
+      int i;
+      string header = "";
+      for (i=0;i<(counter + 1);i++)
+        {
+          header +="\t";
+        }
+      clog << header << counter << " ----> " << l << env << endl;
+      counter++;
+
+      Object new_l = eval_aux(l,env);
+      counter--;
+      header = "";
+      for (i=0;i<(counter + 1);i++)
+        {
+          header +="\t";
+        }
+      clog << header << counter << " <---- " << new_l << env << endl;
+      return new_l;
+    }
+}
+
 Object eval_list(Object largs, Environment env) {
   if (null(largs)) return largs;
   return cons(eval(car(largs), env), eval_list(cdr(largs), env));
@@ -141,7 +166,7 @@ Object eval_list(Object largs, Environment env) {
 
 
 Object apply(Object f, Object lvals, Environment env) {
-  clog << "\tapply: " << f << " " << lvals << env << endl;
+  //clog << "\tapply: " << f << " " << lvals << env << endl;
 
   if (null(f)) throw Evaluation_Exception(f, env, "Cannot apply nil");
   if (numberp(f)) throw Evaluation_Exception(f, env, "Cannot apply a number");

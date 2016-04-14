@@ -7,7 +7,7 @@
 #include <stdexcept>
 
 bool debug = false;
-
+int counter = 0;
 
 
 class Continue_Directive: public runtime_error {
