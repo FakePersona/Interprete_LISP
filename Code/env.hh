@@ -19,9 +19,11 @@ public:
 
 class Environment {
 private:
-  vector<Binding> contents;
+  Binding content;
+  Environment* next;
 public:
   Environment();
+  Environment(Binding cont, Environment* nex);
   void add_new_binding(string name, Object value);
   void extend_env(Object lpars, Object lvals);
   Object find_value(string name);

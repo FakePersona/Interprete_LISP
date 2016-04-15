@@ -38,13 +38,20 @@ public:
   virtual ~Zipping_Exception() throw () {}
 };
 
-Environment::Environment() {
-  contents = vector<Binding>();
-}
+Environment::Environment():
+  content(Binding("t", number_to_Object(1))), next(NULL) {}
+
+Environment::Environment(Binding cont, Environment* nex):
+  content(cont), next(nex)   {}
+
 
 void Environment::add_new_binding(string name, Object value) {
-  contents.push_back(Binding(name, value));
+  Environment* old_next = next;
+  Environment new_env = Environment(content, old_next);
+  next = &new_env;
+  content = Binding(name,value);
 }
+
 void Environment::extend_env(Object lpars, Object lvals) {
   if (null(lpars) && null(lvals)) return;
   if (null(lpars) && !null(lvals)) throw Zipping_Exception(lvals, "Too many values");
@@ -53,17 +60,22 @@ void Environment::extend_env(Object lpars, Object lvals) {
   extend_env(cdr(lpars), cdr(lvals));
 }
 Object Environment::find_value(string name) {
-  for (int i = contents.size() - 1;; i--) {
-    if (i < 0) throw No_Binding_Exception(name);
-    if (contents.at(i).get_name() == name) return contents.at(i).get_value();
-  }
+  if (content.get_name() == name)
+    {
+      return content.get_value();
+    }
+  else
+    {
+      if (next == NULL) throw No_Binding_Exception(name);
+      return next->find_value(name);
+    }
 }
 
 void Environment::print(ostream& s) {
-  s << "\t| ";
-  for (int i = contents.size() - 1; i >= 0; i--) {
-    s << contents.at(i).get_name() << ": " << contents.at(i).get_value() << "; ";
-  }
+  s << content.get_name() << ": " << content.get_value() << "; ";
+  s << content.get_name() << ": " << content.get_value() << "; ";
+  if (next)
+    next->print(s);
 }
 
 ostream& operator << (ostream& s, Environment& env) {

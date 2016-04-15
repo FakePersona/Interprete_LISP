@@ -32,9 +32,9 @@ void toplevel()
   Object one = number_to_Object(1);
   Object two = number_to_Object(2);
 
-  Environment env;
+  Environment env = Environment();
   env.add_new_binding(Object_to_string(a), one);
-  env.add_new_binding(Object_to_string(a), two);
+  // env.add_new_binding(Object_to_string(a), two);
 
   do {
     cout << "Lisp? " << flush;
