@@ -17,13 +17,26 @@ public:
   Object get_value() const;
 };
 
-class Environment {
+class EnvBlock {
 private:
   Binding content;
-  Environment* next;
+  EnvBlock* next;
+public:
+  EnvBlock();
+  EnvBlock(Binding cont, EnvBlock* nex);
+  Binding get_content();
+  EnvBlock* get_next();
+  void set_next(EnvBlock* nex);
+};
+
+class Environment {
+private:
+  EnvBlock* head;
 public:
   Environment();
-  Environment(Binding cont, Environment* nex);
+  Environment(const Environment & source);
+  ~Environment();
+  void add_end(Binding data);
   void add_new_binding(string name, Object value);
   void extend_env(Object lpars, Object lvals);
   Object find_value(string name);

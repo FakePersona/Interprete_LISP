@@ -6,6 +6,10 @@
 
 using namespace std;
 
+/********************/
+/* Binding function */
+/********************/
+
 Binding::Binding(string _name, Object _value):
   name(_name), value(_value) {}
 string  Binding::get_name() const {
@@ -38,18 +42,69 @@ public:
   virtual ~Zipping_Exception() throw () {}
 };
 
-Environment::Environment():
+/* Environment functions */
+
+EnvBlock::EnvBlock():
   content(Binding("t", number_to_Object(1))), next(NULL) {}
 
-Environment::Environment(Binding cont, Environment* nex):
-  content(cont), next(nex)   {}
+EnvBlock::EnvBlock(Binding cont, EnvBlock* nex):
+  content(cont), next(nex) {}
 
+Binding EnvBlock::get_content() {
+  return content;
+}
+
+EnvBlock* EnvBlock::get_next() {
+  return next;
+}
+
+void EnvBlock::set_next(EnvBlock* nex) {
+  next = nex;
+}
+
+Environment::Environment() {
+  head  = NULL;
+}
+
+Environment::Environment(const Environment & source) {
+  head = NULL;
+  EnvBlock* writing = head;
+  EnvBlock* reading = source.head;
+  while (reading)
+    {
+      EnvBlock* copy = new EnvBlock(reading->get_content(),NULL);
+
+      if (copy != NULL)
+        {
+          if (head == NULL)
+            head = copy;
+          else
+            {
+              writing->set_next(copy);
+            }
+          writing = copy;
+          reading = reading->get_next();
+        }
+      else
+        {
+          reading = NULL;
+        }
+    }
+
+}
+
+Environment::~Environment() {
+  while (head)
+    {
+      EnvBlock* killed = head;
+      head = head->get_next();
+      delete killed;
+    }
+}
 
 void Environment::add_new_binding(string name, Object value) {
-  Environment* old_next = next;
-  Environment* new_env = new Environment(content, old_next);
-  next = new_env;
-  content = Binding(name,value);
+  EnvBlock* new_head = new EnvBlock(Binding(name,value), head);
+  head = new_head;
 }
 
 void Environment::extend_env(Object lpars, Object lvals) {
@@ -60,21 +115,32 @@ void Environment::extend_env(Object lpars, Object lvals) {
   extend_env(cdr(lpars), cdr(lvals));
 }
 Object Environment::find_value(string name) {
-  if (content.get_name() == name)
+  EnvBlock* searching = head;
+
+  while (searching)
     {
-      return content.get_value();
-    }
-  else
-    {
-      if (next == NULL) throw No_Binding_Exception(name);
-      return next->find_value(name);
+      if (searching == NULL)
+        {
+          throw No_Binding_Exception(name);
+        }
+      if (searching->get_content().get_name() == name)
+        {
+          return searching->get_content().get_value();
+        }
+      else
+        {
+          searching = searching->get_next();
+        }
     }
 }
 
 void Environment::print(ostream& s) {
-  s << content.get_name() << ": " << content.get_value() << "; ";
-  if (next)
-    next->print(s);
+  EnvBlock* printing = head;
+  while (printing)
+    {
+      s << printing->get_content().get_name() << ": " << printing->get_content().get_value() << "; ";
+      printing = printing->get_next();
+    }
 }
 
 ostream& operator << (ostream& s, Environment& env) {
