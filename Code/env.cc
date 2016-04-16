@@ -47,8 +47,8 @@ Environment::Environment(Binding cont, Environment* nex):
 
 void Environment::add_new_binding(string name, Object value) {
   Environment* old_next = next;
-  Environment new_env = Environment(content, old_next);
-  next = &new_env;
+  Environment* new_env = new Environment(content, old_next);
+  next = new_env;
   content = Binding(name,value);
 }
 
@@ -72,7 +72,6 @@ Object Environment::find_value(string name) {
 }
 
 void Environment::print(ostream& s) {
-  s << content.get_name() << ": " << content.get_value() << "; ";
   s << content.get_name() << ": " << content.get_value() << "; ";
   if (next)
     next->print(s);
