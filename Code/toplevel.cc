@@ -21,7 +21,7 @@ void handle_directive(Object l,Environment* env) {
   if (listp(l) && Object_to_string(car(l)) == "setq") {
     Object bound_symbol = cadr(l);
     Object bound_part = caddr(l);
-    env->add_new_binding(Object_to_string(bound_symbol),eval(bound_part,*env));
+    env->set_new_binding(Object_to_string(bound_symbol),eval(bound_part,*env));
     throw Continue_Directive();
   }
 }

@@ -19,6 +19,10 @@ Object  Binding::get_value() const {
   return value;
 }
 
+void Binding::set_value(Object _value) {
+  value = _value;
+}
+
 class No_Binding_Exception: public runtime_error {
 private:
   string name;
@@ -107,6 +111,17 @@ void Environment::add_new_binding(string name, Object value) {
   head = new_head;
 }
 
+void Environment::set_new_binding(string name, Object value) {
+  try
+    {
+      Binding target = find_binding(name);
+      target.set_value(value);
+    }
+  catch (No_Binding_Exception) {
+    add_new_binding(name,value);
+  }
+}
+
 void Environment::extend_env(Object lpars, Object lvals) {
   if (null(lpars) && null(lvals)) return;
   if (null(lpars) && !null(lvals)) throw Zipping_Exception(lvals, "Too many values");
@@ -114,7 +129,8 @@ void Environment::extend_env(Object lpars, Object lvals) {
   add_new_binding(Object_to_string(car(lpars)), car(lvals));
   extend_env(cdr(lpars), cdr(lvals));
 }
-Object Environment::find_value(string name) {
+
+Binding Environment::find_binding(string name) {
   EnvBlock* searching = head;
 
   while (searching)
@@ -125,13 +141,18 @@ Object Environment::find_value(string name) {
         }
       if (searching->get_content().get_name() == name)
         {
-          return searching->get_content().get_value();
+          return searching->get_content();
         }
       else
         {
           searching = searching->get_next();
         }
     }
+}
+
+
+Object Environment::find_value(string name) {
+  return find_binding(name).get_value();
 }
 
 void Environment::print(ostream& s) {

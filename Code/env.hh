@@ -15,6 +15,7 @@ public:
   Binding(string _name, Object _value);
   string get_name() const;
   Object get_value() const;
+  void set_value(Object _value);
 };
 
 class EnvBlock {
@@ -38,7 +39,9 @@ public:
   ~Environment();
   void add_end(Binding data);
   void add_new_binding(string name, Object value);
+  void set_new_binding(string name, Object value);
   void extend_env(Object lpars, Object lvals);
+  Binding find_binding(string name);
   Object find_value(string name);
   void print(ostream& s);
 };
