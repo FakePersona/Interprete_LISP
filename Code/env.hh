@@ -25,7 +25,7 @@ private:
 public:
   EnvBlock();
   EnvBlock(Binding cont, EnvBlock* nex);
-  Binding get_content();
+  Binding* get_content();
   EnvBlock* get_next();
   void set_next(EnvBlock* nex);
 };
@@ -41,7 +41,7 @@ public:
   void add_new_binding(string name, Object value);
   void set_new_binding(string name, Object value);
   void extend_env(Object lpars, Object lvals);
-  Binding find_binding(string name);
+  EnvBlock* find_block(string name);
   Object find_value(string name);
   void print(ostream& s);
 };

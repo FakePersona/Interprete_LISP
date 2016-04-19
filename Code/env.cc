@@ -54,8 +54,8 @@ EnvBlock::EnvBlock():
 EnvBlock::EnvBlock(Binding cont, EnvBlock* nex):
   content(cont), next(nex) {}
 
-Binding EnvBlock::get_content() {
-  return content;
+Binding* EnvBlock::get_content() {
+  return &content;
 }
 
 EnvBlock* EnvBlock::get_next() {
@@ -76,7 +76,7 @@ Environment::Environment(const Environment & source) {
   EnvBlock* reading = source.head;
   while (reading)
     {
-      EnvBlock* copy = new EnvBlock(reading->get_content(),NULL);
+      EnvBlock* copy = new EnvBlock(*reading->get_content(),NULL);
 
       if (copy != NULL)
         {
@@ -114,8 +114,8 @@ void Environment::add_new_binding(string name, Object value) {
 void Environment::set_new_binding(string name, Object value) {
   try
     {
-      Binding target = find_binding(name);
-      target.set_value(value);
+      Binding* target = find_block(name)->get_content();
+      target->set_value(value);
     }
   catch (No_Binding_Exception) {
     add_new_binding(name,value);
@@ -130,36 +130,33 @@ void Environment::extend_env(Object lpars, Object lvals) {
   extend_env(cdr(lpars), cdr(lvals));
 }
 
-Binding Environment::find_binding(string name) {
+EnvBlock* Environment::find_block(string name) {
   EnvBlock* searching = head;
 
   while (searching)
     {
-      if (searching == NULL)
+      if (searching->get_content()->get_name() == name)
         {
-          throw No_Binding_Exception(name);
-        }
-      if (searching->get_content().get_name() == name)
-        {
-          return searching->get_content();
+          return searching;
         }
       else
         {
           searching = searching->get_next();
         }
     }
+  throw No_Binding_Exception(name);
 }
 
 
 Object Environment::find_value(string name) {
-  return find_binding(name).get_value();
+  return find_block(name)->get_content()->get_value();
 }
 
 void Environment::print(ostream& s) {
   EnvBlock* printing = head;
   while (printing)
     {
-      s << printing->get_content().get_name() << ": " << printing->get_content().get_value() << "; ";
+      s << printing->get_content()->get_name() << ": " << printing->get_content()->get_value() << "; ";
       printing = printing->get_next();
     }
 }
