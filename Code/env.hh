@@ -16,7 +16,10 @@ public:
   string get_name() const;
   Object get_value() const;
   void set_value(Object _value);
+  Object to_Object();
 };
+
+Binding Object_to_binding(Object b);
 
 class EnvBlock {
 private:
@@ -37,13 +40,16 @@ public:
   Environment();
   Environment(const Environment & source);
   ~Environment();
-  void add_end(Binding data);
   void add_new_binding(string name, Object value);
   void set_new_binding(string name, Object value);
   void extend_env(Object lpars, Object lvals);
   EnvBlock* find_block(string name);
   Object find_value(string name);
   void print(ostream& s);
+  Object to_Object();
+  Object make_closure(Object body);
 };
+
+Environment Object_to_env(Object e);
 
 ostream& operator << (ostream& s, Environment& env);

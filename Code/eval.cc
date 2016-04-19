@@ -110,7 +110,10 @@ Object eval_aux(Object l, Environment env) {
   assert(listp(l));
   Object f = car(l);
   if (symbolp(f)) {
-    if (Object_to_string(f) == "lambda") return l;
+    if (Object_to_string(f) == "lambda")
+      {
+        return env.make_closure(l);
+      }
     if (Object_to_string(f) == "quote") return cadr(l);
     if (Object_to_string(f) == "andthen") return do_andthen(cdr(l),env);
     if (Object_to_string(f) == "if") return do_if(cdr(l),env);
@@ -185,6 +188,11 @@ Object apply(Object f, Object lvals, Environment env) {
     Environment new_env = env;
     new_env.extend_env(lpars, lvals);
     return eval(body, new_env);
+  }
+  if (Object_to_string(car(f)) == "closure") {
+    Environment new_env = Object_to_env(cddr(f));
+    Object body = cadr(f);
+    return apply(body, lvals, new_env);
   }
   assert(listp(f));
   throw Evaluation_Exception(f, env, "Cannot apply a list");

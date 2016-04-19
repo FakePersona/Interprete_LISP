@@ -46,6 +46,20 @@ public:
   virtual ~Zipping_Exception() throw () {}
 };
 
+Object Binding::to_Object() {
+  Object bound_name = new Cell();
+  bound_name->make_cell_string(name);
+
+  Object bound_object = new Cell();
+  bound_object->make_cell_pair(bound_name, value);
+
+  return bound_object;
+}
+
+Binding Object_to_binding(Object b) {
+  return Binding(Object_to_string(car(b)), cdr(b));
+}
+
 /* Environment functions */
 
 EnvBlock::EnvBlock():
@@ -94,7 +108,6 @@ Environment::Environment(const Environment & source) {
           reading = NULL;
         }
     }
-
 }
 
 Environment::~Environment() {
@@ -159,6 +172,58 @@ void Environment::print(ostream& s) {
       s << printing->get_content()->get_name() << ": " << printing->get_content()->get_value() << "; ";
       printing = printing->get_next();
     }
+}
+
+Object Environment::to_Object() {
+  EnvBlock* reading = head;
+
+  Object env_obj = new Cell();
+  env_obj->make_cell_pair(NULL,NULL);
+  Object writing = env_obj;
+
+  while (reading) {
+    writing->make_cell_pair(reading->get_content()->to_Object(),writing->to_pair_item());
+
+    Object new_env_obj = new Cell();
+    new_env_obj->make_cell_pair(NULL,writing);
+
+    writing = new_env_obj;
+    reading = reading->get_next();
+  }
+
+  if (writing->to_pair_next())
+    writing = writing->to_pair_next();
+
+  return env_obj;
+}
+
+Object Environment::make_closure(Object body) {
+  Object tag = new Cell();
+  tag->make_cell_string("closure");
+
+  Object tag_block = new Cell();
+
+  Object tail_block = new Cell();
+  tail_block->make_cell_pair(body,to_Object());
+
+  tag_block->make_cell_pair(tag,tail_block);
+
+  return tag_block;
+}
+
+Environment Object_to_env(Object e) {
+  Environment new_env = Environment();
+
+  Object reading = e;
+
+  while (reading)
+    {
+      Binding writing = Object_to_binding(car(reading));
+      new_env.add_new_binding(writing.get_name(),writing.get_value());
+      reading = cdr(reading);
+    }
+
+  return new_env;
 }
 
 ostream& operator << (ostream& s, Environment& env) {
