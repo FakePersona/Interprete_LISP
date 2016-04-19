@@ -4,6 +4,7 @@
 #include "eval.hh"
 #include "toplevel.hh"
 #include "subr.hh"
+#include "exception.hh"
 
 using namespace std;
 
