@@ -1,11 +1,10 @@
 #include "object.hh"
 #include "eval.hh"
 #include "subr.hh"
+#include "exception.hh"
 #include <stdio.h>
 #include <stdexcept>
 
-Not_Subr::Not_Subr():
-    runtime_error("Subroutine error") {}
 
 Object do_plus(Object lvals) {
   int a = Object_to_number(car(lvals));
