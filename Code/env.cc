@@ -147,7 +147,13 @@ void Environment::print(ostream& s) {
   EnvBlock* printing = head;
   while (printing)
     {
-      s << printing->get_content()->get_name() << ": " << printing->get_content()->get_value() << "; ";
+      string visible = "( ... )";
+      Object value = printing->get_content()->get_value();
+      if (value->is_pair())
+        {
+          value = string_to_Object(visible);
+        }
+      s << printing->get_content()->get_name() << ": " << value << "; ";
       printing = printing->get_next();
     }
 }
