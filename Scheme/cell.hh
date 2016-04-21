@@ -5,6 +5,8 @@
 
 using namespace std;
 
+class Frame;
+
 class Cell {
 private:
   enum cell_sort {NUMBER, STRING, SYMBOL, PAIR};
@@ -20,6 +22,7 @@ private:
     char *as_string;
     char *as_symbol;
     cell_pair as_pair;
+    Frame* closure;
   };
 
   cell_value value;

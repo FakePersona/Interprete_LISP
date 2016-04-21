@@ -38,7 +38,7 @@ Binding Object_to_binding(Object b) {
   return Binding(Object_to_string(car(b)), cdr(b));
 }
 
-/* Environment functions */
+/* Frame functions */
 
 EnvBlock::EnvBlock():
   content(Binding("t", number_to_Object(1))), next(NULL) {}
@@ -58,12 +58,16 @@ void EnvBlock::set_next(EnvBlock* nex) {
   next = nex;
 }
 
-Environment::Environment() {
+Frame::Frame() {
   head  = NULL;
+  scope = NULL;
 }
 
-Environment::Environment(const Environment & source) {
+Frame::Frame(const Frame & source) { // Needs to be updated
   head = NULL;
+  scope = NULL;
+  if (source.scope)
+    scope = new Frame(*source.scope);
   EnvBlock* writing = head;
   EnvBlock* reading = source.head;
   while (reading)
@@ -88,21 +92,22 @@ Environment::Environment(const Environment & source) {
     }
 }
 
-Environment::~Environment() {
+Frame::~Frame() {
   while (head)
     {
       EnvBlock* killed = head;
       head = head->get_next();
       delete killed;
     }
+  delete scope;
 }
 
-void Environment::add_new_binding(string name, Object value) {
+void Frame::add_new_binding(string name, Object value) {
   EnvBlock* new_head = new EnvBlock(Binding(name,value), head);
   head = new_head;
 }
 
-void Environment::set_new_binding(string name, Object value) {
+void Frame::set_new_binding(string name, Object value) {
   try
     {
       Binding* target = find_block(name)->get_content();
@@ -113,7 +118,7 @@ void Environment::set_new_binding(string name, Object value) {
   }
 }
 
-void Environment::extend_env(Object lpars, Object lvals) {
+void Frame::extend_env(Object lpars, Object lvals) {
   if (null(lpars) && null(lvals)) return;
   if (null(lpars) && !null(lvals)) throw Zipping_Exception(lvals, "Too many values");
   if (!null(lpars) && null(lvals)) throw Zipping_Exception(lpars, "Too many parameters");
@@ -121,7 +126,7 @@ void Environment::extend_env(Object lpars, Object lvals) {
   extend_env(cdr(lpars), cdr(lvals));
 }
 
-EnvBlock* Environment::find_block(string name) {
+EnvBlock* Frame::find_block(string name) {
   EnvBlock* searching = head;
 
   while (searching)
@@ -139,11 +144,26 @@ EnvBlock* Environment::find_block(string name) {
 }
 
 
-Object Environment::find_value(string name) {
-  return find_block(name)->get_content()->get_value();
+Object Frame::find_value(string name) {
+  EnvBlock* searching = head;
+
+  while (searching)
+    {
+      if (searching->get_content()->get_name() == name)
+        {
+          return searching->get_content()->get_value();
+        }
+      else
+        {
+          searching = searching->get_next();
+        }
+    }
+  if (scope)
+    scope->find_value(name);
+  throw No_Binding_Exception(name);
 }
 
-void Environment::print(ostream& s) {
+void Frame::print(ostream& s) {
   EnvBlock* printing = head;
   while (printing)
     {
@@ -156,47 +176,49 @@ void Environment::print(ostream& s) {
       s << printing->get_content()->get_name() << ": " << value << "; ";
       printing = printing->get_next();
     }
+  if (scope)
+    scope->print(s);
 }
 
-Object Environment::to_Object() {
-  EnvBlock* reading = head;
+// Object Frame::to_Object() {
+//   EnvBlock* reading = head;
 
-  Object env_obj = new Cell();
-  env_obj->make_cell_pair(NULL,NULL);
-  Object writing = env_obj;
+//   Object env_obj = new Cell();
+//   env_obj->make_cell_pair(NULL,NULL);
+//   Object writing = env_obj;
 
-  while (reading) {
-    writing->make_cell_pair(reading->get_content()->to_Object(),writing->to_pair_item());
+//   while (reading) {
+//     writing->make_cell_pair(reading->get_content()->to_Object(),writing->to_pair_item());
 
-    Object new_env_obj = new Cell();
-    new_env_obj->make_cell_pair(NULL,writing);
+//     Object new_env_obj = new Cell();
+//     new_env_obj->make_cell_pair(NULL,writing);
 
-    writing = new_env_obj;
-    reading = reading->get_next();
-  }
+//     writing = new_env_obj;
+//     reading = reading->get_next();
+//   }
 
-  if (writing->to_pair_next())
-    writing = writing->to_pair_next();
+//   if (writing->to_pair_next())
+//     writing = writing->to_pair_next();
 
-  return env_obj;
-}
+//   return env_obj;
+// }
 
-Object Environment::make_closure(Object body) {
-  Object tag = new Cell();
-  tag->make_cell_string("closure");
+// Object Frame::make_closure(Object body) {
+//   Object tag = new Cell();
+//   tag->make_cell_string("closure");
 
-  Object tag_block = new Cell();
+//   Object tag_block = new Cell();
 
-  Object tail_block = new Cell();
-  tail_block->make_cell_pair(body,to_Object());
+//   Object tail_block = new Cell();
+//   tail_block->make_cell_pair(body,to_Object());
 
-  tag_block->make_cell_pair(tag,tail_block);
+//   tag_block->make_cell_pair(tag,tail_block);
 
-  return tag_block;
-}
+//   return tag_block;
+// }
 
-Environment Object_to_env(Object e) {
-  Environment new_env = Environment();
+Frame Object_to_env(Object e) {
+  Frame new_env = Frame();
 
   Object reading = e;
 
@@ -210,7 +232,7 @@ Environment Object_to_env(Object e) {
   return new_env;
 }
 
-ostream& operator << (ostream& s, Environment& env) {
+ostream& operator << (ostream& s, Frame& env) {
   env.print(s);
   return s;
 }

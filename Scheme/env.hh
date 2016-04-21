@@ -33,13 +33,14 @@ public:
   void set_next(EnvBlock* nex);
 };
 
-class Environment {
+class Frame {
 private:
   EnvBlock* head;
+  Frame* scope;
 public:
-  Environment();
-  Environment(const Environment & source);
-  ~Environment();
+  Frame();
+  Frame(const Frame & source);
+  ~Frame();
   void add_new_binding(string name, Object value);
   void set_new_binding(string name, Object value);
   void extend_env(Object lpars, Object lvals);
@@ -50,6 +51,6 @@ public:
   Object make_closure(Object body);
 };
 
-Environment Object_to_env(Object e);
+Frame Object_to_env(Object e);
 
-ostream& operator << (ostream& s, Environment& env);
+ostream& operator << (ostream& s, Frame& env);

@@ -10,7 +10,7 @@
 bool debug = false;
 int counter = 0;
 
-void handle_directive(Object l,Environment* env) {
+void handle_directive(Object l,Frame* env) {
   if (listp(l) && Object_to_string(car(l)) == "setq") {
     Object bound_symbol = cadr(l);
     Object bound_part = caddr(l);
@@ -25,7 +25,7 @@ void toplevel()
   Object one = number_to_Object(1);
   Object two = number_to_Object(2);
 
-  Environment env = Environment();
+  Frame env = Frame();
   env.add_new_binding(Object_to_string(a), one);
   // env.add_new_binding(Object_to_string(a), two);
 
