@@ -69,6 +69,13 @@ Object do_concat(Object lvals) {
 	return string_to_Object(Object_to_string(a) + Object_to_string(b));
 }
 
+Object do_read() {
+  char entry[256];
+  scanf("%[^\n]s", entry);
+  Object l = string_to_Object(entry);
+  return l;
+}
+
 Object handle_subr(Object f,Object lvals){
 	if (Object_to_string(f) == "+") {
 		return do_plus(lvals);
@@ -91,12 +98,15 @@ Object handle_subr(Object f,Object lvals){
 	if (Object_to_string(f) == "=") {
 		return do_eq(lvals);
 	}
-  if (Object_to_string(f) == "newline") {
-    printf("\n");
-    return nil();
-  }
+    if (Object_to_string(f) == "newline") {
+		printf("\n");
+		return nil();
+    }
 	if (Object_to_string(f) == "concat") {
 		return do_concat(lvals);
+	}
+	if (Object_to_string(f) == "read") {
+		return do_read();
 	}
 	throw Not_Subr();
 }
