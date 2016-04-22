@@ -10,7 +10,7 @@
 bool debug = false;
 int counter = 0;
 
-void handle_directive(Object l,Frame* env) {
+void handle_directive(Object l,Environment* env) {
   if (listp(l) && Object_to_string(car(l)) == "setq") {
     Object bound_symbol = cadr(l);
     Object bound_part = caddr(l);
@@ -23,10 +23,9 @@ void toplevel()
 {
   Object a =  symbol_to_Object("a");
   Object one = number_to_Object(1);
-  Object two = number_to_Object(2);
-
-  Frame env = Frame();
-  env.add_new_binding(Object_to_string(a), one);
+  
+  Environment env = Environment();
+  env.set_new_binding(Object_to_string(a), one);
   // env.add_new_binding(Object_to_string(a), two);
 
   do {
@@ -41,6 +40,7 @@ void toplevel()
       
     } 
       catch (No_Binding_Exception){
+        printf("not bound");
 	}
 	  catch (Zipping_Exception){
 	}

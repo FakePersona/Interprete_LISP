@@ -6,7 +6,7 @@
 #include <stdio.h>
 #include <stdexcept>
 
-/** Frame Exceptions*/
+/** Environment Exceptions*/
 
 class No_Binding_Exception: public runtime_error {
 private:
@@ -47,10 +47,10 @@ Object handle_subr(Object f,Object lvals);
 class Evaluation_Exception: public runtime_error {
 private:
   Object obj;
-  Frame env;
+  Environment env;
   string message;
 public:
-  Evaluation_Exception(Object _obj, Frame _env, string _message):
+  Evaluation_Exception(Object _obj, Environment _env, string _message):
     runtime_error("Evaluation error:" + _message) {
     obj = _obj;
     env = _env;

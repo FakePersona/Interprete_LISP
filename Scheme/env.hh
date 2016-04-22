@@ -39,6 +39,7 @@ private:
   Frame* scope;
 public:
   Frame();
+  Frame(Frame* _scope);
   Frame(const Frame & source);
   ~Frame();
   void add_new_binding(string name, Object value);
@@ -53,4 +54,18 @@ public:
 
 Frame Object_to_env(Object e);
 
-ostream& operator << (ostream& s, Frame& env);
+class Environment {
+private:
+  Frame* observing;
+
+public:
+  Environment();
+  Environment(Frame* obs);
+  Frame* get_observing();
+  void set_new_binding(string name, Object value);
+  void extend_env(Object lpars, Object lvals);
+  Object find_value(string name);
+  void print(ostream& s);
+};
+
+ostream& operator << (ostream& s, Environment& env);

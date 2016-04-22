@@ -25,6 +25,10 @@ bool Cell::is_pair() const {
   return sort == PAIR;
 }
 
+bool Cell::is_frame() const {
+  return sort == FRAME;
+}
+
 int Cell::to_number() const {
   assert(is_number());
   return value.as_number;
@@ -48,6 +52,11 @@ Cell *Cell::to_pair_item() const {
 Cell *Cell::to_pair_next() const {
   assert(is_pair());
   return value.as_pair.next;
+}
+
+Frame* Cell::to_frame() const {
+  assert(is_frame());
+  return value.as_frame;
 }
 
 Cell *Cell::nil() {
@@ -82,6 +91,11 @@ void Cell::make_cell_pair(Cell* p, Cell* q) {
   c.item = p;
   c.next = q;
   value.as_pair = c;
+}
+
+void Cell::make_cell_frame(Frame* f) {
+  sort = FRAME;
+  value.as_frame = f;
 }
 
 Cell Cell::cell_nil = Cell();

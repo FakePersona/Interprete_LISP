@@ -63,43 +63,48 @@ Frame::Frame() {
   scope = NULL;
 }
 
-Frame::Frame(const Frame & source) { // Needs to be updated
+Frame::Frame(Frame* _scope) {
   head = NULL;
-  scope = NULL;
-  if (source.scope)
-    scope = new Frame(*source.scope);
-  EnvBlock* writing = head;
-  EnvBlock* reading = source.head;
-  while (reading)
-    {
-      EnvBlock* copy = new EnvBlock(*reading->get_content(),NULL);
+  scope = _scope;
+}
 
-      if (copy != NULL)
-        {
-          if (head == NULL)
-            head = copy;
-          else
-            {
-              writing->set_next(copy);
-            }
-          writing = copy;
-          reading = reading->get_next();
-        }
-      else
-        {
-          reading = NULL;
-        }
-    }
+Frame::Frame(const Frame & source) { // Needs to be updated
+  head = source.head;
+  scope = NULL;
+  // if (source.scope)
+  //   scope = new Frame(*source.scope);
+  // EnvBlock* writing = head;
+  // EnvBlock* reading = source.head;
+  // while (reading)
+  //   {
+  //     EnvBlock* copy = new EnvBlock(*reading->get_content(),NULL);
+
+  //     if (copy != NULL)
+  //       {
+  //         if (head == NULL)
+  //           head = copy;
+  //         else
+  //           {
+  //             writing->set_next(copy);
+  //           }
+  //         writing = copy;
+  //         reading = reading->get_next();
+  //       }
+  //     else
+  //       {
+  //         reading = NULL;
+  //       }
+  //   }
 }
 
 Frame::~Frame() {
-  while (head)
-    {
-      EnvBlock* killed = head;
-      head = head->get_next();
-      delete killed;
-    }
-  delete scope;
+  // while (head)
+  //   {
+  //     EnvBlock* killed = head;
+  //     head = head->get_next();
+  //     delete killed;
+  //   }
+  // delete scope;
 }
 
 void Frame::add_new_binding(string name, Object value) {
@@ -122,7 +127,7 @@ void Frame::extend_env(Object lpars, Object lvals) {
   if (null(lpars) && null(lvals)) return;
   if (null(lpars) && !null(lvals)) throw Zipping_Exception(lvals, "Too many values");
   if (!null(lpars) && null(lvals)) throw Zipping_Exception(lpars, "Too many parameters");
-  add_new_binding(Object_to_string(car(lpars)), car(lvals));
+  set_new_binding(Object_to_string(car(lpars)), car(lvals));
   extend_env(cdr(lpars), cdr(lvals));
 }
 
@@ -160,7 +165,8 @@ Object Frame::find_value(string name) {
     }
   if (scope)
     scope->find_value(name);
-  throw No_Binding_Exception(name);
+  else
+    throw No_Binding_Exception(name);
 }
 
 void Frame::print(ostream& s) {
@@ -232,7 +238,35 @@ Frame Object_to_env(Object e) {
   return new_env;
 }
 
-ostream& operator << (ostream& s, Frame& env) {
+Environment::Environment() {
+  observing = new Frame();
+}
+
+Environment::Environment(Frame* obs) {
+  observing = obs;
+}
+
+Frame* Environment::get_observing() {
+  return observing;
+}
+
+void Environment::set_new_binding(string name, Object value) {
+  observing->set_new_binding(name, value);
+}
+
+void Environment::extend_env(Object lpars, Object lvals) {
+  observing->extend_env(lpars, lvals);
+}
+
+Object Environment::find_value(string name) {
+  return observing->find_value(name);
+}
+
+void Environment::print(ostream& s) {
+  observing->print(s);
+}
+
+ostream& operator << (ostream& s, Environment& env) {
   env.print(s);
   return s;
 }

@@ -44,11 +44,11 @@ Object cadddr(Object l) {
   return car(cdddr(l));
 }
 
-Object eval(Object l, Frame env);
-Object apply(Object f, Object lvals, Frame env);
-Object eval_list(Object largs, Frame env);
+Object eval(Object l, Environment env);
+Object apply(Object f, Object lvals, Environment env);
+Object eval_list(Object largs, Environment env);
 
-Object do_progn(Object lvals, Frame env) {
+Object do_progn(Object lvals, Environment env) {
   if (null(cdr(lvals)))
     {
       return eval(car(lvals),env);
@@ -60,7 +60,7 @@ Object do_progn(Object lvals, Frame env) {
     }
 }
 
-Object do_if(Object lvals, Frame env) {
+Object do_if(Object lvals, Environment env) {
   Object test_part = car(lvals);
   Object then_part = cadr(lvals);
   Object else_part = caddr(lvals);
@@ -69,7 +69,7 @@ Object do_if(Object lvals, Frame env) {
   return eval(then_part, env);
 }
 
-Object do_andthen(Object lvals, Frame env) {
+Object do_andthen(Object lvals, Environment env) {
   Object part1 = car(lvals);
   Object part2 = cadr(lvals);
   if  (!null(eval(part1,env)))
@@ -82,7 +82,7 @@ Object do_andthen(Object lvals, Frame env) {
     }
 }
 
-Object do_cond(Object lvals, Frame env) {
+Object do_cond(Object lvals, Environment env) {
   if (null(lvals))
     {
       return nil();
@@ -102,7 +102,7 @@ Object do_cond(Object lvals, Frame env) {
     }
 }
 
-Object eval_aux(Object l, Frame env) {
+Object eval_aux(Object l, Environment env) {
 
   if (null(l)) return l;
   if (numberp(l)) return l;
@@ -135,7 +135,7 @@ Object eval_aux(Object l, Frame env) {
   return apply(f, vals, env);
 }
 
-Object eval(Object l, Frame env) {
+Object eval(Object l, Environment env) {
   if (!debug)
     {
       return eval_aux(l,env);
@@ -163,13 +163,13 @@ Object eval(Object l, Frame env) {
     }
 }
 
-Object eval_list(Object largs, Frame env) {
+Object eval_list(Object largs, Environment env) {
   if (null(largs)) return largs;
   return cons(eval(car(largs), env), eval_list(cdr(largs), env));
 }
 
 
-Object apply(Object f, Object lvals, Frame env) {
+Object apply(Object f, Object lvals, Environment env) {
   //clog << "\tapply: " << f << " " << lvals << env << endl;
 
   if (null(f)) throw Evaluation_Exception(f, env, "Cannot apply nil");
@@ -186,12 +186,12 @@ Object apply(Object f, Object lvals, Frame env) {
   if (Object_to_string(car(f)) == "lambda") {
     Object lpars = cadr(f);
     Object body = caddr(f);
-    Frame new_env = env;
-    new_env.extend_env(lpars, lvals);
-    return eval(body, new_env);
+    Environment* new_env = new Environment(env.get_observing());
+    new_env->extend_env(lpars, lvals);
+    return eval(body, *new_env);
   }
   // if (Object_to_string(car(f)) == "closure") {
-  //   Frame new_env = Object_to_env(cddr(f));
+  //   Environment new_env = Object_to_env(cddr(f));
   //   Object body = cadr(f);
   //   return apply(body, lvals, new_env);
   // }
