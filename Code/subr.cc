@@ -24,6 +24,12 @@ Object do_minus(Object lvals) {
   return number_to_Object(a - b);
 }
 
+Object do_div(Object lvals) {
+  int a = Object_to_number(car(lvals));
+  int b = Object_to_number(cadr(lvals));
+  return number_to_Object(a / b);
+}
+
 Object do_car(Object lvals) {
   Object l = car(lvals);
   return car(l);
@@ -70,7 +76,6 @@ Object do_concat(Object lvals) {
 }
 
 Object do_read() {
-  char entry[256];
   Object l = read();
   return l;
 }
@@ -84,6 +89,9 @@ Object handle_subr(Object f,Object lvals){
 	}
 	if (Object_to_string(f) == "-") {
 		return do_minus(lvals);
+	}
+	if (Object_to_string(f) == "/") {
+		return do_div(lvals);
 	}
 	if (Object_to_string(f) == "car") {
 		return do_car(lvals);
