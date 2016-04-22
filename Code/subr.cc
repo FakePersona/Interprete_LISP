@@ -71,8 +71,7 @@ Object do_concat(Object lvals) {
 
 Object do_read() {
   char entry[256];
-  scanf("%[^\n]s", entry);
-  Object l = string_to_Object(entry);
+  Object l = read();
   return l;
 }
 
