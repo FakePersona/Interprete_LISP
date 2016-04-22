@@ -4,6 +4,7 @@
 #include "read.hh"
 #include "toplevel.hh"
 #include "exception.hh"
+#include "subr.hh"
 #include <stdio.h>
 #include <stdexcept>
 
@@ -23,9 +24,11 @@ void toplevel()
 {
   Object a =  symbol_to_Object("a");
   Object one = number_to_Object(1);
-  Object two = number_to_Object(2);
+  //Object two = number_to_Object(2);
 
   Environment env = Environment();
+  //Environment subr_env = Environment();
+  make_subr_env(&env);
   env.add_new_binding(Object_to_string(a), one);
   // env.add_new_binding(Object_to_string(a), two);
 
