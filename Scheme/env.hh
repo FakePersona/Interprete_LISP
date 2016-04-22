@@ -48,11 +48,9 @@ public:
   EnvBlock* find_block(string name);
   Object find_value(string name);
   void print(ostream& s);
-  Object to_Object();
-  Object make_closure(Object body);
 };
 
-Frame Object_to_env(Object e);
+
 
 class Environment {
 private:
@@ -66,6 +64,10 @@ public:
   void extend_env(Object lpars, Object lvals);
   Object find_value(string name);
   void print(ostream& s);
+  Object to_Object();
+  Object make_closure(Object body);
 };
+
+Environment Object_to_env(Object e);
 
 ostream& operator << (ostream& s, Environment& env);

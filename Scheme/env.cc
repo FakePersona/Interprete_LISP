@@ -186,58 +186,6 @@ void Frame::print(ostream& s) {
     scope->print(s);
 }
 
-// Object Frame::to_Object() {
-//   EnvBlock* reading = head;
-
-//   Object env_obj = new Cell();
-//   env_obj->make_cell_pair(NULL,NULL);
-//   Object writing = env_obj;
-
-//   while (reading) {
-//     writing->make_cell_pair(reading->get_content()->to_Object(),writing->to_pair_item());
-
-//     Object new_env_obj = new Cell();
-//     new_env_obj->make_cell_pair(NULL,writing);
-
-//     writing = new_env_obj;
-//     reading = reading->get_next();
-//   }
-
-//   if (writing->to_pair_next())
-//     writing = writing->to_pair_next();
-
-//   return env_obj;
-// }
-
-// Object Frame::make_closure(Object body) {
-//   Object tag = new Cell();
-//   tag->make_cell_string("closure");
-
-//   Object tag_block = new Cell();
-
-//   Object tail_block = new Cell();
-//   tail_block->make_cell_pair(body,to_Object());
-
-//   tag_block->make_cell_pair(tag,tail_block);
-
-//   return tag_block;
-// }
-
-Frame Object_to_env(Object e) {
-  Frame new_env = Frame();
-
-  Object reading = e;
-
-  while (reading)
-    {
-      Binding writing = Object_to_binding(car(reading));
-      new_env.add_new_binding(writing.get_name(),writing.get_value());
-      reading = cdr(reading);
-    }
-
-  return new_env;
-}
-
 Environment::Environment() {
   observing = new Frame();
 }
@@ -264,6 +212,33 @@ Object Environment::find_value(string name) {
 
 void Environment::print(ostream& s) {
   observing->print(s);
+}
+
+Object Environment::to_Object() {
+  Object frame_cell = new Cell();
+  frame_cell->make_cell_frame(observing);
+
+  return frame_cell;
+}
+
+Object Environment::make_closure(Object body) {
+  Object tag = new Cell();
+  tag->make_cell_string("closure");
+
+  Object tag_block = new Cell();
+
+  Object tail_block = new Cell();
+  tail_block->make_cell_pair(body,to_Object());
+
+  tag_block->make_cell_pair(tag,tail_block);
+
+  return tag_block;
+}
+
+Environment Object_to_env(Object e) {
+  Environment new_env = Environment(e->to_pair_next()->to_pair_next()->to_frame());
+
+  return new_env;
 }
 
 ostream& operator << (ostream& s, Environment& env) {
