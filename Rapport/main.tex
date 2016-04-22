@@ -1,0 +1,82 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage{a4wide}%
+
+\usepackage{tabularx}
+
+\usepackage{fullpage}%
+\usepackage[T1]{fontenc}%
+\usepackage[utf8]{inputenc}%
+\usepackage[main=francais,english]{babel}%
+
+\usepackage{graphicx}%
+\usepackage{xspace}%
+\usepackage{float}
+
+\usepackage{url} \urlstyle{sf}%
+\DeclareUrlCommand\email{\urlstyle{sf}}%
+
+\usepackage{mathpazo}%
+\let\bfseriesaux=\bfseries%
+\renewcommand{\bfseries}{\sffamily\bfseriesaux}
+
+\newenvironment{keywords}%
+{\description\item[Mots-clés.]}%
+{\enddescription}
+
+
+\newenvironment{remarque}%
+{\description\item[Remarque.]\sl}%
+{\enddescription}
+
+\font\manual=manfnt
+\newcommand{\dbend}{{\manual\char127}}
+
+\newenvironment{attention}%
+{\description\item[\dbend]\sl}%
+{\enddescription}
+
+\usepackage{listings}%
+
+\lstset{%
+  basicstyle=\sffamily,%
+  columns=fullflexible,%
+  language=c,%
+  frame=lb,%
+  frameround=fftf,%
+}%
+
+\lstMakeShortInline{|}
+
+\parskip=0.3
+\baselineskip
+
+\sloppy
+
+%opening
+\title{Interprète Lisp en C++}
+\author{Antonin Garret \and Rémy Sun}
+\date{21 avril 2016}
+
+
+\begin{document}
+
+\maketitle
+
+\section*{Interprète dynamique}
+
+Dans un premier temps, nous avons implémenté, à partir du code fourni, un interprète qui possède les principale fonctions Lisp, avec une gestion dynamique de l'environnement
+
+\subsection*{Toplevel}
+
+Nous avons encapsulé la gestion des entrées dans un \texttt{toplevel}, appelé par la fonction \texttt{main}. Ce toplevel gère la directive setq, qui permet de modifier l'environnement. Elle fait appel à une fonction \texttt{add_new_binding} que nous avons implémenté, qui permet de créer un nouvel objet \texttt{Binding} (qui comporte deux éléments : un symbole et la valeur qui lui est associée) que l'on ajoute à l'environnement courant.
+
+
+
+\begin{itemize}
+\item http://stackoverflow.com
+\item https://openclassrooms.com
+\item http://www.cs.rpi.edu
+\end{itemize}
+
+
+\end{document}
