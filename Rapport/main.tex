@@ -83,11 +83,11 @@ Nous nous somme fixés les objectifs intermédiaires suivant:
   gérer les frames.
 \item Créer un premier interprète à liaison statique identique à celui vu en TD.
 \item Implémenter une gestion des clôtures dans cet interprète. Le but original
-  était d'explorer la possibilité de stocker tout l'environement courant (donc
+  était d'explorer la possibilité de stocker tout l'environnement courant (donc
   en le dédoublant), possibilité non développée en TD. Après constatation des
   nombreux problèmes que cela pose (mais aussi de ce qu'il est possible de
   faire) nous avons créé une autre clôture utilisant des pointeurs
-  d’environnement.
+  d'environnement.
 \item Implémenter la gestion de frames, adapter la clôture Scheme.
 \end{itemize}
 
@@ -133,6 +133,15 @@ qui possède les principale fonctions Lisp, avec une gestion dynamique de l'envi
   correspond. Nous avons aussi implémenté la gestion des booléens dans la classe 
   \texttt{Object}, afin de clarifier et de simplifier leur utilisation, en 
   particulier dans cette fonction.
+
+  Pour nous rapprocher de l'interprète original, nous avons modifié la classe
+  \texttt{Cell} pour créer un type de cellule contenant une subroutine (qui est
+  une fonction). Pour ce faire, nous avons fais usage des pointeurs de fonctions
+  (et non de foncteurs dont l'utilisation ne se justifiait pas vraiment ici).
+  Une fonction \texttt{init\_subr} permet d'ajouter à l'environement de départ
+  les subroutines définies. Il convient de noter qu'on a du modifier les
+  méthodes d'impression de liaisons pour ne pas imprimer les liaisons faisant
+  intervenir une subroutine.
   
   Nous avons d'autre part pu remarquer l'utilité de l'encapsulation déjà effectuée, 
   car il nous a suffit de réutiliser les fonctions de la classe \texttt{read} 
@@ -155,19 +164,19 @@ pour permettre à l'utilisateur de suivre l'évolution de l'environnement couran
 
 \subsection{Environnement par listes chaînées}
 
-Si l'implémentation des environnement comme vecteurs 
+Si l'implèmentation des environnement comme vecteurs 
 de pointeurs vers des \texttt{Binding} a le mérite de marcher, elle n'en est
 pas moins problématique au sens où, pour copier un environnement, il est
 nécessaire de copier l'intégralité de la liste des pointeurs, ce qui présente un
-coût linéaire en la taille de l'environement considéré!
+coût linéaire en la taille de l'environnement considéré!
 
-La première idée pour remédier à cela est de faire de l'environement un unique
+La première idée pour remédier à cela est de faire de l'environnement un unique
 pointeur vers le vecteur de pointeurs. Cela ne fait cependant que déplacer le
 problème dans le cas où il faut copier aussi ce vecteur.
 
-Aussi, il semble judicieux de transformer l'environement en liste chaînée:
+Aussi, il semble judicieux de transformer d'environnement en liste chaînée:
 chaque bloc de la liste contient un unique \texttt{Binding} et un pointeur vers
-le prochain bloc (éventuellement NULL). Il faut noter que nous ne perdons rien
+le prochain bloc (éventuellement \texttt{NULL}). Il faut noter que nous ne perdons rien
 en efficacité, puisqu'il fallait de toute façon parcourir tout le vecteur de
 pointeurs pour trouver le \texttt{Binding} correspondant à une chaîne donnée.
 
@@ -182,34 +191,119 @@ d'utiliser des pointeurs de \texttt{Binding}.
 
 La principale question qui s'est posée est la suivante :considère-t-on qu'un
 environnement est un bloc (le bloc de \og tête\fg) ou considère-t-on que
-l'environement est quelque chose d'autre que la somme individuelle de ses
+l'environnement est quelque chose d'autre que la somme individuelle de ses
 parties?
 
 Nous avons privilégié la deuxième approche. En effet, elle permet de gérer plus
-proprement l'allocation dynamique en mémoire de blocs d’environnement. De plus,
-cela rendait beaucoup plus facile la destruction des blocs d’environnements
+proprement l'allocation dynamique en mémoire de blocs d'environnement. De plus,
+cela rendait beaucoup plus facile la destruction des blocs d'environnements
 alloués en mémoire ainsi que la création de copies indépendantes (créant aussi
 de nouveaux blocs). Cette gestion des copies s'est révélée par la suite sans
 grand intérêt, mais le code utilisé demeure dans le dossier \texttt{Copie}
 
 C'est cette macro-structure qui s'occupe de la gestion des ajouts et
 consultations de \texttt{Binding} :c'est elle qui fournit l'interface publique
-de l'environement.
+de l'environnement.
 
 \begin{attention}
   Une difficulté rencontrée avec l'utilisation d'instances de \texttt{Binding}
-  au lieu de pointeurs dans les blocs d’environnement a été la création
+  au lieu de pointeurs dans les blocs d'environnements a été la création
   implicites de copies que nous avons du tracer à l'aide d'impressions de
   pointeurs. L'utilisation d'un setter à permis de remédier à ces problèmes.
 \end{attention}
 
 \subsection{Première liaison statique}
 
+Le passage en liaison statique n'a pas posé de grandes questions ou difficulté.
+
+Nous nous sommes contentés de créer une nouvelle méthode
+\texttt{set\_new\_binding} qui parcours dans un premier temps l'environnement à la
+recherche d'une liaison faisant intervenir le nom de liaison qu'on veut ajouter.
+Si on trouve une telle liaison, on modifie physiquement la liaison ajoutée.
+Sinon on rajoute une nouvelle liaison.
+
 \subsection{Première clôture}
+
+\subsubsection{Stockage physique de la capture}
+
+Nous étions dans un
+premier temps parti dans l'idée d'essayer de voir ce que le stockage complet de
+l'environnement courant au moment de la définition d'une clôture. La création
+d'une telle clôture, bien que fastidieuse ne pose pas de difficultés
+particulières: créer une clôture contenant assez d'informations pour
+reconstruire l'environnement est assez naturel, tout comme l'extraction
+d'informations à partir d'une clôture que nous avons nous-même construits.
+On vérifie bien qu'il n'est plus possible de capturer dynamiquement une variable à l'intérieur
+d'une fonction.
+
+Là où la situation devient plus épineuse est quand on veut pouvoir modifier
+physiquement une variable déjà définie. Si il peut paraître en première approche
+qu'il \og suffirait\fg de parcourir toutes les clôtures pour modifier les
+informations à l'intérieur, cette idée n'est pas concluante. En effet, si on
+veut redéfinir une fonction dans la clôture lui correspondant, il faudrait
+effectuer une infinité de modification de clôture puisqu'une telle clôture
+rendrait l'environnement circulaire. Nous n'avons pas trouvé de solution
+satisfaisante à ce problème.
+
+En l'état, une telle construction ne permet pas l'utilisation de fonctions
+mutuellement dépendantes (on ne peut pas aller modifier le placeholder) ou
+récursives.
+
+\subsubsection{Stockage d'un pointeur de capture}
+
+Nous avons donc du reprogrammer la clôture en stockant un pointeur vers le bloc
+environnement courant au moment de la clôture. Il suffira alors de créer un
+environnement pointant vers le bloc environnement au moment de la reconstruction.
+Une légère difficulté est que simplement ajouter une valeur pointant vers un
+environnement peut créer une situation où il y a des inclusions circulaires de
+fichiers puisque la classe environnement dépend de la classe cellule.
+Heureusement, une forward declaration de la classe environnement dans la classe
+\texttt{Cell} permet de remédier à cela.
+
+Avec cette méthode, il est possible de créer des fonctions mutuellement
+récursives et des fonctions récursives sans problèmes apparents. Par contre il
+faut encore gérer un problème posé par la définition circulaire des clôtures.
+En effet, cela pose de gros problèmes si on veut afficher l'environnement. La
+solution adoptée a été le remplacement d'objets environnement par une chaîne
+<env>.
 
 \subsection{Passage en frames}
 
-\subsection{Clotures scheme}
+Notre structure en liste chaînée a déjà grandement abordée les difficultés de la
+gestion d'un environnement par frames. Deux possibilités d'adaptation étaient
+envisageables: on pouvait laisser la structure grandement inchangée et
+simplement remplacer le contenu des blocs d'environnements par un vecteur de
+pointeurs vers des \texttt{Binding}, ou traiter les anciens
+\texttt{Environement} comme des frames et créer un nouvel environnement pointant
+vers une frame. C'est la deuxième possibilité que nous avons privilégié.
+
+Procéder de la sorte nous semble présenter certains avantages: de cette manière
+il est complètement naturel de créer des frames intermédiaires, et il y a
+séparation claire des structures de stockage de liaisons et de frames.
+
+Un aspect particulièrement intéressant de la gestion par frame est la limitation
+de l'action de certaines méthodes (comme \texttt{set\_new\_binding}) à la frame
+locale tandis que d'autres s'appliquent à l'ensemble des frames en cascade
+défini par l'enchaînement des frames.
+
+\subsection{Clôtures scheme}
+
+La gestion des clôture en scheme est comparativement plus simple que dans
+l'interprète à liaison statique précédente. Il suffit de stocker le pointeur
+vers la frame courante au moment de la clôture et il ne sera plus possible de
+capturer une variable au cours de l'exécution de fonctions imbriquées.
+
+Lors du passage par un \texttt{lambda}, une nouvelle frame est créée (ce qui
+protège les variables de l'environnement courant), et à la lecture d'une clôture
+on se replace dans la frame où la fonction a été définie ce qui évite d'être
+gène par une définition interne à la frame où la fonction est appelée.
+
+Grâce à la particularité des frames, il est parfaitement naturel de définir des
+fonctions mutuellement récursives. En effet, puisque la clôture pointe vers une
+frame et non un bloc d'environnement fixé, il n'y a pas besoin d'utiliser un
+placeholder pour réserver une place dans la clôture : les fonctions définies
+dans la frame courante après la définition e la clôture seront quand même
+capturées.
 
 \section{Vérification}
 
