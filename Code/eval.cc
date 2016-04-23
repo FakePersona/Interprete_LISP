@@ -171,7 +171,6 @@ Object eval_list(Object largs, Environment env) {
 
 Object apply(Object f, Object lvals, Environment env) {
   //clog << "\tapply: " << f << " " << lvals << env << endl;
-
   if (null(f)) throw Evaluation_Exception(f, env, "Cannot apply nil");
   if (numberp(f)) throw Evaluation_Exception(f, env, "Cannot apply a number");
   if (stringp(f)) throw Evaluation_Exception(f, env, "Cannot apply a string");
@@ -186,7 +185,7 @@ Object apply(Object f, Object lvals, Environment env) {
   if (Object_to_string(car(f)) == "lambda") {
     Object lpars = cadr(f);
     Object body = caddr(f);
-    Environment new_env = env;
+    Environment new_env = Environment(env);
     new_env.extend_env(lpars, lvals);
     return eval(body, new_env);
   }

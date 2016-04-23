@@ -17,6 +17,12 @@ void handle_directive(Object l,Environment* env) {
     env->set_new_binding(Object_to_string(bound_symbol),eval(bound_part,*env));
     throw Continue_Directive();
   }
+  if (listp(l) && Object_to_string(car(l)) == "define") {
+    Object bound_symbol = cadr(l);
+    Object bound_part = caddr(l);
+    env->add_new_binding(Object_to_string(bound_symbol),eval(bound_part,*env));
+    throw Continue_Directive();
+  }
 }
 
 void toplevel()
@@ -26,7 +32,6 @@ void toplevel()
   
   Environment env = Environment();
   env.set_new_binding(Object_to_string(a), one);
-  // env.add_new_binding(Object_to_string(a), two);
 
   do {
     cout << "Lisp? " << flush;

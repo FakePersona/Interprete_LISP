@@ -113,7 +113,7 @@ Object eval_aux(Object l, Environment env) {
   if (symbolp(f)) {
     if (Object_to_string(f) == "lambda")
       {
-        return l;
+        return env.make_closure(l);;
       }
     if (Object_to_string(f) == "quote") return cadr(l);
     if (Object_to_string(f) == "andthen") return do_andthen(cdr(l),env);
@@ -148,7 +148,7 @@ Object eval(Object l, Environment env) {
         {
           header +="\t";
         }
-      clog << header << counter << " ----> " << l << env << endl;
+      clog << header << counter << " ----> " << l << "\t" << env << endl;
       counter++;
 
       Object new_l = eval_aux(l,env);
@@ -158,7 +158,7 @@ Object eval(Object l, Environment env) {
         {
           header +="\t";
         }
-      clog << header << counter << " <---- " << new_l << env << endl;
+      clog << header << counter << " <---- " << new_l << "\t" << env << endl;
       return new_l;
     }
 }
@@ -170,7 +170,6 @@ Object eval_list(Object largs, Environment env) {
 
 
 Object apply(Object f, Object lvals, Environment env) {
-  //clog << "\tapply: " << f << " " << lvals << env << endl;
 
   if (null(f)) throw Evaluation_Exception(f, env, "Cannot apply nil");
   if (numberp(f)) throw Evaluation_Exception(f, env, "Cannot apply a number");
@@ -186,15 +185,16 @@ Object apply(Object f, Object lvals, Environment env) {
   if (Object_to_string(car(f)) == "lambda") {
     Object lpars = cadr(f);
     Object body = caddr(f);
-    Environment* new_env = new Environment(env.get_observing());
-    new_env->extend_env(lpars, lvals);
-    return eval(body, *new_env);
+    //Frame* new_frame = new Frame(env.get_observing());
+    Environment new_env = Environment(env.get_observing());
+    new_env.extend_env(lpars, lvals);
+    return eval(body, new_env);
   }
-  // if (Object_to_string(car(f)) == "closure") {
-  //   Environment new_env = Object_to_env(cddr(f));
-  //   Object body = cadr(f);
-  //   return apply(body, lvals, new_env);
-  // }
+  if (Object_to_string(car(f)) == "closure") {
+    Environment new_env = Object_to_env(f);
+    Object body = cadr(f);
+    return apply(body, lvals, new_env);
+  }
   assert(listp(f));
   throw Evaluation_Exception(f, env, "Cannot apply a list");
   assert(false);

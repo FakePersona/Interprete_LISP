@@ -11,6 +11,9 @@ using namespace std;
 /* Binding function */
 /********************/
 
+//
+//Creates a binding linking _name to _object
+//
 Binding::Binding(string _name, Object _value):
   name(_name), value(_value) {}
 string  Binding::get_name() const {
@@ -70,7 +73,7 @@ Frame::Frame(Frame* _scope) {
 
 Frame::Frame(const Frame & source) { // Needs to be updated
   head = source.head;
-  scope = NULL;
+  scope = source.scope;;
   // if (source.scope)
   //   scope = new Frame(*source.scope);
   // EnvBlock* writing = head;
@@ -164,7 +167,9 @@ Object Frame::find_value(string name) {
         }
     }
   if (scope)
-    scope->find_value(name);
+    {
+      return scope->find_value(name);
+    }
   else
     throw No_Binding_Exception(name);
 }
@@ -173,10 +178,10 @@ void Frame::print(ostream& s) {
   EnvBlock* printing = head;
   while (printing)
     {
-      string visible = "( ... )";
       Object value = printing->get_content()->get_value();
       if (value->is_pair())
         {
+          string visible =  "( ... )";
           value = string_to_Object(visible);
         }
       s << printing->get_content()->get_name() << ": " << value << "; ";
@@ -191,11 +196,15 @@ Environment::Environment() {
 }
 
 Environment::Environment(Frame* obs) {
-  observing = obs;
+  observing = new Frame(obs);
 }
 
 Frame* Environment::get_observing() {
   return observing;
+}
+
+void Environment::add_new_binding(string name, Object value) {
+  observing->add_new_binding(name, value);
 }
 
 void Environment::set_new_binding(string name, Object value) {

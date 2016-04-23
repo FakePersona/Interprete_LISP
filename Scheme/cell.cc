@@ -120,7 +120,10 @@ static ostream& print_cell_pointer(ostream& s, const Cell *p) {
   if (p -> is_symbol()) return s << p -> to_symbol() << flush;
   if (p -> is_pair()) {
     s << "(" << flush;
-    print_cell_pointer_aux(s, p);
+    if (p->to_pair_item()->is_string() && p->to_pair_item()->to_string() == "closure")
+      s << "closure" << flush;
+    else
+      print_cell_pointer_aux(s, p);
     s << ")" << flush;
     return s;
   }

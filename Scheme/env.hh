@@ -61,6 +61,7 @@ public:
   Environment(Frame* obs);
   Frame* get_observing();
   void set_new_binding(string name, Object value);
+  void add_new_binding(string name, Object value);
   void extend_env(Object lpars, Object lvals);
   Object find_value(string name);
   void print(ostream& s);
