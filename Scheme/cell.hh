@@ -9,7 +9,7 @@ class Frame;
 
 class Cell {
 private:
-  enum cell_sort {NUMBER, STRING, SYMBOL, PAIR, FRAME};
+  enum cell_sort {NUMBER, STRING, SYMBOL, PAIR, FRAME, SUBR};
   cell_sort sort;
 
   struct cell_pair {
@@ -17,11 +17,14 @@ private:
     Cell *next;
   };
 
+  typedef Cell*(*subr_type)(Cell*);
+
   union cell_value {
     int as_number;
     char *as_string;
     char *as_symbol;
     cell_pair as_pair;
+    Cell*(*as_subr)(Cell* lvals);
     Frame* as_frame;
   };
 
@@ -39,6 +42,7 @@ public:
   bool is_symbol() const;
   bool is_pair() const;
   bool is_frame() const;
+  bool is_subr() const;
 
   int to_number() const;
   string to_string() const;
@@ -46,6 +50,7 @@ public:
   Cell *to_pair_item() const;
   Cell *to_pair_next() const;
   Frame* to_frame() const;
+  Cell*(*to_subr())(Cell*);
 
   static Cell *nil();
 
@@ -54,6 +59,8 @@ public:
   void make_cell_symbol(string s);
   void make_cell_pair(Cell* p, Cell* q);
   void make_cell_frame(Frame* f);
+  void make_cell_subr(Cell*(*sub)(Cell* lvals));
+
 };
 
 ostream& operator << (ostream& s, const Cell *p);

@@ -89,7 +89,7 @@ Object do_concat(Object lvals) {
 	return string_to_Object(Object_to_string(a) + Object_to_string(b));
 }
 
-Object do_read() {
+Object do_read(Object lvals) {
   Object l = read();
   return l;
 }
@@ -127,7 +127,7 @@ Object handle_subr(Object f,Object lvals){
 		return do_concat(lvals);
 	}
 	if (Object_to_string(f) == "read") {
-		return do_read();
+		return do_read(lvals);
 	}
 	throw Not_Subr();
 }

@@ -176,8 +176,8 @@ Object apply(Object f, Object lvals, Environment env) {
   if (stringp(f)) throw Evaluation_Exception(f, env, "Cannot apply a string");
   if (symbolp(f)) {
 	try{
-		return handle_subr(f, lvals);
-	}catch (Not_Subr){
+		return handle_subr(f, lvals, env);
+	}catch (No_Binding_Exception){
 		Object new_f = env.find_value(Object_to_string(f));
 		return apply(new_f, lvals, env);
 	}

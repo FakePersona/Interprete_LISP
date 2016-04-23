@@ -5,7 +5,6 @@
 #include <stdio.h>
 #include <stdexcept>
 
-
 Object do_plus(Object lvals) {
   int a = Object_to_number(car(lvals));
   int b = Object_to_number(cadr(lvals));
@@ -75,46 +74,54 @@ Object do_concat(Object lvals) {
 	return string_to_Object(Object_to_string(a) + Object_to_string(b));
 }
 
-Object do_read() {
+Object do_read(Object lvals) {
   Object l = read();
   return l;
 }
 
-Object handle_subr(Object f,Object lvals){
-	if (Object_to_string(f) == "+") {
-		return do_plus(lvals);
-	}
-	if (Object_to_string(f) == "*") {
-		return do_times(lvals);
-	}
-	if (Object_to_string(f) == "-") {
-		return do_minus(lvals);
-	}
-	if (Object_to_string(f) == "/") {
-		return do_div(lvals);
-	}
-	if (Object_to_string(f) == "car") {
-		return do_car(lvals);
-	}
-	if (Object_to_string(f) == "cdr") {
-		return do_cdr(lvals);
-	}
-	if (Object_to_string(f) == "cons") {
-		return do_cons(lvals);
-	}
-	if (Object_to_string(f) == "=") {
-		return do_eq(lvals);
-	}
-    if (Object_to_string(f) == "newline") {
-		printf("\n");
-		return nil();
-    }
-	if (Object_to_string(f) == "concat") {
-		return do_concat(lvals);
-	}
-	if (Object_to_string(f) == "read") {
-		return do_read();
-	}
-	throw Not_Subr();
+void init_subr(Environment subr_env){
+  Object plus_subr = new Cell();
+  plus_subr->make_cell_subr(do_plus);
+	subr_env.add_new_binding("+", plus_subr);
+
+  Object times_subr = new Cell();
+  times_subr->make_cell_subr(do_times);
+	subr_env.add_new_binding("*", times_subr);
+
+  Object minus_subr = new Cell();
+  minus_subr->make_cell_subr(do_minus);
+	subr_env.add_new_binding("-", minus_subr);
+
+  Object div_subr = new Cell();
+  div_subr->make_cell_subr(do_div);
+	subr_env.add_new_binding("/", div_subr);
+
+  Object car_subr = new Cell();
+  car_subr->make_cell_subr(do_car);
+	subr_env.add_new_binding("car", car_subr);
+
+  Object cdr_subr = new Cell();
+  cdr_subr->make_cell_subr(do_cdr);
+	subr_env.add_new_binding("cdr", cdr_subr);
+
+  Object cons_subr = new Cell();
+  cons_subr->make_cell_subr(do_cons);
+	subr_env.add_new_binding("cons", cons_subr);
+
+  Object eq_subr = new Cell();
+  eq_subr->make_cell_subr(do_eq);
+	subr_env.add_new_binding("=", eq_subr);
+
+  Object concat_subr = new Cell();
+  concat_subr->make_cell_subr(do_concat);
+	subr_env.add_new_binding("concat", concat_subr);
+
+  Object read_subr = new Cell();
+  read_subr->make_cell_subr(do_read);
+	subr_env.add_new_binding("read", read_subr);
+}
+
+Object handle_subr(Object f,Object lvals, Environment env) {
+	return ((env.find_value(Object_to_string(f)))->to_subr())(lvals);
 }
 
