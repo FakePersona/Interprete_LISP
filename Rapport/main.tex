@@ -62,13 +62,114 @@
 
 \maketitle
 
-\section*{Interprète dynamique}
+\section{Objectif}
+
+L'objectif que nous nous sommes fixés pour ce projet était de construire un
+interprète lisp gérant les liaisons à la manière de Scheme. Plus
+particuliérement, nous étions intéréssés par la gestion de liste chainées de
+frames, et par la façon dont on pouvait représenter ces frames pour permettre la
+création d'un tel interpréteur.
+
+Au delà des problèmes de définitions circulaires posés, le grand défi a été de
+gérer correctement la création des copies (implicites dès qu'on passe en
+arguement de fonction) et la bonne détection des clotures.
+
+Nous nous somme fixés les objectifs intermédiaires suivant:
+\begin{itemize}
+\item Compléter le squelette fourni pour obtenir un interpréte dynamique, ce qui
+  constitue une première étape facilement vérifiable.
+\item Passer de la gestion d'environment proposée à une gestion par listes
+  chaînées, ce qui permettrait eu passage de commencer à réfléchir à la façon de
+  gérer les frames.
+\item Créer un premier interpréte à liaison statique identique à celui vu en TD.
+\item Implémenter une gestion des clotures dans cet interpréte. Le but original
+  était d'explorer la possibilité de stocker tout l'environement courant (donc
+  en le dédoublant), possibilité non dévellopée en TD. Après constatation des
+  nombreux problèmes que cela pose (mais aussi de ce qu'il est possible de
+  faire) nous avons créé une autre cloture utilisant des pointeurs
+  d'environement.
+\item Implémenter la gestion de frames, adapter la cloture Scheme.
+\end{itemize}
+
+
+\section{Travail réalisé}
+
+\subsection{Interprète dynamique}
 
 Dans un premier temps, nous avons implémenté, à partir du code fourni, un interprète qui possède les principale fonctions Lisp, avec une gestion dynamique de l'environnement
 
-\subsection*{Toplevel}
+\subsubsection{Toplevel}
 
-Nous avons encapsulé la gestion des entrées dans un \texttt{toplevel}, appelé par la fonction \texttt{main}. Ce toplevel gère la directive setq, qui permet de modifier l'environnement. Elle fait appel à une fonction \texttt{add_new_binding} que nous avons implémenté, qui permet de créer un nouvel objet \texttt{Binding} (qui comporte deux éléments : un symbole et la valeur qui lui est associée) que l'on ajoute à l'environnement courant.
+  Nous avons encapsulé la gestion des entrées dans un \texttt{toplevel}, 
+ appelé par la fonction \texttt{main}. Ce toplevel gère la directive setq, qui
+ permet de modifier l'environnement. 
+ Elle fait appel à une fonction \texttt{add\_new\_binding} que nous avons
+ implémenté, qui permet de créer un nouvel objet
+  \texttt{Binding} (qui comporte deux éléments : un
+ symbole et la valeur qui lui est associée) que l'on ajoute à l'environnement courant.
+
+\subsection{Environement par listes chaînées}
+
+Les environements dans le code original étaient de simples vecteurs de pointeurs
+vers des \texttt{Binding}. Si cet solution a le mérite de marcher, elle n'en est
+pas moins problématique au sens où, pour copier un environement, il est
+nécéssaire de copier l'intégralité de la liste des pointeurs, ce qui présente un
+coùt linéaire en la taille de l'environement considéré!
+
+La première idée pour remédier à cela est de faire de l'environement un unique
+pointeur vers le vecteur de pointeurs. Cela ne fait cependant que déplacer le
+problème dans le cas où il faut copier aussi ce vecteur.
+
+Aussi, il semble judicieux de transformer l'environement en liste chaînée:
+chaque bloc de la liste contient un unique \texttt{Binding} et un pointeur vers
+le prochain bloc (éventuellement NULL). Il faut noter que nous ne perdons rien
+en éfficacité, puisqu'il fallait de toute façon parcourir tout le vecteur de
+pointeurs pour trouver le \texttt{Binding} correspondant à une chaîne donnée.
+
+\subsubsection{Blocs d'environement}
+
+Nous avons ainsi défini une structure \texttt{EnvBlock} qui constitue un maillon
+de la liste chainée. Puisque ces maillons sont eux mêmes repérés par leur
+pointeur, et pour une raison que nous verrons plus tard, il n'est pas nécessaire
+d'utiliser des pointeurs de \texttt{Binding}.
+
+\subsubsection{Environemnent = Bloc?}
+
+La principale question qui s'est posée est la suivante :considére-t'on qu'un
+environement est un bloc (le bloc de \og tête\fg) ou considére-t'on que
+l'environement est quelque chose d'autre que la somme individuelle de ses
+parties?
+
+Nous avons privilégié la deuxième approche. En effet, elle permet de gérer plus
+proprement l'allocation dynamique en mémoire de blocs d'environement. De plus,
+cela rendait beaucoup plus facile la destruction des blocs d'environements
+alloués en mémoire ainsi que la création de copies indépendantes (créant aussi
+de nouveaux blocs). Cette gestion des copies s'est révélée par la suite sans
+grand intéret, mais le code utilisé demeure dans le dossier \texttt{Copie}
+
+C'est cette macro-structure qui s'occupe de la gestion des ajouts et
+consultations de \texttt{Binding} :c'est elle qui fournit l'interface publique
+de l'environement.
+
+\begin{attention}
+  Une difficultée rencontrée avec l'utilisation d'instances de \texttt{Binding}
+  au lieu de pointeurs dans les blocs d'environement a été la création
+  implicites de copies que nous avons du tracer à l'aide d'impressions de
+  pointeurs. L'utilisation d'un setter à permis de remédier à ces problèmes.
+\end{attention}
+
+\subsection{Première liaison statique}
+
+\subsection{Première cloture}
+
+\subsection{Passage en frames}
+
+\subsection{Clotures scheme}
+
+\section{Vérification}
+
+\section{Contribution}
+
 
 
 
