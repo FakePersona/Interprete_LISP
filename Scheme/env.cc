@@ -166,7 +166,8 @@ void Frame::print(ostream& s) {
   while (printing)
     {
       Object value = printing->get_content()->get_value();
-      s << printing->get_content()->get_name() << ": " << value << "; ";
+      if (!value->is_subr())
+        s << printing->get_content()->get_name() << ": " << value << "; ";
       printing = printing->get_next();
     }
   if (scope)

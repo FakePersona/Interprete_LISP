@@ -2,6 +2,7 @@
 #include "env.hh"
 #include "eval.hh"
 #include "read.hh"
+#include "subr.hh"
 #include "toplevel.hh"
 #include "exception.hh"
 #include <stdio.h>
@@ -31,6 +32,9 @@ void toplevel()
   Object one = number_to_Object(1);
   
   Environment env = Environment();
+
+  init_subr(env);
+
   env.set_new_binding(Object_to_string(a), one);
 
   do {

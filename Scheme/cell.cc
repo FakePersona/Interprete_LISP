@@ -29,6 +29,11 @@ bool Cell::is_frame() const {
   return sort == FRAME;
 }
 
+
+bool Cell::is_subr() const {
+  return sort == SUBR;
+}
+
 int Cell::to_number() const {
   assert(is_number());
   return value.as_number;
@@ -57,6 +62,10 @@ Cell *Cell::to_pair_next() const {
 Frame* Cell::to_frame() const {
   assert(is_frame());
   return value.as_frame;
+}
+
+Cell*(*Cell::to_subr())(Cell*) {
+  return value.as_subr;
 }
 
 Cell *Cell::nil() {
@@ -98,6 +107,11 @@ void Cell::make_cell_frame(Frame* f) {
   value.as_frame = f;
 }
 
+void Cell::make_cell_subr(Cell*(*sub)(Cell* lvals)) {
+  sort = SUBR;
+  value.as_subr = sub;
+}
+
 Cell Cell::cell_nil = Cell();
 
 static ostream& print_cell_pointer(ostream& s, const Cell *p);
@@ -123,6 +137,7 @@ static ostream& print_cell_pointer(ostream& s, const Cell *p) {
   if (p -> is_number()) return s << p -> to_number() << flush;
   if (p -> is_string()) return s << p -> to_string() << flush;
   if (p -> is_symbol()) return s << p -> to_symbol() << flush;
+  if (p -> is_subr()) return s;
   if (p -> is_pair()) {
     s << "(" << flush;
     print_cell_pointer_aux(s, p);

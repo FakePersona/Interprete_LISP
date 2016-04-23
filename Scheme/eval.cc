@@ -175,12 +175,10 @@ Object apply(Object f, Object lvals, Environment env) {
   if (numberp(f)) throw Evaluation_Exception(f, env, "Cannot apply a number");
   if (stringp(f)) throw Evaluation_Exception(f, env, "Cannot apply a string");
   if (symbolp(f)) {
-	try{
-		return handle_subr(f, lvals);
-	}catch (Not_Subr){
 		Object new_f = env.find_value(Object_to_string(f));
+    if (new_f->is_subr())
+      return (new_f->to_subr())(lvals);
 		return apply(new_f, lvals, env);
-	}
   }
   if (Object_to_string(car(f)) == "lambda") {
     Object lpars = cadr(f);
