@@ -20,6 +20,7 @@ void handle_directive(Object l,Environment* env) {
   }
 }
 
+
 void toplevel()
 {
   Object a =  symbol_to_Object("a");
@@ -41,16 +42,15 @@ void toplevel()
     } catch (Continue_Directive){
 
     } catch (Evaluation_Exception){
-      
-    } 
+
+    }
       catch (No_Binding_Exception){
 	}
 	  catch (Zipping_Exception){
 	}
 	  catch (Not_Subr){
 	}
-	
-	
+
+
   } while (!end_input());
 }
-
