@@ -65,7 +65,7 @@
 \section{Objectif}
 
 L'objectif que nous nous sommes fixés pour ce projet était de construire un
-interprète lisp gérant les liaisons à la manière de Scheme. Plus
+interprète Lisp gérant les liaisons à la manière de Scheme. Plus
 particulièrement, nous étions intéressés par la gestion de liste chaînées de
 frames, et par la façon dont on pouvait représenter ces frames pour permettre la
 création d'un tel interpréteur.
@@ -161,11 +161,11 @@ pas moins problématique au sens où, pour copier un environnement, il est
 nécessaire de copier l'intégralité de la liste des pointeurs, ce qui présente un
 coût linéaire en la taille de l'environement considéré!
 
-La première idée pour remédier à cela est de faire de l'environement un unique
+La première idée pour remédier à cela est de faire de l'environnement un unique
 pointeur vers le vecteur de pointeurs. Cela ne fait cependant que déplacer le
 problème dans le cas où il faut copier aussi ce vecteur.
 
-Aussi, il semble judicieux de transformer l'environement en liste chaînée:
+Aussi, il semble judicieux de transformer l’environnement en liste chaînée:
 chaque bloc de la liste contient un unique \texttt{Binding} et un pointeur vers
 le prochain bloc (éventuellement NULL). Il faut noter que nous ne perdons rien
 en efficacité, puisqu'il fallait de toute façon parcourir tout le vecteur de
@@ -180,9 +180,9 @@ d'utiliser des pointeurs de \texttt{Binding}.
 
 \subsubsection{Environnement = Bloc?}
 
-La principale question qui s'est posée est la suivante :considère-t-on qu'un
+La principale question qui s'est posée est la suivante : considère-t-on qu'un
 environnement est un bloc (le bloc de \og tête\fg) ou considère-t-on que
-l'environement est quelque chose d'autre que la somme individuelle de ses
+l'environnement est quelque chose d'autre que la somme individuelle de ses
 parties?
 
 Nous avons privilégié la deuxième approche. En effet, elle permet de gérer plus
@@ -212,6 +212,21 @@ de l'environement.
 \subsection{Clotures scheme}
 
 \section{Vérification}
+ 
+ \subsection{Interprète dynamique}
+ Les fonctions de l'interprète dynamique fonctionnent correctement et permettent 
+ une utilisation classique de Lisp.  
+ Le seul problème est la gestion des erreurs de 
+ l'utilisateur via les exceptions. La programmation défensive utilisée dans le 
+ code original permet de s'assurer que tout fonctionne comme prévu, mais en cas 
+ d'erreur, la fonction \texttt{assert} qui a été utilisée stoppe le processus de 
+ l'interprète et empêche de rattraper les exception comme nous voulions le faire.
+ Il serait possible de surmonter ce problème en modifiant la manière dont ces 
+ tests sont effectués afin de générer des exceptions spécifiques, mais nous avons 
+ choisi de consacrer notre temps aux autres aspects de l'interprète.
+ 
+ \subsection{Clotûre Scheme}
+
 
 \section{Contribution}
 

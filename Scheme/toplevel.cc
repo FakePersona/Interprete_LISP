@@ -30,7 +30,7 @@ void toplevel()
 {
   Object a =  symbol_to_Object("a");
   Object one = number_to_Object(1);
-  
+
   Environment env = Environment();
 
   init_subr(env);
@@ -46,17 +46,16 @@ void toplevel()
     } catch (Continue_Directive){
 
     } catch (Evaluation_Exception){
-      
-    } 
+
+    }
       catch (No_Binding_Exception){
-        printf("not bound");
+        printf("not bound\n");
 	}
 	  catch (Zipping_Exception){
 	}
 	  catch (Not_Subr){
 	}
-	
-	
+
+
   } while (!end_input());
 }
-
