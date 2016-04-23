@@ -67,10 +67,10 @@
   "main.aux" 1461438884 1605 2deae3b21cb1a64b202d7b1c5df99cc7 ""
   "main.tex" 1461438882 8101 793e08f84a96d7dbf2b0084d939ba259 ""
   (generated)
-  "main.log"
-  "main.aux"
   "main.dvi"
-["pdflatex"] 1461453129 "main.tex" "main.pdf" "main" 1461453130
+  "main.aux"
+  "main.log"
+["pdflatex"] 1461453844 "main.tex" "main.pdf" "main" 1461453845
   "/etc/texmf/web2c/texmf.cnf" 1449844381 475 c0e671620eb5563b2130f56340a5fde8 ""
   "/home/dirkylarson/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecst1095.600pk" 1459883735 26824 7435264f33b91ef1738e2bddf493ed65 ""
   "/home/dirkylarson/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecsx1095.600pk" 1459883735 24004 9fccfa8d55246bc05d13bae012f9a405 ""
@@ -161,9 +161,9 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1417527377 31088 8e088e958dd0258cc5414842768a3a00 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1449845890 128116 3187a1f492129d986aaaad85ec7374d7 ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1449845112 741586 e9f449445413fbbbb26768e41440e676 ""
-  "main.aux" 1461453130 2015 b0f2c664dee2969987a07def8c8cc282 ""
-  "main.tex" 1461453127 15419 641c405f79e7d45b1418ea5a5906bfe2 ""
+  "main.aux" 1461453845 2090 b8444e9ae0ee94df679464b4d8ba44e6 ""
+  "main.tex" 1461453844 16158 91fdb17ae9016e407ca5dad3bf7d2bb0 ""
   (generated)
   "main.pdf"
-  "main.log"
   "main.aux"
+  "main.log"

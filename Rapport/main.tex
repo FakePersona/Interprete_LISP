@@ -62,6 +62,18 @@
 
 \maketitle
 
+\section{Instroduction}
+
+Le lisp est un langage fonctionnel interprété permettant des implèmentations
+différentes. 2 tels implèmentations en Ocaml ont été vues en TD de
+programmation. Ocaml étant un langage fonctionnel, cette implémentation est
+relativement naturel.
+
+Au travers de ce projet, nous nous intéréssons à l'implémentation d'un
+interpréte lisp en C++, et nous attachons plus particuliérement à
+l'implémentation d'une gestion d'environnements et de clôtures proches de celles
+très souples de Scheme.
+
 \section{Objectif}
 
 L'objectif que nous nous sommes fixés pour ce projet était de construire un
@@ -134,6 +146,9 @@ qui possède les principale fonctions Lisp, avec une gestion dynamique de l'envi
   \texttt{Object}, afin de clarifier et de simplifier leur utilisation, en 
   particulier dans cette fonction.
 
+  Il a par contre été plus difficile de passer des fontion en objet. En Ocaml,
+  \og functions are first-class citizens \og. Pas en C++. De fait, il a été
+  nécéssaire de prendre des moyens détournés.
   Pour nous rapprocher de l'interprète original, nous avons modifié la classe
   \texttt{Cell} pour créer un type de cellule contenant une subroutine (qui est
   une fonction). Pour ce faire, nous avons fais usage des pointeurs de fonctions
