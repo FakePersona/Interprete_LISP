@@ -70,7 +70,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Variables</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -91,31 +91,190 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ad6270328988c4bf73df7f24a0e7cf5f7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad6270328988c4bf73df7f24a0e7cf5f7"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Frame</b> (<a class="el" href="classFrame.html">Frame</a> *_scope)</td></tr>
+<tr class="memitem:ad2e5946cf41d4817e750500acf05d02b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFrame.html#ad2e5946cf41d4817e750500acf05d02b">Frame</a> ()</td></tr>
+<tr class="separator:ad2e5946cf41d4817e750500acf05d02b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad6270328988c4bf73df7f24a0e7cf5f7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFrame.html#ad6270328988c4bf73df7f24a0e7cf5f7">Frame</a> (<a class="el" href="classFrame.html">Frame</a> *_scope)</td></tr>
 <tr class="separator:ad6270328988c4bf73df7f24a0e7cf5f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a57eb3325f3ef059d1cab3ddb35e2a4ec"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a57eb3325f3ef059d1cab3ddb35e2a4ec"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Frame</b> (const <a class="el" href="classFrame.html">Frame</a> &amp;source)</td></tr>
-<tr class="separator:a57eb3325f3ef059d1cab3ddb35e2a4ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aef63d90c2cd48dec6ac9b6dfd6f7d958"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aef63d90c2cd48dec6ac9b6dfd6f7d958"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>add_new_binding</b> (string name, <a class="el" href="classCell.html">Object</a> value)</td></tr>
+<tr class="memitem:aef63d90c2cd48dec6ac9b6dfd6f7d958"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFrame.html#aef63d90c2cd48dec6ac9b6dfd6f7d958">add_new_binding</a> (string name, <a class="el" href="classCell.html">Object</a> value)</td></tr>
 <tr class="separator:aef63d90c2cd48dec6ac9b6dfd6f7d958"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a258655c409c6055a761ac8cc12fb2948"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a258655c409c6055a761ac8cc12fb2948"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>set_new_binding</b> (string name, <a class="el" href="classCell.html">Object</a> value)</td></tr>
+<tr class="memitem:a258655c409c6055a761ac8cc12fb2948"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFrame.html#a258655c409c6055a761ac8cc12fb2948">set_new_binding</a> (string name, <a class="el" href="classCell.html">Object</a> value)</td></tr>
 <tr class="separator:a258655c409c6055a761ac8cc12fb2948"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a60853a5572534d23b5cf480c6217b9b8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a60853a5572534d23b5cf480c6217b9b8"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>extend_env</b> (<a class="el" href="classCell.html">Object</a> lpars, <a class="el" href="classCell.html">Object</a> lvals)</td></tr>
+<tr class="memitem:a60853a5572534d23b5cf480c6217b9b8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFrame.html#a60853a5572534d23b5cf480c6217b9b8">extend_env</a> (<a class="el" href="classCell.html">Object</a> lpars, <a class="el" href="classCell.html">Object</a> lvals)</td></tr>
 <tr class="separator:a60853a5572534d23b5cf480c6217b9b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abe6a8a4589d130373c89147b660de034"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abe6a8a4589d130373c89147b660de034"></a>
-<a class="el" href="classEnvBlock.html">EnvBlock</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>find_block</b> (string name)</td></tr>
+<tr class="memitem:abe6a8a4589d130373c89147b660de034"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classEnvBlock.html">EnvBlock</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFrame.html#abe6a8a4589d130373c89147b660de034">find_block</a> (string name)</td></tr>
 <tr class="separator:abe6a8a4589d130373c89147b660de034"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a148a624be2406df10c0655c9d87d0544"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a148a624be2406df10c0655c9d87d0544"></a>
-<a class="el" href="classCell.html">Object</a>&#160;</td><td class="memItemRight" valign="bottom"><b>find_value</b> (string name)</td></tr>
+<tr class="memitem:a148a624be2406df10c0655c9d87d0544"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCell.html">Object</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFrame.html#a148a624be2406df10c0655c9d87d0544">find_value</a> (string name)</td></tr>
 <tr class="separator:a148a624be2406df10c0655c9d87d0544"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5b0bcbaf2acba4166d94269a9b938834"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5b0bcbaf2acba4166d94269a9b938834"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>print</b> (ostream &amp;s)</td></tr>
+<tr class="memitem:a5b0bcbaf2acba4166d94269a9b938834"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFrame.html#a5b0bcbaf2acba4166d94269a9b938834">print</a> (ostream &amp;s)</td></tr>
 <tr class="separator:a5b0bcbaf2acba4166d94269a9b938834"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="ad2e5946cf41d4817e750500acf05d02b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Frame::Frame </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Creates a frame with NULL for head and scope </p>
+
+</div>
+</div>
+<a class="anchor" id="ad6270328988c4bf73df7f24a0e7cf5f7"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Frame::Frame </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classFrame.html">Frame</a> *&#160;</td>
+          <td class="paramname"><em>_scope</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Creates an empty frame with _scope as its scope </p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="aef63d90c2cd48dec6ac9b6dfd6f7d958"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Frame::add_new_binding </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classCell.html">Object</a>&#160;</td>
+          <td class="paramname"><em>value</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>makes a new <a class="el" href="classEnvBlock.html">EnvBlock</a> containing the binding and pointing towards the current head of the frame the neww head </p>
+
+</div>
+</div>
+<a class="anchor" id="a60853a5572534d23b5cf480c6217b9b8"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Frame::extend_env </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classCell.html">Object</a>&#160;</td>
+          <td class="paramname"><em>lpars</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classCell.html">Object</a>&#160;</td>
+          <td class="paramname"><em>lvals</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Sets new bindings to the frame </p>
+
+</div>
+</div>
+<a class="anchor" id="abe6a8a4589d130373c89147b660de034"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classEnvBlock.html">EnvBlock</a> * Frame::find_block </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>name</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Finds the <a class="el" href="classEnvBlock.html">EnvBlock</a> in the current frame containing the binding pertaining to name </p>
+
+</div>
+</div>
+<a class="anchor" id="a148a624be2406df10c0655c9d87d0544"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCell.html">Object</a> Frame::find_value </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>name</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Looks through the Envblocks of the frame and those of the following frames to find the binding of name </p>
+
+</div>
+</div>
+<a class="anchor" id="a5b0bcbaf2acba4166d94269a9b938834"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Frame::print </td>
+          <td>(</td>
+          <td class="paramtype">ostream &amp;&#160;</td>
+          <td class="paramname"><em>s</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Prints the contents of the <a class="el" href="classFrame.html">Frame</a> </p>
+
+</div>
+</div>
+<a class="anchor" id="a258655c409c6055a761ac8cc12fb2948"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Frame::set_new_binding </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classCell.html">Object</a>&#160;</td>
+          <td class="paramname"><em>value</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Looks at the current frame. If there is no binding to the specified name in the current frame, add the bidning to the frame Modifies it otherwise </p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="env_8hh_source.html">env.hh</a></li>
 <li>env.cc</li>

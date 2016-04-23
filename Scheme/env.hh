@@ -13,13 +13,11 @@ private:
   Object value;
 public:
   Binding(string _name, Object _value);
+
   string get_name() const;
   Object get_value() const;
   void set_value(Object _value);
-  Object to_Object();
 };
-
-Binding Object_to_binding(Object b);
 
 class EnvBlock {
 private:
@@ -40,8 +38,6 @@ private:
 public:
   Frame();
   Frame(Frame* _scope);
-  Frame(const Frame & source);
-  ~Frame();
   void add_new_binding(string name, Object value);
   void set_new_binding(string name, Object value);
   void extend_env(Object lpars, Object lvals);

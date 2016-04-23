@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['cell',['Cell',['../classCell.html',1,'']]],
-  ['continue_5fdirective',['Continue_Directive',['../classContinue__Directive.html',1,'']]]
+  ['binding',['Binding',['../classBinding.html',1,'Binding'],['../classBinding.html#a8b9c7fbfcd671a4dfe83f44d25cc6340',1,'Binding::Binding()']]]
 ];

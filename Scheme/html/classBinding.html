@@ -70,7 +70,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Variables</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -91,8 +91,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a8b9c7fbfcd671a4dfe83f44d25cc6340"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8b9c7fbfcd671a4dfe83f44d25cc6340"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Binding</b> (string _name, <a class="el" href="classCell.html">Object</a> _value)</td></tr>
+<tr class="memitem:a8b9c7fbfcd671a4dfe83f44d25cc6340"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBinding.html#a8b9c7fbfcd671a4dfe83f44d25cc6340">Binding</a> (string _name, <a class="el" href="classCell.html">Object</a> _value)</td></tr>
 <tr class="separator:a8b9c7fbfcd671a4dfe83f44d25cc6340"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae35d1911d39f4720187f4224e7d63317"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae35d1911d39f4720187f4224e7d63317"></a>
 string&#160;</td><td class="memItemRight" valign="bottom"><b>get_name</b> () const </td></tr>
@@ -103,10 +102,35 @@ string&#160;</td><td class="memItemRight" valign="bottom"><b>get_name</b> () con
 <tr class="memitem:ac20925221868117396d735c485b86949"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac20925221868117396d735c485b86949"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>set_value</b> (<a class="el" href="classCell.html">Object</a> _value)</td></tr>
 <tr class="separator:ac20925221868117396d735c485b86949"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a87118b9e2be662c08d9ae464691f675a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a87118b9e2be662c08d9ae464691f675a"></a>
-<a class="el" href="classCell.html">Object</a>&#160;</td><td class="memItemRight" valign="bottom"><b>to_Object</b> ()</td></tr>
-<tr class="separator:a87118b9e2be662c08d9ae464691f675a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a8b9c7fbfcd671a4dfe83f44d25cc6340"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Binding::Binding </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classCell.html">Object</a>&#160;</td>
+          <td class="paramname"><em>_value</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Creates a binding linking _name to _object </p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="env_8hh_source.html">env.hh</a></li>
 <li>env.cc</li>

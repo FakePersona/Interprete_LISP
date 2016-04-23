@@ -4,31 +4,88 @@
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classFrame_ad6270328988c4bf73df7f24a0e7cf5f7}{{\bfseries Frame} (\hyperlink{classFrame}{Frame} $\ast$\-\_\-scope)}\label{classFrame_ad6270328988c4bf73df7f24a0e7cf5f7}
-
+\hyperlink{classFrame_ad2e5946cf41d4817e750500acf05d02b}{Frame} ()
 \item 
-\hypertarget{classFrame_a57eb3325f3ef059d1cab3ddb35e2a4ec}{{\bfseries Frame} (const \hyperlink{classFrame}{Frame} \&source)}\label{classFrame_a57eb3325f3ef059d1cab3ddb35e2a4ec}
-
+\hyperlink{classFrame_ad6270328988c4bf73df7f24a0e7cf5f7}{Frame} (\hyperlink{classFrame}{Frame} $\ast$\-\_\-scope)
 \item 
-\hypertarget{classFrame_aef63d90c2cd48dec6ac9b6dfd6f7d958}{void {\bfseries add\-\_\-new\-\_\-binding} (string name, \hyperlink{classCell}{Object} value)}\label{classFrame_aef63d90c2cd48dec6ac9b6dfd6f7d958}
-
+void \hyperlink{classFrame_aef63d90c2cd48dec6ac9b6dfd6f7d958}{add\-\_\-new\-\_\-binding} (string name, \hyperlink{classCell}{Object} value)
 \item 
-\hypertarget{classFrame_a258655c409c6055a761ac8cc12fb2948}{void {\bfseries set\-\_\-new\-\_\-binding} (string name, \hyperlink{classCell}{Object} value)}\label{classFrame_a258655c409c6055a761ac8cc12fb2948}
-
+void \hyperlink{classFrame_a258655c409c6055a761ac8cc12fb2948}{set\-\_\-new\-\_\-binding} (string name, \hyperlink{classCell}{Object} value)
 \item 
-\hypertarget{classFrame_a60853a5572534d23b5cf480c6217b9b8}{void {\bfseries extend\-\_\-env} (\hyperlink{classCell}{Object} lpars, \hyperlink{classCell}{Object} lvals)}\label{classFrame_a60853a5572534d23b5cf480c6217b9b8}
-
+void \hyperlink{classFrame_a60853a5572534d23b5cf480c6217b9b8}{extend\-\_\-env} (\hyperlink{classCell}{Object} lpars, \hyperlink{classCell}{Object} lvals)
 \item 
-\hypertarget{classFrame_abe6a8a4589d130373c89147b660de034}{\hyperlink{classEnvBlock}{Env\-Block} $\ast$ {\bfseries find\-\_\-block} (string name)}\label{classFrame_abe6a8a4589d130373c89147b660de034}
-
+\hyperlink{classEnvBlock}{Env\-Block} $\ast$ \hyperlink{classFrame_abe6a8a4589d130373c89147b660de034}{find\-\_\-block} (string name)
 \item 
-\hypertarget{classFrame_a148a624be2406df10c0655c9d87d0544}{\hyperlink{classCell}{Object} {\bfseries find\-\_\-value} (string name)}\label{classFrame_a148a624be2406df10c0655c9d87d0544}
-
+\hyperlink{classCell}{Object} \hyperlink{classFrame_a148a624be2406df10c0655c9d87d0544}{find\-\_\-value} (string name)
 \item 
-\hypertarget{classFrame_a5b0bcbaf2acba4166d94269a9b938834}{void {\bfseries print} (ostream \&s)}\label{classFrame_a5b0bcbaf2acba4166d94269a9b938834}
-
+void \hyperlink{classFrame_a5b0bcbaf2acba4166d94269a9b938834}{print} (ostream \&s)
 \end{DoxyCompactItemize}
 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classFrame_ad2e5946cf41d4817e750500acf05d02b}{\index{Frame@{Frame}!Frame@{Frame}}
+\index{Frame@{Frame}!Frame@{Frame}}
+\subsubsection[{Frame}]{\setlength{\rightskip}{0pt plus 5cm}Frame\-::\-Frame (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classFrame_ad2e5946cf41d4817e750500acf05d02b}
+Creates a frame with N\-U\-L\-L for head and scope \hypertarget{classFrame_ad6270328988c4bf73df7f24a0e7cf5f7}{\index{Frame@{Frame}!Frame@{Frame}}
+\index{Frame@{Frame}!Frame@{Frame}}
+\subsubsection[{Frame}]{\setlength{\rightskip}{0pt plus 5cm}Frame\-::\-Frame (
+\begin{DoxyParamCaption}
+\item[{{\bf Frame} $\ast$}]{\-\_\-scope}
+\end{DoxyParamCaption}
+)}}\label{classFrame_ad6270328988c4bf73df7f24a0e7cf5f7}
+Creates an empty frame with \-\_\-scope as its scope 
+
+\subsection{Member Function Documentation}
+\hypertarget{classFrame_aef63d90c2cd48dec6ac9b6dfd6f7d958}{\index{Frame@{Frame}!add\-\_\-new\-\_\-binding@{add\-\_\-new\-\_\-binding}}
+\index{add\-\_\-new\-\_\-binding@{add\-\_\-new\-\_\-binding}!Frame@{Frame}}
+\subsubsection[{add\-\_\-new\-\_\-binding}]{\setlength{\rightskip}{0pt plus 5cm}void Frame\-::add\-\_\-new\-\_\-binding (
+\begin{DoxyParamCaption}
+\item[{string}]{name, }
+\item[{{\bf Object}}]{value}
+\end{DoxyParamCaption}
+)}}\label{classFrame_aef63d90c2cd48dec6ac9b6dfd6f7d958}
+makes a new \hyperlink{classEnvBlock}{Env\-Block} containing the binding and pointing towards the current head of the frame the neww head \hypertarget{classFrame_a60853a5572534d23b5cf480c6217b9b8}{\index{Frame@{Frame}!extend\-\_\-env@{extend\-\_\-env}}
+\index{extend\-\_\-env@{extend\-\_\-env}!Frame@{Frame}}
+\subsubsection[{extend\-\_\-env}]{\setlength{\rightskip}{0pt plus 5cm}void Frame\-::extend\-\_\-env (
+\begin{DoxyParamCaption}
+\item[{{\bf Object}}]{lpars, }
+\item[{{\bf Object}}]{lvals}
+\end{DoxyParamCaption}
+)}}\label{classFrame_a60853a5572534d23b5cf480c6217b9b8}
+Sets new bindings to the frame \hypertarget{classFrame_abe6a8a4589d130373c89147b660de034}{\index{Frame@{Frame}!find\-\_\-block@{find\-\_\-block}}
+\index{find\-\_\-block@{find\-\_\-block}!Frame@{Frame}}
+\subsubsection[{find\-\_\-block}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Env\-Block} $\ast$ Frame\-::find\-\_\-block (
+\begin{DoxyParamCaption}
+\item[{string}]{name}
+\end{DoxyParamCaption}
+)}}\label{classFrame_abe6a8a4589d130373c89147b660de034}
+Finds the \hyperlink{classEnvBlock}{Env\-Block} in the current frame containing the binding pertaining to name \hypertarget{classFrame_a148a624be2406df10c0655c9d87d0544}{\index{Frame@{Frame}!find\-\_\-value@{find\-\_\-value}}
+\index{find\-\_\-value@{find\-\_\-value}!Frame@{Frame}}
+\subsubsection[{find\-\_\-value}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Object} Frame\-::find\-\_\-value (
+\begin{DoxyParamCaption}
+\item[{string}]{name}
+\end{DoxyParamCaption}
+)}}\label{classFrame_a148a624be2406df10c0655c9d87d0544}
+Looks through the Envblocks of the frame and those of the following frames to find the binding of name \hypertarget{classFrame_a5b0bcbaf2acba4166d94269a9b938834}{\index{Frame@{Frame}!print@{print}}
+\index{print@{print}!Frame@{Frame}}
+\subsubsection[{print}]{\setlength{\rightskip}{0pt plus 5cm}void Frame\-::print (
+\begin{DoxyParamCaption}
+\item[{ostream \&}]{s}
+\end{DoxyParamCaption}
+)}}\label{classFrame_a5b0bcbaf2acba4166d94269a9b938834}
+Prints the contents of the \hyperlink{classFrame}{Frame} \hypertarget{classFrame_a258655c409c6055a761ac8cc12fb2948}{\index{Frame@{Frame}!set\-\_\-new\-\_\-binding@{set\-\_\-new\-\_\-binding}}
+\index{set\-\_\-new\-\_\-binding@{set\-\_\-new\-\_\-binding}!Frame@{Frame}}
+\subsubsection[{set\-\_\-new\-\_\-binding}]{\setlength{\rightskip}{0pt plus 5cm}void Frame\-::set\-\_\-new\-\_\-binding (
+\begin{DoxyParamCaption}
+\item[{string}]{name, }
+\item[{{\bf Object}}]{value}
+\end{DoxyParamCaption}
+)}}\label{classFrame_a258655c409c6055a761ac8cc12fb2948}
+Looks at the current frame. If there is no binding to the specified name in the current frame, add the bidning to the frame Modifies it otherwise 
 
 The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
 \item 

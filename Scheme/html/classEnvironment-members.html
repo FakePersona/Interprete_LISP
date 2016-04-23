@@ -70,7 +70,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Variables</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -88,15 +88,16 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <p>This is the complete list of members for <a class="el" href="classEnvironment.html">Environment</a>, including all inherited members.</p>
 <table class="directory">
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>Environment</b>() (defined in <a class="el" href="classEnvironment.html">Environment</a>)</td><td class="entry"><a class="el" href="classEnvironment.html">Environment</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>Environment</b>(Frame *obs) (defined in <a class="el" href="classEnvironment.html">Environment</a>)</td><td class="entry"><a class="el" href="classEnvironment.html">Environment</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>extend_env</b>(Object lpars, Object lvals) (defined in <a class="el" href="classEnvironment.html">Environment</a>)</td><td class="entry"><a class="el" href="classEnvironment.html">Environment</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>find_value</b>(string name) (defined in <a class="el" href="classEnvironment.html">Environment</a>)</td><td class="entry"><a class="el" href="classEnvironment.html">Environment</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>get_observing</b>() (defined in <a class="el" href="classEnvironment.html">Environment</a>)</td><td class="entry"><a class="el" href="classEnvironment.html">Environment</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>make_closure</b>(Object body) (defined in <a class="el" href="classEnvironment.html">Environment</a>)</td><td class="entry"><a class="el" href="classEnvironment.html">Environment</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>print</b>(ostream &amp;s) (defined in <a class="el" href="classEnvironment.html">Environment</a>)</td><td class="entry"><a class="el" href="classEnvironment.html">Environment</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>set_new_binding</b>(string name, Object value) (defined in <a class="el" href="classEnvironment.html">Environment</a>)</td><td class="entry"><a class="el" href="classEnvironment.html">Environment</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>to_Object</b>() (defined in <a class="el" href="classEnvironment.html">Environment</a>)</td><td class="entry"><a class="el" href="classEnvironment.html">Environment</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>add_new_binding</b>(string name, Object value) (defined in <a class="el" href="classEnvironment.html">Environment</a>)</td><td class="entry"><a class="el" href="classEnvironment.html">Environment</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>Environment</b>() (defined in <a class="el" href="classEnvironment.html">Environment</a>)</td><td class="entry"><a class="el" href="classEnvironment.html">Environment</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>Environment</b>(Frame *obs) (defined in <a class="el" href="classEnvironment.html">Environment</a>)</td><td class="entry"><a class="el" href="classEnvironment.html">Environment</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>extend_env</b>(Object lpars, Object lvals) (defined in <a class="el" href="classEnvironment.html">Environment</a>)</td><td class="entry"><a class="el" href="classEnvironment.html">Environment</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>find_value</b>(string name) (defined in <a class="el" href="classEnvironment.html">Environment</a>)</td><td class="entry"><a class="el" href="classEnvironment.html">Environment</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>get_observing</b>() (defined in <a class="el" href="classEnvironment.html">Environment</a>)</td><td class="entry"><a class="el" href="classEnvironment.html">Environment</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>make_closure</b>(Object body) (defined in <a class="el" href="classEnvironment.html">Environment</a>)</td><td class="entry"><a class="el" href="classEnvironment.html">Environment</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>print</b>(ostream &amp;s) (defined in <a class="el" href="classEnvironment.html">Environment</a>)</td><td class="entry"><a class="el" href="classEnvironment.html">Environment</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>set_new_binding</b>(string name, Object value) (defined in <a class="el" href="classEnvironment.html">Environment</a>)</td><td class="entry"><a class="el" href="classEnvironment.html">Environment</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>to_Object</b>() (defined in <a class="el" href="classEnvironment.html">Environment</a>)</td><td class="entry"><a class="el" href="classEnvironment.html">Environment</a></td><td class="entry"></td></tr>
 </table></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

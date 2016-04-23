@@ -11,11 +11,14 @@ using namespace std;
 /* Binding function */
 /********************/
 
-//
-//Creates a binding linking _name to _object
-//
+//!
+//! Creates a binding linking _name to _object
+//!
 Binding::Binding(string _name, Object _value):
   name(_name), value(_value) {}
+
+
+
 string  Binding::get_name() const {
   return name;
 }
@@ -27,25 +30,19 @@ void Binding::set_value(Object _value) {
   value = _value;
 }
 
-Object Binding::to_Object() {
-  Object bound_name = new Cell();
-  bound_name->make_cell_string(name);
+/**********************/
+/* EnvBlock functions */
+/**********************/
 
-  Object bound_object = new Cell();
-  bound_object->make_cell_pair(bound_name, value);
-
-  return bound_object;
-}
-
-Binding Object_to_binding(Object b) {
-  return Binding(Object_to_string(car(b)), cdr(b));
-}
-
-/* Frame functions */
-
+//!
+//! Creates an EnvBlock containing a token binding
+//!
 EnvBlock::EnvBlock():
   content(Binding("t", number_to_Object(1))), next(NULL) {}
 
+//!
+//! Creates an EnvBlock containing the binding of cont to nex
+//!
 EnvBlock::EnvBlock(Binding cont, EnvBlock* nex):
   content(cont), next(nex) {}
 
@@ -61,60 +58,39 @@ void EnvBlock::set_next(EnvBlock* nex) {
   next = nex;
 }
 
+/*******************/
+/* Frame functions */
+/*******************/
+
+//!
+//! Creates a frame with NULL for head and scope
+//!
 Frame::Frame() {
   head  = NULL;
   scope = NULL;
 }
 
+//!
+//! Creates an empty frame with _scope as its scope
+//!
 Frame::Frame(Frame* _scope) {
   head = NULL;
   scope = _scope;
 }
 
-Frame::Frame(const Frame & source) { // Needs to be updated
-  head = source.head;
-  scope = source.scope;;
-  // if (source.scope)
-  //   scope = new Frame(*source.scope);
-  // EnvBlock* writing = head;
-  // EnvBlock* reading = source.head;
-  // while (reading)
-  //   {
-  //     EnvBlock* copy = new EnvBlock(*reading->get_content(),NULL);
-
-  //     if (copy != NULL)
-  //       {
-  //         if (head == NULL)
-  //           head = copy;
-  //         else
-  //           {
-  //             writing->set_next(copy);
-  //           }
-  //         writing = copy;
-  //         reading = reading->get_next();
-  //       }
-  //     else
-  //       {
-  //         reading = NULL;
-  //       }
-  //   }
-}
-
-Frame::~Frame() {
-  // while (head)
-  //   {
-  //     EnvBlock* killed = head;
-  //     head = head->get_next();
-  //     delete killed;
-  //   }
-  // delete scope;
-}
-
+//!
+//! makes a new EnvBlock containing the binding and pointing towards the current head of the frame the neww head
+//!
 void Frame::add_new_binding(string name, Object value) {
   EnvBlock* new_head = new EnvBlock(Binding(name,value), head);
   head = new_head;
 }
 
+//!
+//! Looks at the current frame.
+//! If there is no binding to the specified name in the current frame, add the bidning to the frame
+//! Modifies it otherwise
+//!
 void Frame::set_new_binding(string name, Object value) {
   try
     {
@@ -126,6 +102,9 @@ void Frame::set_new_binding(string name, Object value) {
   }
 }
 
+//!
+//! Sets new bindings to the frame
+//!
 void Frame::extend_env(Object lpars, Object lvals) {
   if (null(lpars) && null(lvals)) return;
   if (null(lpars) && !null(lvals)) throw Zipping_Exception(lvals, "Too many values");
@@ -134,6 +113,9 @@ void Frame::extend_env(Object lpars, Object lvals) {
   extend_env(cdr(lpars), cdr(lvals));
 }
 
+//!
+//! Finds the EnvBlock in the current frame containing the binding pertaining to name
+//!
 EnvBlock* Frame::find_block(string name) {
   EnvBlock* searching = head;
 
@@ -151,7 +133,9 @@ EnvBlock* Frame::find_block(string name) {
   throw No_Binding_Exception(name);
 }
 
-
+//!
+//! Looks through the Envblocks of the frame and those of the following frames to find the binding of name
+//!
 Object Frame::find_value(string name) {
   EnvBlock* searching = head;
 
@@ -174,22 +158,24 @@ Object Frame::find_value(string name) {
     throw No_Binding_Exception(name);
 }
 
+//!
+//! Prints the contents of the Frame
+//!
 void Frame::print(ostream& s) {
   EnvBlock* printing = head;
   while (printing)
     {
       Object value = printing->get_content()->get_value();
-      if (value->is_pair())
-        {
-          string visible =  "( ... )";
-          value = string_to_Object(visible);
-        }
       s << printing->get_content()->get_name() << ": " << value << "; ";
       printing = printing->get_next();
     }
   if (scope)
     scope->print(s);
 }
+
+/*************************/
+/* Environment functions */
+/*************************/
 
 Environment::Environment() {
   observing = new Frame();

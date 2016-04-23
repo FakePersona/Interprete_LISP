@@ -70,7 +70,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Variables</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -91,8 +91,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a0158ee57b867427a39b8395af13629eb"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0158ee57b867427a39b8395af13629eb"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>EnvBlock</b> (<a class="el" href="classBinding.html">Binding</a> cont, <a class="el" href="classEnvBlock.html">EnvBlock</a> *nex)</td></tr>
+<tr class="memitem:a578ffa8ebc0161e6ec1bd014206de10f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEnvBlock.html#a578ffa8ebc0161e6ec1bd014206de10f">EnvBlock</a> ()</td></tr>
+<tr class="separator:a578ffa8ebc0161e6ec1bd014206de10f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0158ee57b867427a39b8395af13629eb"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEnvBlock.html#a0158ee57b867427a39b8395af13629eb">EnvBlock</a> (<a class="el" href="classBinding.html">Binding</a> cont, <a class="el" href="classEnvBlock.html">EnvBlock</a> *nex)</td></tr>
 <tr class="separator:a0158ee57b867427a39b8395af13629eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0860a0760290ddc69bdf14f766660c0c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0860a0760290ddc69bdf14f766660c0c"></a>
 <a class="el" href="classBinding.html">Binding</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>get_content</b> ()</td></tr>
@@ -104,6 +105,50 @@ Public Member Functions</h2></td></tr>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>set_next</b> (<a class="el" href="classEnvBlock.html">EnvBlock</a> *nex)</td></tr>
 <tr class="separator:a9c3c8875eca72db1bf042f9de83db78b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a578ffa8ebc0161e6ec1bd014206de10f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">EnvBlock::EnvBlock </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Creates an <a class="el" href="classEnvBlock.html">EnvBlock</a> containing a token binding </p>
+
+</div>
+</div>
+<a class="anchor" id="a0158ee57b867427a39b8395af13629eb"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">EnvBlock::EnvBlock </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classBinding.html">Binding</a>&#160;</td>
+          <td class="paramname"><em>cont</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classEnvBlock.html">EnvBlock</a> *&#160;</td>
+          <td class="paramname"><em>nex</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Creates an <a class="el" href="classEnvBlock.html">EnvBlock</a> containing the binding of cont to nex </p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="env_8hh_source.html">env.hh</a></li>
 <li>env.cc</li>

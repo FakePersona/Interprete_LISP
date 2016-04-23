@@ -106,6 +106,11 @@ static ostream& print_cell_pointer_aux(ostream& s, const Cell *p) {
   assert(p -> is_pair());
   for (const Cell *pp = p;; pp = pp -> to_pair_next()) {
     if (pp == Cell::nil()) break;
+    if (pp->is_frame())
+      {
+        s << "<env> " << flush;
+        break;
+      }
     print_cell_pointer(s, pp -> to_pair_item());
     if (pp -> to_pair_next() == Cell::nil()) break;
     s << " " << flush;
@@ -120,10 +125,7 @@ static ostream& print_cell_pointer(ostream& s, const Cell *p) {
   if (p -> is_symbol()) return s << p -> to_symbol() << flush;
   if (p -> is_pair()) {
     s << "(" << flush;
-    if (p->to_pair_item()->is_string() && p->to_pair_item()->to_string() == "closure")
-      s << "closure" << flush;
-    else
-      print_cell_pointer_aux(s, p);
+    print_cell_pointer_aux(s, p);
     s << ")" << flush;
     return s;
   }

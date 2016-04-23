@@ -70,7 +70,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Variables</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -88,16 +88,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <p>This is the complete list of members for <a class="el" href="classFrame.html">Frame</a>, including all inherited members.</p>
 <table class="directory">
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>add_new_binding</b>(string name, Object value) (defined in <a class="el" href="classFrame.html">Frame</a>)</td><td class="entry"><a class="el" href="classFrame.html">Frame</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>extend_env</b>(Object lpars, Object lvals) (defined in <a class="el" href="classFrame.html">Frame</a>)</td><td class="entry"><a class="el" href="classFrame.html">Frame</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>find_block</b>(string name) (defined in <a class="el" href="classFrame.html">Frame</a>)</td><td class="entry"><a class="el" href="classFrame.html">Frame</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>find_value</b>(string name) (defined in <a class="el" href="classFrame.html">Frame</a>)</td><td class="entry"><a class="el" href="classFrame.html">Frame</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>Frame</b>() (defined in <a class="el" href="classFrame.html">Frame</a>)</td><td class="entry"><a class="el" href="classFrame.html">Frame</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>Frame</b>(Frame *_scope) (defined in <a class="el" href="classFrame.html">Frame</a>)</td><td class="entry"><a class="el" href="classFrame.html">Frame</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>Frame</b>(const Frame &amp;source) (defined in <a class="el" href="classFrame.html">Frame</a>)</td><td class="entry"><a class="el" href="classFrame.html">Frame</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>print</b>(ostream &amp;s) (defined in <a class="el" href="classFrame.html">Frame</a>)</td><td class="entry"><a class="el" href="classFrame.html">Frame</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>set_new_binding</b>(string name, Object value) (defined in <a class="el" href="classFrame.html">Frame</a>)</td><td class="entry"><a class="el" href="classFrame.html">Frame</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>~Frame</b>() (defined in <a class="el" href="classFrame.html">Frame</a>)</td><td class="entry"><a class="el" href="classFrame.html">Frame</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classFrame.html#aef63d90c2cd48dec6ac9b6dfd6f7d958">add_new_binding</a>(string name, Object value)</td><td class="entry"><a class="el" href="classFrame.html">Frame</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classFrame.html#a60853a5572534d23b5cf480c6217b9b8">extend_env</a>(Object lpars, Object lvals)</td><td class="entry"><a class="el" href="classFrame.html">Frame</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classFrame.html#abe6a8a4589d130373c89147b660de034">find_block</a>(string name)</td><td class="entry"><a class="el" href="classFrame.html">Frame</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classFrame.html#a148a624be2406df10c0655c9d87d0544">find_value</a>(string name)</td><td class="entry"><a class="el" href="classFrame.html">Frame</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classFrame.html#ad2e5946cf41d4817e750500acf05d02b">Frame</a>()</td><td class="entry"><a class="el" href="classFrame.html">Frame</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classFrame.html#ad6270328988c4bf73df7f24a0e7cf5f7">Frame</a>(Frame *_scope)</td><td class="entry"><a class="el" href="classFrame.html">Frame</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classFrame.html#a5b0bcbaf2acba4166d94269a9b938834">print</a>(ostream &amp;s)</td><td class="entry"><a class="el" href="classFrame.html">Frame</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classFrame.html#a258655c409c6055a761ac8cc12fb2948">set_new_binding</a>(string name, Object value)</td><td class="entry"><a class="el" href="classFrame.html">Frame</a></td><td class="entry"></td></tr>
 </table></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
