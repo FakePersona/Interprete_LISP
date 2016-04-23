@@ -5,6 +5,20 @@
 #include <stdio.h>
 #include <stdexcept>
 
+void make_subr_env(Environment* subr_env){
+	Object subr = string_to_Object("<subr>");
+	subr_env->add_new_binding("+", subr);
+	subr_env->add_new_binding("*", subr);
+	subr_env->add_new_binding("-", subr);
+	subr_env->add_new_binding("/", subr);
+	subr_env->add_new_binding("car", subr);
+	subr_env->add_new_binding("cdr", subr);
+	subr_env->add_new_binding("cons", subr);
+	subr_env->add_new_binding("=", subr);
+	subr_env->add_new_binding("newline", subr);
+	subr_env->add_new_binding("concat", subr);
+	subr_env->add_new_binding("read", subr);
+}
 
 Object do_plus(Object lvals) {
   int a = Object_to_number(car(lvals));
@@ -80,21 +94,6 @@ Object do_read() {
   return l;
 }
 
-void make_subr_env(Environment* subr_env){
-	Object subr = string_to_Object("<subr>");
-	subr_env->add_new_binding("+", subr);
-	subr_env->add_new_binding("*", subr);
-	subr_env->add_new_binding("-", subr);
-	subr_env->add_new_binding("/", subr);
-	subr_env->add_new_binding("car", subr);
-	subr_env->add_new_binding("cdr", subr);
-	subr_env->add_new_binding("cons", subr);
-	subr_env->add_new_binding("=", subr);
-	subr_env->add_new_binding("newline", subr);
-	subr_env->add_new_binding("concat", subr);
-	subr_env->add_new_binding("read", subr);
-}
-
 Object handle_subr(Object f,Object lvals){
 	if (Object_to_string(f) == "+") {
 		return do_plus(lvals);
@@ -132,4 +131,3 @@ Object handle_subr(Object f,Object lvals){
 	}
 	throw Not_Subr();
 }
-
