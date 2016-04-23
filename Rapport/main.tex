@@ -96,9 +96,10 @@ Nous nous somme fixés les objectifs intermédiaires suivant:
 
 \subsection{Interprète dynamique}
 
-Dans un premier temps, nous avons implémenté, à partir du code fourni, un interprète qui possède les principale fonctions Lisp, avec une gestion dynamique de l'environnement.
+Dans un premier temps, nous avons implémenté, à partir du code fourni, un interprète 
+qui possède les principale fonctions Lisp, avec une gestion dynamique de l'environnement.
 
-\subsubsection{Toplevel}
+\subsubsection{Toplevel et environnement}
 
   Nous avons encapsulé la gestion des entrées dans un \texttt{toplevel}, 
  appelé par la fonction \texttt{main}. Ce toplevel gère la directive setq, qui
@@ -106,12 +107,56 @@ Dans un premier temps, nous avons implémenté, à partir du code fourni, un int
  Elle fait appel à une fonction \texttt{add\_new\_binding} que nous avons
  implémenté, qui permet de créer un nouvel objet
   \texttt{Binding} (qui comporte deux éléments : un
- symbole et la valeur qui lui est associée) que l'on ajoute à l'environnement courant.
+ symbole et la valeur qui lui est associée) que l'on ajoute à l'environnement courant. 
+ Dans le code original, les environnement sont traités comme des vecteurs de pointeurs 
+ vers des
+ \texttt{Binding}.  Cette version dynamique de l'interprète ajoute un \texttt{Binding} 
+ à chaque fois que \texttt{setq} est appelée, sans vérifier si un \texttt{Binding} 
+ correspondant au symbole utilisé existe déjà. Comme la fonction de recherche dans 
+ l'environnement renvoie le premier \texttt{Binding} trouvé, cette nouvelle liaison
+ masque de façon effective celles déjà enregistrées.
+ 
+ D'autre part nous avons aussi ré-encapsulé la gestion des entrées de l'utilisateur 
+ dans le \texttt{toplevel} dans une classe \texttt{read} qui gère les appels au parseur.
+ 
+ \subsubsection{Subroutines}
+ 
+  Dans le code fourni, quelques subroutines étaient traitées dans la fonction 
+  \texttt{eval} de l'interprète. Nous avons encapsulé les subroutines pour qu'elles soient 
+  traitées de manière séparée, afin de pouvoir facilement en ajouter de nouvelles. 
+  Les opérations de bases sur les nombres, ainsi que les fonctions \texttt{car}, 
+  \texttt{cdr}, \texttt{cons}, \texttt{concat}, \texttt{newline} et \texttt{read} 
+  ont été implémentées.
+  
+  Pour la subroutine =, nous nous sommes inspirés de l’interprète Caml vu en TD, en 
+  comparant le type de chaque objet, avant de comparer leur valeur si le type 
+  correspond. Nous avons aussi implémenté la gestion des booléens dans la classe 
+  \texttt{Object}, afin de clarifier et de simplifier leur utilisation, en 
+  particulier dans cette fonction.
+  
+  Nous avons d'autre part pu remarquer l'utilité de l'encapsulation déjà effectuée, 
+  car il nous a suffit de réutiliser les fonctions de la classe \texttt{read} 
+  pour implémenter la subroutine \texttt{read}.
+  
+ \subsubsection{Eval}
+ 
+ La principale modification apportée à la classe \texttt{eval} fournie est 
+l'utilisation de l'encapsulation précédemment mentionnée pour mieux compartimenter 
+les différentes parties de l'évaluation. Nous avons utilisé la programmation 
+par exception afin de s'assurer que chacune des ces parties se déroulent 
+correctement. Par exemple, lors de l'évaluation d'un symbole, on fait appel 
+à une fonction qui parcours l'environnement courant afin de trouver une liaison 
+correspondante, et renvoie une exception en cas d'échec. Cela nous permet de 
+repérer lorsque l'utilisateur cherche à évaluer un symbole qui n'est pas attribué.
+
+Nous avons aussi aussi implémenté un dispositif de trace via la commande 
+\texttt{debug} et d'impression de l'environnement via \texttt{printenv}, 
+pour permettre à l'utilisateur de suivre l'évolution de l'environnement courant.
 
 \subsection{Environnement par listes chaînées}
 
-Les environnements dans le code original étaient de simples vecteurs de pointeurs
-vers des \texttt{Binding}. Si cet solution a le mérite de marcher, elle n'en est
+Si l'implémentation des environnement comme vecteurs 
+de pointeurs vers des \texttt{Binding} a le mérite de marcher, elle n'en est
 pas moins problématique au sens où, pour copier un environnement, il est
 nécessaire de copier l'intégralité de la liste des pointeurs, ce qui présente un
 coût linéaire en la taille de l'environement considéré!
@@ -160,7 +205,7 @@ de l'environement.
 
 \subsection{Première liaison statique}
 
-\subsection{Première cloture}
+\subsection{Première clôture}
 
 \subsection{Passage en frames}
 

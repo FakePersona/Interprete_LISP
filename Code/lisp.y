@@ -3,7 +3,7 @@
 #include <iostream>
 #include <string>
 #include "object.hh"
-  
+
 using namespace std;
 
 extern "C" int yylex();
@@ -34,7 +34,7 @@ Object just_read;
 %token <number_value> Token_number
 %token <string_value> Token_symbol
 %token <string_value> Token_string
-%token Token_lpar Token_rpar 
+%token Token_lpar Token_rpar
 %token Token_nil
 %token Token_quote
 %token Token_blank
@@ -52,15 +52,15 @@ Object just_read;
 
 %start main             /* the entry point */
 
-%% 
+%%
 /* Grammar rules */
 
-/* 
+/*
 http://tldp.org/HOWTO/Lex-YACC-HOWTO-6.html
 6.2 Recursion: 'right is wrong'
 */
 
-main: 
+main:
 list_rpar expr          {$$ = $2; clog << "Read: " << $2 << endl; just_read = $$; YYACCEPT;}
 ;
 
@@ -69,7 +69,7 @@ Token_number            {test(number, $1); $$ = number_to_Object($1);}
 | Token_nil             {test(nil, ""); $$ = nil();}
 | Token_symbol		{test(symbol, $1); $$ = symbol_to_Object($1);}
 | Token_string          {test(string, $1); $$ = string_to_Object($1);}
-| Token_quote expr      {test(quote, ""); $$ = cons(symbol_to_Object("quote"), cons($2, nil()));} 
+| Token_quote expr      {test(quote, ""); $$ = cons(symbol_to_Object("quote"), cons($2, nil()));}
 | Token_lpar list_expr Token_rpar	{$$ = reverse($2);} // Right order is back! :-)
 ;
 
@@ -93,7 +93,7 @@ void yyerror(char const *s) {
 /*
 
 	int yyerror(const char *s) {
-	cerr << "ERROR: " << s << " at symbol \"" << yytext << "\"" 
+	cerr << "ERROR: " << s << " at symbol \"" << yytext << "\""
 	<< "on line " << yylineno << endl;
 	exit(1);
 	}

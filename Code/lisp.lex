@@ -1,13 +1,13 @@
 %{
 #define YY_DECL extern "C" int yylex()
-	
+
 #include <cstdio>
 #include <iostream>
 #include <string>
 #include <cassert>
 #include "object.hh"
 using namespace std;
- 
+
 #include "lisp_yacc.h"
 
 // #define trace(s) {clog << "Flex: " << #s << ": " << yytext << endl;}
@@ -47,7 +47,7 @@ COMMENT ;{LINE}
 {QUOTE}		{trace(QUOTE); return Token_quote;}
 {LPAR}		{trace(LPAR); return Token_lpar;}
 {RPAR}		{trace(RPAR); return Token_rpar;}
-{STRING}	{trace(STRING); yylval.string_value = erase_quotes(strdup(yytext)); return Token_string;} 
+{STRING}	{trace(STRING); yylval.string_value = erase_quotes(strdup(yytext)); return Token_string;}
 {COMMENT}	{trace(COMMENT);}
 
 %%
