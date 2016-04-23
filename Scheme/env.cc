@@ -178,38 +178,65 @@ void Frame::print(ostream& s) {
 /* Environment functions */
 /*************************/
 
+//!
+//! Creates a new Environment observing an empty frame (dynamically allocated)
+//!
 Environment::Environment() {
   observing = new Frame();
 }
 
+//!
+//! Creates a new Environment observing the frame located at obs
+//!
 Environment::Environment(Frame* obs) {
   observing = new Frame(obs);
 }
 
+//!
+//! Returns the pointer of the Frame the environment is observing
+//!
 Frame* Environment::get_observing() {
   return observing;
 }
 
+//!
+//! Dynamically binds in the observed frame
+//!
 void Environment::add_new_binding(string name, Object value) {
   observing->add_new_binding(name, value);
 }
 
+//!
+//! Lexically binds in the observed frame
+//!
 void Environment::set_new_binding(string name, Object value) {
   observing->set_new_binding(name, value);
 }
 
+//!
+//! Extends the observed frame
+//!
 void Environment::extend_env(Object lpars, Object lvals) {
   observing->extend_env(lpars, lvals);
 }
 
+//!
+//! Looks for the value bound to name starting from the observed frame
+//!
 Object Environment::find_value(string name) {
   return observing->find_value(name);
 }
 
+//!
+//! prints the content of the observed frame and its successors
+//!
 void Environment::print(ostream& s) {
   observing->print(s);
 }
 
+//!
+//! Returns an object storing the adress of the observed frame
+//!
 Object Environment::to_Object() {
   Object frame_cell = new Cell();
   frame_cell->make_cell_frame(observing);
@@ -217,6 +244,9 @@ Object Environment::to_Object() {
   return frame_cell;
 }
 
+//!
+//! Creates a closure from the observed frame and the body
+//!
 Object Environment::make_closure(Object body) {
   Object tag = new Cell();
   tag->make_cell_string("closure");
@@ -231,6 +261,9 @@ Object Environment::make_closure(Object body) {
   return tag_block;
 }
 
+//!
+//! Creates a new environement observing the frame indicated in the closure
+//!
 Environment Object_to_env(Object e) {
   Environment new_env = Environment(e->to_pair_next()->to_pair_next()->to_frame());
 
