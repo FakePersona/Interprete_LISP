@@ -1,0 +1,13 @@
+This lisp interpreter was written as an assignement for the advanced programmation class at ENS
+Rennes by Antonin Garret and Rémy Sun.
+
+Two versions of the code are presented:
+
+- The one in the Copie directory is largely deprecated but left for reasons exposed in the rapport.
+  It is also largely uncommented aside from the env.cc file which is the ONLY relevant file in that directory.
+  To use it, compile with make and then (rlwrap) ./lisp.
+
+- The one in the Scheme directory is the definitive version of the code and implements closures and frames
+  the Scheme way. A documentation is provided (with file include hierarchy!) in the Documentation folder. To
+  read it, read the index.html file with a web browser.
+  To use it, compile with make and then (rlwrap) ./lisp.
