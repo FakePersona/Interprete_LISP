@@ -183,8 +183,8 @@ Object apply(Object f, Object lvals, Environment env) {
   if (Object_to_string(car(f)) == "lambda") {
     Object lpars = cadr(f);
     Object body = caddr(f);
-    //Frame* new_frame = new Frame(env.get_observing());
-    Environment new_env = Environment(env.get_observing());
+    Frame* new_frame = new Frame(env.get_observing());
+    Environment new_env = Environment(new_frame);
     new_env.extend_env(lpars, lvals);
     return eval(body, new_env);
   }

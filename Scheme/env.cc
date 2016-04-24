@@ -192,7 +192,7 @@ Environment::Environment() {
 //! Creates a new Environment observing the frame located at obs
 //!
 Environment::Environment(Frame* obs) {
-  observing = new Frame(obs);
+  observing = obs;
 }
 
 //!
