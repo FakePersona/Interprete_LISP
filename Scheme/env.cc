@@ -171,7 +171,10 @@ void Frame::print(ostream& s) {
       printing = printing->get_next();
     }
   if (scope)
-    scope->print(s);
+    {
+      s << " >> ";
+      scope->print(s);
+    }
 }
 
 /*************************/
