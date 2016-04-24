@@ -56,14 +56,14 @@ void toplevel()
     }
     catch (Continue_Directive){}
     /* from this point onwards, it is all going downhill... */
-    catch (Evaluation_Exception) {
-      printf("Evaluation exception\n");
+    catch (Evaluation_Exception e) {
+      e.error_message();
     }
-    catch (No_Binding_Exception){
-      printf("Not bound\n");
+    catch (No_Binding_Exception e){
+      e.message();
     }
-    catch (Zipping_Exception){
-      printf("Zipping_exception\n");
+    catch (Zipping_Exception e){
+      e.error_message();
     }
     catch (Not_Subr){}
   } while (!end_input());

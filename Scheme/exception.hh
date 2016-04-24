@@ -17,6 +17,9 @@ public:
   No_Binding_Exception(string _name): runtime_error("No binding for name: " + _name) {
     name = _name;
   }
+  void message() {
+    cout << "No binding for name: " <<  name << endl;
+  }
   virtual ~No_Binding_Exception() throw () {}
 };
 
@@ -29,6 +32,9 @@ public:
     message = _message;
     lobjs = _lobjs;
     clog << message << ": " << lobjs << endl;
+  }
+  void error_message() {
+    cout << message << ": " << lobjs  << endl;
   }
   virtual ~Zipping_Exception() throw () {}
 };
@@ -57,6 +63,9 @@ public:
     obj = _obj;
     env = _env;
     message = _message;
+  }
+  void error_message() {
+    cout << "Evaluation error: " + message << endl;
   }
   virtual ~Evaluation_Exception() throw () {}
 };
