@@ -72,7 +72,7 @@
   marche de notre interprète.
 \end{abstract}
 
-\section{Introduction}
+\section*{Introduction}
 
 Le Lisp est un langage fonctionnel interprété permettant des implémentations
 différentes. 2 tels implémentations en Ocaml ont été vues en TD de
@@ -359,6 +359,23 @@ capturées.
  exception lors de tels dépassements. Nous n'avons pas découvert la source de 
  ce problème.
  
+\subsection{Gestion de la mémoire}
+
+Si la gestion mémoire a été abandonné dans le code \texttt{Scheme} puisque l'approche
+effectuée n'avait pas grand interêt dans l'approche \texttt{Scheme}. Néanmoins,
+nous avons tout de même effectué des tests dans le code \texttt{Copie} avec
+l'exécution du
+code lisp suivant:
+
+\begin{lstlisting}
+(setq f (lambda (a) (+ a 1)))
+(f 3)
+\end{lstlisting}
+
+Valgrind montre une différence d'une centaine de bytes entre la version avec
+gestion mémoire de l'environnement (surcharge du destructeur et de l'opérateur
+de copie) et celle sans.
+
  \subsection{Interprète Scheme}
 
  Le travail effectué sur la version Scheme de l'interprète consistait à implémenter 
@@ -431,5 +448,28 @@ prolongation de notre travail, qui permettrait à l'interprète de se hisser au 
 d'un interprète Scheme classique. Il serait aussi possible d'implémenter une évaluation 
 paresseuse, qui permettrait notamment une optimisation des calculs sur les listes.
 
+\section{Conclusion}
+
+L'implémentation des clôtures et liaisons par frames dans un interprète lisp en
+C++ a posé des problèmes de définitions qui ont demandé de revoir légèrement le
+squelette de code fournit, tout comme la manipulation de fonctions en tant
+qu'objets qui a du, étrangement, se faire par la manipulation des structures
+plus archaïques C (langage impératif). La notion de liaison statique et de clôture a posé de
+grandes questions quant à son implémentation, en particulier sur la façon
+d'implémenter une clôture en se passant de pointeurs, ce qui compliquerait
+inutilement la clôture.
+
+En retraçant les fonctions de test proposées dans les TD lisp, nous avons tenté
+d'établir le bon fonctionnement de notre interpréteur lisp. De nombreux bugs ont
+été mis en évidence de cette façon, et la mise en oeuvre de mécanismes de trace
+ont été nécessaires pour retracer la source des problèmes. Cela a été l'occasion
+de mieux comprendre le fonctionnement de la manipulation d'objets en C++, et la
+façon dont un environnement fonctionnant par liaisons statiques se modifie.
+
+Pour correspondre à un interpréteur \texttt{Scheme}, il serait nécessaire
+d'implémenter la fonction \texttt{call/cc}. De plus la gestion de la mémoire,
+bien qu'abordée dans le cadre de la gestion des environnements demeure un
+problème puisque la cause du problème demeure plus profonde que les solutions
+envisagée qui n'aident vraiment que dans le cas d'une clôture par copie complète.
 
 \end{document}
