@@ -66,7 +66,7 @@
   L'interprétation du langage Lisp par un langage non fonctionnel comme C++
   demande d'adapter la gestion intuitive des structures mises en jeu. En
   implémentant une liaison lexicale et une clôture à la manière de
-  l'implémentation Scheme de lisp, nous avons particuliérement travaillé sur la
+  l'implémentation Scheme de Lisp, nous avons particulièrement travaillé sur la
   gestion de l'environnement. Par
   des tests d'implémentation de fonctions, nous avons ensuite démontré la bonne
   marche de notre interprète.
@@ -75,25 +75,26 @@
 \section*{Introduction}
 
 Le Lisp est un langage fonctionnel interprété permettant des implémentations
-différentes. 2 tels implémentations en Ocaml ont été vues en TD de
+différentes. De telles implémentations, codées en Ocaml ont été vues en TD de
 programmation. Ocaml étant un langage fonctionnel, cette implémentation est
 relativement naturelle.
 
 Au travers de ce projet, nous nous intéressons à l'implémentation d'un
 interprète Lisp en C++, ce qui pose de sérieuses questions puisque le langage
-d'implémentation n'est alors plus un langage où on peut traiter les fonctions
+d'implémentation n'est alors plus un langage qui peut traiter les fonctions
 comme des citoyens de première classe. Nous nous sommes plus particulièrement attachés à
-l'implémentation d'une gestion d'environnements et de clôtures proches de celles
-très souples de Scheme. 
+l'implémentation d'une gestion d'environnements et de clôtures proches de celle
+très souple de Scheme. 
 
-Deux versions de code sont proposée dans le code rendu. La version définitive
+Deux versions de code sont proposées dans le code rendu. La version définitive
 est le code \texttt{Scheme}, mais le code \texttt{Copie} relève d'une version du
-code où nous avions voulu explorer une implémentation différente de la clôture
-qui avait simplement été étudiée en TD. Cela a été l'occasion de réaliser les
+code où nous avions voulu explorer une implémentation de la clôture différente de 
+celle
+qui avait été étudiée en TD. Cela a été l'occasion de réaliser les
 grandes limitations de cette implémentation, et pourquoi l'implémentation
 proposée en TD était grandement préférable et généralement celle choisie.
 
-Une documentation du code \texttt{Scheme} générée par doxygen est proposée avec
+Une documentation du code \texttt{Scheme} générée par Doxygen est proposée avec
 le code.
 
 \section{Objectif}
@@ -102,18 +103,18 @@ L'objectif que nous nous sommes fixés pour ce projet était de construire un
 interprète Lisp gérant les liaisons et clôtures à la manière de \texttt{Scheme}. Plus
 particulièrement, nous étions intéressés par la gestion de liste chaînées de
 frames, et par la façon dont on pouvait représenter ces frames pour permettre la
-création d'un tel interpréteur.
+création d'un tel interprète.
 
 Au delà des problèmes de définitions circulaires posés, le grand défi a été de
 gérer correctement la création des copies (implicites dès qu'on passe en
 argument de fonction) et la bonne détection des clôtures.
 
-Nous nous somme fixés les objectifs intermédiaires suivant:
+Nous nous somme fixés les objectifs intermédiaires suivants:
 \begin{itemize}
 \item Compléter le squelette fourni pour obtenir un interprète dynamique, ce qui
   constitue une première étape facilement vérifiable.
 \item Passer de la gestion d'environnement proposée à une gestion par listes
-  chaînées, ce qui permettrait eu passage de commencer à réfléchir à la façon de
+  chaînées, ce qui permet au passage de commencer à réfléchir à la façon de
   gérer les frames.
 \item Créer un premier interprète à liaison statique identique à celui vu en TD.
 \item Implémenter une gestion des clôtures dans cet interprète. Le but original
@@ -133,9 +134,9 @@ Nous nous somme fixés les objectifs intermédiaires suivant:
 \subsubsection{Toplevel et environnement}
 
   Nous avons encapsulé la gestion des entrées dans un \texttt{toplevel}, 
- appelé par la fonction \texttt{main}. Ce toplevel gère la directive setq, qui
+ appelé par la fonction \texttt{main}. Ce toplevel gère la directive \texttt{setq}, qui
  permet de modifier l'environnement. 
- Elle fait appel à une fonction \texttt{add\_new\_binding} que nous avons
+ Elle fait appel à une fonction \texttt{add\_new\_binding} que nous avonsx
  implémenté, qui permet de créer un nouvel objet
   \texttt{Binding} (qui comporte deux éléments : un
  symbole et la valeur qui lui est associée) que l'on ajoute à l'environnement courant. 
@@ -152,14 +153,14 @@ Nous nous somme fixés les objectifs intermédiaires suivant:
   \texttt{cdr}, \texttt{cons}, \texttt{concat}, \texttt{newline} et \texttt{read} 
   ont été implémentées.
 
-  Il a par contre été plus difficile de passer des fontion en objet. En Ocaml,
-  \og functions are first-class citizens \og. Pas en C++. De fait, il a été
+  Il a par contre été plus difficile de passer des fontions en objet. En Ocaml,
+  \og functions are first-class citizens \fg. Pas en C++. De fait, il a été
   nécéssaire de prendre des moyens détournés.
   Pour nous rapprocher de l'interprète original, nous avons modifié la classe
   \texttt{Cell} pour créer un type de cellule contenant une subroutine (qui est
   une fonction). Pour ce faire, nous avons fait usage des pointeurs de fonctions
   (et non de foncteurs dont l'utilisation ne se justifiait pas vraiment ici).
-  Une fonction \texttt{init\_subr} permet d'ajouter à l'environement de départ
+  Une fonction \texttt{init\_subr} permet d'ajouter à l'environnement de départ
   les subroutines définies. Il convient de noter qu'on a du modifier les
   méthodes d'impression de liaisons pour ne pas imprimer les liaisons faisant
   intervenir une subroutine.
@@ -216,21 +217,21 @@ alloués en mémoire ainsi que la création de copies indépendantes (créant au
 de nouveaux blocs). Cette gestion des copies s'est révélée par la suite sans
 grand intérêt et avait principalement un sens dans l'optique d'un dédoublement
 de l'environnement au moment de la clôture (approche depuis abandonnée), mais le
-code utilisé demeure dans le code \texttt{Copie}
+code utilisé demeure dans le dossier \texttt{Copie}
 
 \begin{attention}
   Une difficulté rencontrée avec l'utilisation d'instances de \texttt{Binding}
   au lieu de pointeurs dans les blocs d'environnements a été la création
-  implicites de copies que nous avons du tracer à l'aide d'impressions de
-  pointeurs. L'utilisation d'un setter à permis de remédier à ces problèmes.
+  implicite de copies que nous avons du tracer à l'aide d'impressions de
+  pointeurs. L'utilisation d'un setter a permis de remédier à ces problèmes.
 \end{attention}
 
 \subsection{Première liaison statique}
 
-Nous nous sommes contentés de créer une nouvelle méthode
-\texttt{set\_new\_binding} qui parcours dans un premier temps l'environnement à la
+Nous nous sommes dans un premier temps contentés de créer une nouvelle méthode
+\texttt{set\_new\_binding} qui parcours l'environnement à la
 recherche d'une liaison faisant intervenir le nom de liaison qu'on veut ajouter.
-Si on trouve une telle liaison, on modifie physiquement la liaison ajoutée.
+Si on trouve une telle liaison, on modifie physiquement la liaison trouvée.
 Sinon on rajoute une nouvelle liaison.
 
 \subsection{Première clôture}
@@ -242,9 +243,9 @@ premier temps partis dans l'idée d'essayer de voir ce que permettait le stockag
 l'environnement courant au moment de la définition d'une clôture. La création
 d'une telle clôture, bien que fastidieuse ne pose pas de difficultés
 particulières: la principale difficulté rencontrée a été le fait qu'on ne peut
-pas passer de \texttt{Binding} en arguement dans un type union. Il a donc été
-nécessaire d'improviser à partir du type pair pour stockers des laisons. Avec
-cette façon de procéder, les fonctions sont typiquement protégée de leur
+pas passer de \texttt{Binding} en argument dans un type union. Il a donc été
+nécessaire d'improviser à partir du type pair pour stockers des liaisons. Avec
+cette façon de procéder, les fonctions sont typiquement protégées de leur
 environnement d'exécution.
 
 Là où la situation devient plus épineuse est quand on veut pouvoir modifier
@@ -270,7 +271,7 @@ Heureusement, une forward declaration de la classe \texttt{Environment} dans la 
 \texttt{Cell} permet de remédier à cela.
 
 Avec cette méthode, il est possible de créer des fonctions mutuellement
-récursives et des fonctions récursives sans problèmes apparents. Par contre il
+récursives et des fonctions récursives sans problème apparent. Par contre il
 faut encore gérer un problème posé par la définition circulaire des clôtures.
 En effet, cela pose de gros problèmes si on veut afficher l'environnement. La
 solution adoptée a été le remplacement d'objets environnement par une chaîne
@@ -278,7 +279,7 @@ solution adoptée a été le remplacement d'objets environnement par une chaîne
 
 \subsection{Passage en frames}
 
-Notre structure en liste chaînée a déjà grandement abordée les difficultés de la
+Notre structure par listes chaînées a déjà grandement abordé les difficultés de la
 gestion d'un environnement par frames. Deux possibilités d'adaptation étaient
 envisageables: on pouvait laisser la structure grandement inchangée et
 simplement remplacer le contenu des blocs d'environnements par un vecteur de
@@ -296,47 +297,44 @@ défini par l'enchaînement des frames.
 
 \subsection{Clôtures Scheme}
 
-La gestion des clôture en Scheme est comparativement plus simple que dans
-l'interprète à liaison statique précédente. Il suffit de stocker le pointeur
+La gestion des clôtures en Scheme est comparativement plus simple que dans
+l'interprète à liaison statique précédent. Il suffit de stocker le pointeur
 vers la frame courante au moment de la clôture et il ne sera plus possible de
 capturer une variable au cours de l'exécution de fonctions imbriquées.
 
 Lors du passage par un \texttt{lambda}, une nouvelle frame est créée (ce qui
 protège les variables de l'environnement courant), et à la lecture d'une clôture
 on se replace dans la frame où la fonction a été définie ce qui évite d'être
-gèné par une définition interne à la frame où la fonction est appelée.
+gêné par une définition interne à la frame où la fonction est appelée.
 
 Grâce à la particularité des frames, il est parfaitement naturel de définir des
 fonctions mutuellement récursives. En effet, puisque la clôture pointe vers une
 frame et non un bloc d'environnement fixé, il n'y a pas besoin d'utiliser un
 placeholder pour réserver une place dans la clôture : les fonctions définies
-dans la frame courante après la définition e la clôture seront quand même
+dans la frame courante après la définition de la clôture seront quand même
 capturées.
 
 \section{Vérification}
  
  \subsection{Interprète dynamique}
 
- Les fonctions de l'interprète dynamique présentée en exemple dans le premier TD
- de lisp fonctionnent correctement et permettent 
+ Les fonctions de l'interprète dynamique présenté en exemple dans le premier TD
+ de Lisp fonctionnent correctement et permettent 
  une utilisation classique de Lisp.  
  Le seul problème est la gestion des erreurs de 
  l'utilisateur via les exceptions. La programmation défensive utilisée dans le 
  code original permet de s'assurer que tout fonctionne comme prévu, mais en cas 
  d'erreur, la fonction \texttt{assert} qui a été utilisée stoppe le processus de 
- l'interprète et empêche de rattraper les exception comme nous voulions le faire.
- Il serait possible de surmonter ce problème en modifiant la manière dont ces 
- tests sont effectués afin de générer des exceptions spécifiques, mais nous avons 
- choisi de consacrer notre temps aux autres aspects de l'interprète.
+ l'interprète et empêche de rattraper certaines exceptions comme nous voulions le faire.
  Cet interprète permet aussi les dépassement d'entier, ce qui est étonnant car 
- les calculs sur les nombre, effectués via le code C++, devraient lever une 
+ les calculs sur les nombres, effectués via le code C++, devraient lever une 
  exception lors de tels dépassements. Nous n'avons pas découvert la source de 
  ce problème.
  
 \subsection{Gestion de la mémoire}
 
-Si la gestion mémoire a été abandonné dans le code \texttt{Scheme} puisque l'approche
-effectuée n'avait pas grand interêt dans l'approche \texttt{Scheme}. Néanmoins,
+La gestion mémoire a été abandonné dans le code \texttt{Scheme} puisque cette 
+problématique n'avait pas grand intérêt dans l'approche \texttt{Scheme}. Néanmoins,
 nous avons tout de même effectué des tests dans le code \texttt{Copie} avec
 l'exécution du
 code lisp suivant:
@@ -368,7 +366,7 @@ de copie) et celle sans.
  nombreuses erreurs, notamment au niveau de la mémoire, ce qui a demandé un gros 
  travail de debug pour que cette gestion s'effectue comme nous l'espérions. Un travail 
  supplémentaire a aussi été fourni sur la programmation défensive et la gestion des
- assertion, ce qui nous a permis de rattraper un certain nombre d'exceptions pour les 
+ assertionS, ce qui nous a permis de rattraper un certain nombre d'exceptions pour les 
  gérer directement à travers l'interprète.
 
  Nous avons vérifié rapidement la bonne marche des fonctions suivantes entre
@@ -387,7 +385,7 @@ global
 \end{lstlisting}
  
  Cependant, cet interprète ne permet pas de gérer la continuation. Il faudrait pour 
- cela implémenter la construction call/cc de Scheme, ce qui demanderait une travail 
+ cela implémenter la construction call/cc de Scheme, ce qui demanderait un travail supplémentaire 
  conséquent.
 
 
@@ -432,26 +430,26 @@ plus archaïques C (langage impératif). La notion de liaison statique et de cl�
 grandes questions quant à son implémentation, en particulier sur la façon
 d'implémenter une clôture en se passant de pointeurs, ce qui compliquerait
 inutilement la clôture.
-En retraçant les fonctions de test proposées dans les TD lisp, nous avons tenté
-d'établir le bon fonctiyonnement de notre interpréteur lisp. De nombreux bugs ont
-été mis en évidence de cette façon, et la mise en oeuvre de mécanismes de trace
-ont été nécessaires pour retracer la source des problèmes. Cela a été l'occasion
+En retraçant les fonctions de test proposées dans les TD Lisp, nous avons tenté
+d'établir le bon fonctionnement de notre interprète Lisp. De nombreux bugs ont
+été mis en évidence de cette façon, et la mise en œuvre de mécanismes de trace
+a été nécessaire pour retracer la source des problèmes. Cela a été l'occasion
 de mieux comprendre le fonctionnement de la manipulation d'objets en C++, et la
 façon dont un environnement fonctionnant par liaisons statiques se modifie.
 
-Pour correspondre à un interpréteur \texttt{Scheme}, il serait nécessaire
+Pour correspondre à un interprète \texttt{Scheme}, il serait nécessaire
 d'implémenter la fonction \texttt{call/cc}. De plus, la gestion de la mémoire,
-bien qu'abordée dans le cadre de la gestion des environnements demeure un
-problème puisque la cause du problème demeure plus profonde que les solutions
-envisagée qui n'aident vraiment que dans le cas d'une clôture par copie complète.
+bien qu'abordée dans le cadre de la gestion des environnements demeure problématique 
+puisque la cause du problème demeure plus profonde que les solutions
+envisagées qui n'aident vraiment que dans le cas d'une clôture par copie complète.
 
 \section*{Annexe: auto-évaluation}
 
 \subsubsection*{Points forts}
 \begin{itemize}
 \item Gestion naturelle des récursions grâce aux frames
-\item Emulation d'une manipulation des subroutines en tant qu'objets
-\item Clôture par pointure plus efficace qu'une clôture par copie
+\item Émulation d'une manipulation des subroutines en tant qu'objets
+\item Clôture par pointeur plus efficace qu'une clôture par copie
 \end{itemize}
 
 \subsubsection*{Points faibles}
@@ -464,7 +462,7 @@ envisagée qui n'aident vraiment que dans le cas d'une clôture par copie compl�
 \begin{itemize}
 \item Conception d'un garbage collector
 \item Création d'une directive \texttt{call/cc}
-\item Remplacement des asserts par des levées d'exception spécialisées.
+\item Remplacement des asserts par des levées d'exceptions spécialisées.
 \end{itemize}
 
 \subsubsection*{Difficultés à anticiper}
