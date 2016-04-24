@@ -279,8 +279,8 @@ Avec cette méthode, il est possible de créer des fonctions mutuellement
 récursives et des fonctions récursives sans problème apparent. Par contre il
 faut encore gérer un problème posé par la définition circulaire des clôtures.
 En effet, cela pose de gros problèmes si on veut afficher l'environnement. La
-solution adoptée a été le remplacement d'objets environnement par une chaîne
-\texttt{<env>}.
+solution adoptée a été le remplacement d'objets \texttt{Environment} par une chaîne
+\texttt{<env>}. 
 
 \subsection{Passage en frames}
 
@@ -342,7 +342,7 @@ La gestion mémoire a été abandonné dans le code \texttt{Scheme} puisque cett
 problématique n'avait pas grand intérêt dans l'approche \texttt{Scheme}. Néanmoins,
 nous avons tout de même effectué des tests dans le code \texttt{Copie} avec
 l'exécution du
-code lisp suivant:
+code Lisp suivant:
 
 \begin{lstlisting}
 (setq f (lambda (a) (+ a 1)))
@@ -375,7 +375,7 @@ de copie) et celle sans.
  gérer directement à travers l'interprète.
 
  Nous avons vérifié rapidement la bonne marche des fonctions suivantes entre
- autre choses:
+ autres choses:
 
 \begin{lstlisting}
 (setq f (lambda () a)) | (f) retourne la valeur de a dans l'environnement global
@@ -427,7 +427,7 @@ paresseuse, qui permettrait notamment une optimisation des calculs sur les liste
 
 \section*{Conclusion}
 
-L'implémentation des clôtures et liaisons par frames dans un interprète lisp en
+L'implémentation des clôtures et liaisons par frames dans un interprète Lisp en
 C++ a posé des problèmes de définitions qui ont demandé de revoir légèrement le
 squelette de code fournit, tout comme la manipulation de fonctions en tant
 qu'objets qui a dû, étrangement, se faire par la manipulation des structures
