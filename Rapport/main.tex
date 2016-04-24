@@ -179,7 +179,7 @@ pour permettre à l'utilisateur de suivre l'évolution de l'environnement couran
 
 \subsection{Environnement par listes chaînées}
 
-Si l'implèmentation des environnement comme vecteurs 
+Si l’implémentation des environnement comme vecteurs 
 de pointeurs vers des \texttt{Binding} a le mérite de marcher, elle n'en est
 pas moins problématique au sens où, pour copier un environnement, il est
 nécessaire de copier l'intégralité de la liste des pointeurs, ce qui présente un
@@ -242,7 +242,7 @@ Sinon on rajoute une nouvelle liaison.
 \subsubsection{Stockage physique de la capture}
 
 Nous étions dans un
-premier temps parti dans l'idée d'essayer de voir ce que le stockage complet de
+premier temps parti dans l'idée d'essayer de voir ce que permettait le stockage complet de
 l'environnement courant au moment de la définition d'une clôture. La création
 d'une telle clôture, bien que fastidieuse ne pose pas de difficultés
 particulières: créer une clôture contenant assez d'informations pour
@@ -301,9 +301,9 @@ de l'action de certaines méthodes (comme \texttt{set\_new\_binding}) à la fram
 locale tandis que d'autres s'appliquent à l'ensemble des frames en cascade
 défini par l'enchaînement des frames.
 
-\subsection{Clôtures scheme}
+\subsection{Clôtures Scheme}
 
-La gestion des clôture en scheme est comparativement plus simple que dans
+La gestion des clôture en Scheme est comparativement plus simple que dans
 l'interprète à liaison statique précédente. Il suffit de stocker le pointeur
 vers la frame courante au moment de la clôture et il ne sera plus possible de
 capturer une variable au cours de l'exécution de fonctions imbriquées.
@@ -333,20 +333,56 @@ capturées.
  Il serait possible de surmonter ce problème en modifiant la manière dont ces 
  tests sont effectués afin de générer des exceptions spécifiques, mais nous avons 
  choisi de consacrer notre temps aux autres aspects de l'interprète.
+ Cet interprète permet aussi les dépassement d'entier, ce qui est étonnant car 
+ les calculs sur les nombre, effectués via le code C++, devraient lever une 
+ exception lors de tels dépassements. Nous n'avons pas découvert la source de 
+ ce problème.
  
- \subsection{Clotûre Scheme}
+ \subsection{Interprète Scheme}
+ Le travail effectué sur la version Scheme de l'interprète consistait à implémenter 
+ une gestion plus efficace et naturelle des clotûre au travers des frames. Cet 
+ objectif a été rempli et les frames semblent fonctionner comme prévu. Une nouvelle
+ frame est créée à chaque clotûre, et la recherche de liaison au sein d'une clotûre 
+ s'effectue dans la frame capturée puis dans les frames vers lesquelles elle pointe. 
+ Cela permet la définition de fonctions récursive et mutuellement récursives sans 
+ passer par des placeholders.
+ 
+ De plus la gestion par pointeur permet de limiter la taille occupée par les frames 
+ à une table raisonnable. L'utilisation des pointeurs a cependant été la source de 
+ nombreuses erreurs, notamment au niveau de la mémoire, ce qui a demandé un gros 
+ travail de debug pour que cette gestion s'effectue comme nous l'espérions. Un travail 
+ supplémentaire a aussi été fourni sur la programmation défensive et la gestion des
+ assertion, ce qui nous a permis de rattraper un certain nombre d'exceptions pour les 
+ gérer directement à travers l'interprète.
+ 
+ Cependant, cet interprète ne permet pas de gérer la continuation. Il faudrait pour 
+ cela implémenter la construction call/cc de Scheme, ce qui demanderait une travail 
+ conséquent.
 
 
 \section{Contribution}
+Ce projet nous a permis d'explorer les différentes possibilités d'implémentation 
+Lisp, en particulier en ce qui concerne la gestion de l'environnement. Nous avons pu 
+tester les différents niveaux de complexité liés à cette gestion, des liaisons physiques
+de l'interprète dynamique aux frames Scheme qui permettent une gestion plus naturelle des
+naturelles des clôtures.
 
+L'interprète ayant été codé en C++, une réflexion de nôtre travail fut la gestion de la 
+mémoire et l’utilisation des pointeurs. Comme nous l'avons vu plus haut, utiliser 
+des pointeur peut générer de nombreuses erreur et par conséquent alourdir grandement la charge 
+de travail. C'est la raison pour laquelle nous avons expérimenté une clôture par stockage 
+complet de l'environnement, qui bien que gourmande en allocation mémoire, offrait l'avantage 
+d'éviter d'être confronté à ces problèmes. Cela nous a permis de constater qu'une telle 
+implémentation avait elle aussi des limites, et était la source de problème plus théorique 
+(comme la modification d'une liaison dans une environnement circulaire). C'est cette réflexion 
+qui nous a conduit à l'implémentation actuelle des frames, qui s'est montré plus efficace 
+malgré les dangers liés à l'utilisation des pointeurs.
 
-
-
-\begin{itemize}
-\item http://stackoverflow.com
-\item https://openclassrooms.com
-\item http://www.cs.rpi.edu
-\end{itemize}
+Mais l'utilisation des frames seules présente elle aussi des limites, puisqu'en l'état 
+notre interprète ne peux pas gérer la continuation. Cela pourrait faire l'objet d'une 
+prolongation de nôtre travail, qui permettrait à l'interprète de se hisser au niveau 
+d'un interprète Scheme classique. Il serait aussi possible d'implémenter une évaluation 
+paresseuse, qui permettrait notamment une optimisation des calculs sur les listes.
 
 
 \end{document}
