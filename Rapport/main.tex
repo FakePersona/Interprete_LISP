@@ -47,7 +47,7 @@
 
 \lstMakeShortInline{|}
 
-\parskip=0.3
+\parskip=0.2
 \baselineskip
 
 \sloppy
@@ -55,7 +55,7 @@
 %opening
 \title{Interprète Lisp en C++}
 \author{Antonin Garret \and Rémy Sun}
-\date{21 avril 2016}
+\date{24 avril 2016}
 
 
 \begin{document}
@@ -67,7 +67,7 @@
   demande d'adapter la gestion intuitive des structures mises en jeu. En
   implémentant une liaison lexicale et une clôture à la manière de
   l'implémentation Scheme de lisp, nous avons particuliérement travaillé sur la
-  gestion de l'environnement et les différentes façon de gérer sa structure. Par
+  gestion de l'environnement. Par
   des tests d'implémentation de fonctions, nous avons ensuite démontré la bonne
   marche de notre interprète.
 \end{abstract}
@@ -130,9 +130,6 @@ Nous nous somme fixés les objectifs intermédiaires suivant:
 
 \subsection{Interprète dynamique}
 
-Dans un premier temps, nous avons implémenté, à partir du code fourni, un interprète 
-qui possède les principale fonctions Lisp, avec une gestion dynamique de l'environnement.
-
 \subsubsection{Toplevel et environnement}
 
   Nous avons encapsulé la gestion des entrées dans un \texttt{toplevel}, 
@@ -144,15 +141,8 @@ qui possède les principale fonctions Lisp, avec une gestion dynamique de l'envi
  symbole et la valeur qui lui est associée) que l'on ajoute à l'environnement courant. 
  Dans le code original, les environnement sont traités comme des vecteurs de pointeurs 
  vers des
- \texttt{Binding}.  Cette version dynamique de l'interprète ajoute un \texttt{Binding} 
- à chaque fois que \texttt{setq} est appelée, sans vérifier si un \texttt{Binding} 
- correspondant au symbole utilisé existe déjà. Comme la fonction de recherche dans 
- l'environnement renvoie le premier \texttt{Binding} trouvé, cette nouvelle liaison
- masque de façon effective celles déjà enregistrées.
- 
- D'autre part nous avons aussi ré-encapsulé la gestion des entrées de l'utilisateur 
- dans le \texttt{toplevel} dans une classe \texttt{read} qui gère les appels au parseur.
- 
+ \texttt{Binding}.
+
  \subsubsection{Subroutines}
  
   Dans le code fourni, quelques subroutines étaient traitées dans la fonction 
@@ -161,12 +151,6 @@ qui possède les principale fonctions Lisp, avec une gestion dynamique de l'envi
   Les opérations de bases sur les nombres, ainsi que les fonctions \texttt{car}, 
   \texttt{cdr}, \texttt{cons}, \texttt{concat}, \texttt{newline} et \texttt{read} 
   ont été implémentées.
-  
-  Pour la subroutine =, nous nous sommes inspirés de l’interprète Caml vu en TD, en 
-  comparant le type de chaque objet, avant de comparer leur valeur si le type 
-  correspond. Nous avons aussi implémenté la gestion des booléens dans la classe 
-  \texttt{Object}, afin de clarifier et de simplifier leur utilisation, en 
-  particulier dans cette fonction.
 
   Il a par contre été plus difficile de passer des fontion en objet. En Ocaml,
   \og functions are first-class citizens \og. Pas en C++. De fait, il a été
@@ -202,11 +186,9 @@ de pointeurs vers des \texttt{Binding} a le mérite de marcher, elle n'en est
 pas moins problématique au sens où, pour copier un environnement, il est
 nécessaire de copier l'intégralité de la liste des pointeurs, ce qui présente un
 coût linéaire en la taille de l'environnement considéré!
-
 La première idée pour remédier à cela est de faire de l'environnement un unique
 pointeur vers le vecteur de pointeurs. Cela ne fait cependant que déplacer le
 problème dans le cas où il faut copier aussi ce vecteur.
-
 Aussi, il semble judicieux de transformer l’environnement en liste chaînée:
 chaque bloc de la liste contient un unique \texttt{Binding} et un pointeur vers
 le prochain bloc (éventuellement \texttt{NULL}). Il faut noter que nous ne perdons rien
@@ -222,10 +204,10 @@ d'utiliser des pointeurs de \texttt{Binding}.
 
 \subsubsection{Environnement = Bloc?}
 
-La principale question qui s'est posée est la suivante :considère-t-on qu'un
-environnement est un bloc (le bloc de \og tête\fg) ou considère-t-on que
-l'environnement est quelque chose d'autre que la somme individuelle de ses
-parties?
+La principale question qui s'est posée est la suivante: considère-t-on qu'un
+environnement est un bloc (le bloc de \og tête \fg) ou considère-t-on que
+l'environnement est quelque chose d'autre que la somme de ses
+parties individuelles?
 
 Nous avons privilégié la deuxième approche. En effet, elle permet de gérer plus
 proprement l'allocation dynamique en mémoire de blocs d'environnement. De plus,
@@ -233,11 +215,8 @@ cela rendait beaucoup plus facile la destruction des blocs d'environnements
 alloués en mémoire ainsi que la création de copies indépendantes (créant aussi
 de nouveaux blocs). Cette gestion des copies s'est révélée par la suite sans
 grand intérêt et avait principalement un sens dans l'optique d'un dédoublement
-de l'environnement au moment de la clôture (approche depuis abandonnée), mais le code utilisé demeure dans le dossier \texttt{Copie}
-
-C'est cette macro-structure qui s'occupe de la gestion des ajouts et
-consultations de \texttt{Binding} : elle qui fournit l'interface publique
-de l'environnement.
+de l'environnement au moment de la clôture (approche depuis abandonnée), mais le
+code utilisé demeure dans le code \texttt{Copie}
 
 \begin{attention}
   Une difficulté rencontrée avec l'utilisation d'instances de \texttt{Binding}
@@ -247,8 +226,6 @@ de l'environnement.
 \end{attention}
 
 \subsection{Première liaison statique}
-
-Le passage en liaison statique n'a pas posé de grandes questions ou difficulté.
 
 Nous nous sommes contentés de créer une nouvelle méthode
 \texttt{set\_new\_binding} qui parcours dans un premier temps l'environnement à la
@@ -261,23 +238,21 @@ Sinon on rajoute une nouvelle liaison.
 \subsubsection{Stockage physique de la capture}
 
 Nous étions dans un
-premier temps parti dans l'idée d'essayer de voir ce que permettait le stockage complet de
+premier temps partis dans l'idée d'essayer de voir ce que permettait le stockage complet de
 l'environnement courant au moment de la définition d'une clôture. La création
 d'une telle clôture, bien que fastidieuse ne pose pas de difficultés
 particulières: la principale difficulté rencontrée a été le fait qu'on ne peut
 pas passer de \texttt{Binding} en arguement dans un type union. Il a donc été
 nécessaire d'improviser à partir du type pair pour stockers des laisons. Avec
 cette façon de procéder, les fonctions sont typiquement protégée de leur
-environement d'exécution.
+environnement d'exécution.
 
 Là où la situation devient plus épineuse est quand on veut pouvoir modifier
 physiquement une variable déjà définie. Si il peut paraître en première approche
 qu'il \og suffirait\fg de parcourir toutes les clôtures pour modifier les
-informations à l'intérieur, cette idée n'est pas concluante. En effet, si on
-veut redéfinir une fonction dans la clôture lui correspondant, il faudrait
-effectuer une infinité de modification de clôture puisqu'une telle clôture
+informations à l'intérieur, cette idée n'est pas concluante  puisqu'une telle clôture
 rendrait l'environnement circulaire. Nous n'avons pas trouvé de solution
-satisfaisante à ce problème.
+satisfaisante à ce problème sans simplement passer aux pointeurs.
 
 En l'état, une telle construction ne permet pas l'utilisation de fonctions
 mutuellement dépendantes (on ne peut pas aller modifier le placeholder) ou
@@ -310,7 +285,6 @@ simplement remplacer le contenu des blocs d'environnements par un vecteur de
 pointeurs vers des \texttt{Binding}, ou traiter les anciens
 \texttt{Environment} comme des frames et créer un nouvel environnement pointant
 vers une frame. C'est la deuxième possibilité que nous avons privilégié.
-
 Procéder de la sorte nous semble présenter certains avantages: de cette manière
 il est complètement naturel de créer des frames intermédiaires, et il y a
 séparation claire des structures de stockage de liaisons et de frames.
@@ -330,7 +304,7 @@ capturer une variable au cours de l'exécution de fonctions imbriquées.
 Lors du passage par un \texttt{lambda}, une nouvelle frame est créée (ce qui
 protège les variables de l'environnement courant), et à la lecture d'une clôture
 on se replace dans la frame où la fonction a été définie ce qui évite d'être
-gène par une définition interne à la frame où la fonction est appelée.
+gèné par une définition interne à la frame où la fonction est appelée.
 
 Grâce à la particularité des frames, il est parfaitement naturel de définir des
 fonctions mutuellement récursives. En effet, puisque la clôture pointe vers une
@@ -389,7 +363,7 @@ de copie) et celle sans.
  passage à une nouvelle frame ce qui permet de bien vérifier la bonne création
  et manipulation des frames.
  
- De plus la gestion par pointeur permet de limiter la taille occupée par les frames 
+ De plus, la gestion par pointeurs permet de limiter la taille occupée par les frames 
  à une taille raisonnable. L'utilisation des pointeurs a cependant été la source de 
  nombreuses erreurs, notamment au niveau de la mémoire, ce qui a demandé un gros 
  travail de debug pour que cette gestion s'effectue comme nous l'espérions. Un travail 
@@ -423,7 +397,7 @@ Ce projet nous a permis d'explorer les différentes possibilités d'implémentat
 Lisp, en particulier en ce qui concerne la gestion de l'environnement. Nous avons pu 
 tester les différents niveaux de complexité liés à cette gestion, des liaisons physiques
 de l'interprète dynamique aux frames Scheme qui permettent une gestion plus naturelle des
-naturelles des clôtures.
+des clôtures.
 
 La gestion de l'environnement, n'utilisant pas les structures pré-programmées de
 la \texttt{STL} a été l'occasion de faire un travail plus bas niveau que ce qui
@@ -448,7 +422,7 @@ prolongation de notre travail, qui permettrait à l'interprète de se hisser au 
 d'un interprète Scheme classique. Il serait aussi possible d'implémenter une évaluation 
 paresseuse, qui permettrait notamment une optimisation des calculs sur les listes.
 
-\section{Conclusion}
+\section*{Conclusion}
 
 L'implémentation des clôtures et liaisons par frames dans un interprète lisp en
 C++ a posé des problèmes de définitions qui ont demandé de revoir légèrement le
@@ -458,18 +432,45 @@ plus archaïques C (langage impératif). La notion de liaison statique et de cl�
 grandes questions quant à son implémentation, en particulier sur la façon
 d'implémenter une clôture en se passant de pointeurs, ce qui compliquerait
 inutilement la clôture.
-
 En retraçant les fonctions de test proposées dans les TD lisp, nous avons tenté
-d'établir le bon fonctionnement de notre interpréteur lisp. De nombreux bugs ont
+d'établir le bon fonctiyonnement de notre interpréteur lisp. De nombreux bugs ont
 été mis en évidence de cette façon, et la mise en oeuvre de mécanismes de trace
 ont été nécessaires pour retracer la source des problèmes. Cela a été l'occasion
 de mieux comprendre le fonctionnement de la manipulation d'objets en C++, et la
 façon dont un environnement fonctionnant par liaisons statiques se modifie.
 
 Pour correspondre à un interpréteur \texttt{Scheme}, il serait nécessaire
-d'implémenter la fonction \texttt{call/cc}. De plus la gestion de la mémoire,
+d'implémenter la fonction \texttt{call/cc}. De plus, la gestion de la mémoire,
 bien qu'abordée dans le cadre de la gestion des environnements demeure un
 problème puisque la cause du problème demeure plus profonde que les solutions
 envisagée qui n'aident vraiment que dans le cas d'une clôture par copie complète.
+
+\section*{Annexe: auto-évaluation}
+
+\subsubsection*{Points forts}
+\begin{itemize}
+\item Gestion naturelle des récursions grâce aux frames
+\item Emulation d'une manipulation des subroutines en tant qu'objets
+\item Clôture par pointure plus efficace qu'une clôture par copie
+\end{itemize}
+
+\subsubsection*{Points faibles}
+\begin{itemize}
+\item Gestion des fuites mémoires non satisfaisante
+\item Manque de directives \texttt{call/cc} pour gérer la continuation
+\end{itemize}
+
+\subsubsection*{Améliorations possibles}
+\begin{itemize}
+\item Conception d'un garbage collector
+\item Création d'une directive \texttt{call/cc}
+\item Remplacement des asserts par des levées d'exception spécialisées.
+\end{itemize}
+
+\subsubsection*{Difficultés à anticiper}
+\begin{itemize}
+\item On travaille principalement sur une seule grande frame.
+\item La structure par frames s'extrait de l'environnement d'évaluation par sa construction
+\end{itemize}
 
 \end{document}
