@@ -44,12 +44,98 @@ Include dependency graph for subr.\-cc\-:\nopagebreak
 \hypertarget{subr_8cc_af1c9ea3e305edba551a1183fd04e7731}{\hyperlink{classCell}{Object} {\bfseries do\-\_\-concat} (\hyperlink{classCell}{Object} lvals)}\label{subr_8cc_af1c9ea3e305edba551a1183fd04e7731}
 
 \item 
-\hypertarget{subr_8cc_aff4cb20a00ea04a424c6073cd477ce1a}{\hyperlink{classCell}{Object} {\bfseries do\-\_\-read} (\hyperlink{classCell}{Object} lvals)}\label{subr_8cc_aff4cb20a00ea04a424c6073cd477ce1a}
+\hypertarget{subr_8cc_a0e95b5eb0ee87870597b84e2b65d7645}{\hyperlink{classCell}{Object} {\bfseries do\-\_\-newline} (\hyperlink{classCell}{Object} lvals)}\label{subr_8cc_a0e95b5eb0ee87870597b84e2b65d7645}
 
 \item 
-\hypertarget{subr_8cc_ad347cf1ddfd4e7e90ad97a076c29fd36}{void {\bfseries init\-\_\-subr} (\hyperlink{classEnvironment}{Environment} subr\-\_\-env)}\label{subr_8cc_ad347cf1ddfd4e7e90ad97a076c29fd36}
-
+\hyperlink{classCell}{Object} \hyperlink{subr_8cc_aff4cb20a00ea04a424c6073cd477ce1a}{do\-\_\-read} (\hyperlink{classCell}{Object} lvals)
 \item 
-\hypertarget{subr_8cc_a5add1553290f3eeda345146f99b74fcf}{\hyperlink{classCell}{Object} {\bfseries handle\-\_\-subr} (\hyperlink{classCell}{Object} f, \hyperlink{classCell}{Object} lvals, \hyperlink{classEnvironment}{Environment} env)}\label{subr_8cc_a5add1553290f3eeda345146f99b74fcf}
-
+void \hyperlink{subr_8cc_ad7a93d2016d5a23fbe4814f751d1dd27}{bind\-\_\-subr} (\hyperlink{classEnvironment}{Environment} subr\-\_\-env, string name, \hyperlink{classCell}{Object}($\ast$subr\-\_\-fun)(\hyperlink{classCell}{Object}))
+\item 
+void \hyperlink{subr_8cc_ad347cf1ddfd4e7e90ad97a076c29fd36}{init\-\_\-subr} (\hyperlink{classEnvironment}{Environment} subr\-\_\-env)
 \end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\hypertarget{subr_8cc_ad7a93d2016d5a23fbe4814f751d1dd27}{\index{subr.\-cc@{subr.\-cc}!bind\-\_\-subr@{bind\-\_\-subr}}
+\index{bind\-\_\-subr@{bind\-\_\-subr}!subr.cc@{subr.\-cc}}
+\subsubsection[{bind\-\_\-subr}]{\setlength{\rightskip}{0pt plus 5cm}void bind\-\_\-subr (
+\begin{DoxyParamCaption}
+\item[{{\bf Environment}}]{subr\-\_\-env, }
+\item[{string}]{name, }
+\item[{{\bf Object}($\ast$)({\bf Object})}]{subr\-\_\-fun}
+\end{DoxyParamCaption}
+)}}\label{subr_8cc_ad7a93d2016d5a23fbe4814f751d1dd27}
+Creates the binding pertaining to a subr function 
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{subr_8cc_ad7a93d2016d5a23fbe4814f751d1dd27_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=316pt]{subr_8cc_ad7a93d2016d5a23fbe4814f751d1dd27_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{subr_8cc_aff4cb20a00ea04a424c6073cd477ce1a}{\index{subr.\-cc@{subr.\-cc}!do\-\_\-read@{do\-\_\-read}}
+\index{do\-\_\-read@{do\-\_\-read}!subr.cc@{subr.\-cc}}
+\subsubsection[{do\-\_\-read}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Object} do\-\_\-read (
+\begin{DoxyParamCaption}
+\item[{{\bf Object}}]{lvals}
+\end{DoxyParamCaption}
+)}}\label{subr_8cc_aff4cb20a00ea04a424c6073cd477ce1a}
+This functions takes lvals as argument because of type issues 
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=312pt]{subr_8cc_aff4cb20a00ea04a424c6073cd477ce1a_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{subr_8cc_ad347cf1ddfd4e7e90ad97a076c29fd36}{\index{subr.\-cc@{subr.\-cc}!init\-\_\-subr@{init\-\_\-subr}}
+\index{init\-\_\-subr@{init\-\_\-subr}!subr.cc@{subr.\-cc}}
+\subsubsection[{init\-\_\-subr}]{\setlength{\rightskip}{0pt plus 5cm}void init\-\_\-subr (
+\begin{DoxyParamCaption}
+\item[{{\bf Environment}}]{subr\-\_\-env}
+\end{DoxyParamCaption}
+)}}\label{subr_8cc_ad347cf1ddfd4e7e90ad97a076c29fd36}
+Initialise environment with subroutines 
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{subr_8cc_ad347cf1ddfd4e7e90ad97a076c29fd36_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=221pt]{subr_8cc_ad347cf1ddfd4e7e90ad97a076c29fd36_icgraph}
+\end{center}
+\end{figure}
+
+

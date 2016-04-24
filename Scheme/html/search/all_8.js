@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['no_5fbinding_5fexception',['No_Binding_Exception',['../classNo__Binding__Exception.html',1,'']]],
-  ['not_5fsubr',['Not_Subr',['../classNot__Subr.html',1,'']]]
+  ['init_5fsubr',['init_subr',['../subr_8cc.html#ad347cf1ddfd4e7e90ad97a076c29fd36',1,'subr.cc']]]
 ];

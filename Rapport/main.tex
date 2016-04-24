@@ -70,6 +70,9 @@
   gestion de l'environnement. Par
   des tests d'implémentation de fonctions, nous avons ensuite démontré la bonne
   marche de notre interprète.
+  \begin{keywords}
+    Lisp; Scheme; Liaison lexicale; Clôture
+  \end{keywords}
 \end{abstract}
 
 \section*{Introduction}
@@ -469,6 +472,24 @@ envisagées qui n'aident vraiment que dans le cas d'une clôture par copie compl
 \begin{itemize}
 \item On travaille principalement sur une seule grande frame.
 \item La structure par frames s'extrait de l'environnement d'évaluation par sa construction
+\end{itemize}
+
+\section{Remerciements et bibliographie}
+
+Nous nous sommes appuyés sur le squelette de code proposé par Luc Bougé et ses
+indications sur la gestion des frames \texttt{Scheme} ainsi que le cours de
+Programmation avancé. Nous avons en outre fait
+usage de l'indication de Solène Mirliaz sur la gestion de la macro \texttt{'} qui simplifie
+l'utilisation de
+\texttt{quote}.
+
+Nous n'avons pas réellement utilisé de références bibliographiques, mais tout de
+même consulté les sites suivants pour répondre à des questions que nous nous
+sommes posés:
+\begin{itemize}
+\item https://openclassrooms.com
+\item http://stackoverflow.com
+\item http://stackexchange.com
 \end{itemize}
 
 \end{document}

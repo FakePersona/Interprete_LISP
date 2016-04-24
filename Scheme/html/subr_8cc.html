@@ -149,16 +149,129 @@ Functions</h2></td></tr>
 <tr class="memitem:af1c9ea3e305edba551a1183fd04e7731"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af1c9ea3e305edba551a1183fd04e7731"></a>
 <a class="el" href="classCell.html">Object</a>&#160;</td><td class="memItemRight" valign="bottom"><b>do_concat</b> (<a class="el" href="classCell.html">Object</a> lvals)</td></tr>
 <tr class="separator:af1c9ea3e305edba551a1183fd04e7731"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aff4cb20a00ea04a424c6073cd477ce1a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aff4cb20a00ea04a424c6073cd477ce1a"></a>
-<a class="el" href="classCell.html">Object</a>&#160;</td><td class="memItemRight" valign="bottom"><b>do_read</b> (<a class="el" href="classCell.html">Object</a> lvals)</td></tr>
+<tr class="memitem:a0e95b5eb0ee87870597b84e2b65d7645"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0e95b5eb0ee87870597b84e2b65d7645"></a>
+<a class="el" href="classCell.html">Object</a>&#160;</td><td class="memItemRight" valign="bottom"><b>do_newline</b> (<a class="el" href="classCell.html">Object</a> lvals)</td></tr>
+<tr class="separator:a0e95b5eb0ee87870597b84e2b65d7645"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aff4cb20a00ea04a424c6073cd477ce1a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCell.html">Object</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="subr_8cc.html#aff4cb20a00ea04a424c6073cd477ce1a">do_read</a> (<a class="el" href="classCell.html">Object</a> lvals)</td></tr>
 <tr class="separator:aff4cb20a00ea04a424c6073cd477ce1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad347cf1ddfd4e7e90ad97a076c29fd36"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad347cf1ddfd4e7e90ad97a076c29fd36"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>init_subr</b> (<a class="el" href="classEnvironment.html">Environment</a> subr_env)</td></tr>
+<tr class="memitem:ad7a93d2016d5a23fbe4814f751d1dd27"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="subr_8cc.html#ad7a93d2016d5a23fbe4814f751d1dd27">bind_subr</a> (<a class="el" href="classEnvironment.html">Environment</a> subr_env, string name, <a class="el" href="classCell.html">Object</a>(*subr_fun)(<a class="el" href="classCell.html">Object</a>))</td></tr>
+<tr class="separator:ad7a93d2016d5a23fbe4814f751d1dd27"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad347cf1ddfd4e7e90ad97a076c29fd36"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="subr_8cc.html#ad347cf1ddfd4e7e90ad97a076c29fd36">init_subr</a> (<a class="el" href="classEnvironment.html">Environment</a> subr_env)</td></tr>
 <tr class="separator:ad347cf1ddfd4e7e90ad97a076c29fd36"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5add1553290f3eeda345146f99b74fcf"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5add1553290f3eeda345146f99b74fcf"></a>
-<a class="el" href="classCell.html">Object</a>&#160;</td><td class="memItemRight" valign="bottom"><b>handle_subr</b> (<a class="el" href="classCell.html">Object</a> f, <a class="el" href="classCell.html">Object</a> lvals, <a class="el" href="classEnvironment.html">Environment</a> env)</td></tr>
-<tr class="separator:a5add1553290f3eeda345146f99b74fcf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Function Documentation</h2>
+<a class="anchor" id="ad7a93d2016d5a23fbe4814f751d1dd27"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void bind_subr </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classEnvironment.html">Environment</a>&#160;</td>
+          <td class="paramname"><em>subr_env</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classCell.html">Object</a>(*)(<a class="el" href="classCell.html">Object</a>)&#160;</td>
+          <td class="paramname"><em>subr_fun</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Creates the binding pertaining to a subr function </p>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="subr_8cc_ad7a93d2016d5a23fbe4814f751d1dd27_cgraph.png" border="0" usemap="#subr_8cc_ad7a93d2016d5a23fbe4814f751d1dd27_cgraph" alt=""/></div>
+<map name="subr_8cc_ad7a93d2016d5a23fbe4814f751d1dd27_cgraph" id="subr_8cc_ad7a93d2016d5a23fbe4814f751d1dd27_cgraph">
+<area shape="rect" id="node2" href="classEnvironment.html#aaa7f24d4804dd8e2e9e95506b7c5bf58" title="Environment::add_new\l_binding" alt="" coords="132,5,291,47"/><area shape="rect" id="node3" href="classFrame.html#aef63d90c2cd48dec6ac9b6dfd6f7d958" title="Frame::add_new_binding" alt="" coords="339,13,513,39"/></map>
+</div>
+</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="subr_8cc_ad7a93d2016d5a23fbe4814f751d1dd27_icgraph.png" border="0" usemap="#subr_8cc_ad7a93d2016d5a23fbe4814f751d1dd27_icgraph" alt=""/></div>
+<map name="subr_8cc_ad7a93d2016d5a23fbe4814f751d1dd27_icgraph" id="subr_8cc_ad7a93d2016d5a23fbe4814f751d1dd27_icgraph">
+<area shape="rect" id="node2" href="subr_8cc.html#ad347cf1ddfd4e7e90ad97a076c29fd36" title="init_subr" alt="" coords="132,5,203,32"/><area shape="rect" id="node3" href="toplevel_8cc.html#afc3c3bee6c94b170a6feafbdf1b14295" title="toplevel" alt="" coords="251,5,320,32"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="aff4cb20a00ea04a424c6073cd477ce1a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCell.html">Object</a> do_read </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classCell.html">Object</a>&#160;</td>
+          <td class="paramname"><em>lvals</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>This functions takes lvals as argument because of type issues </p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="subr_8cc_aff4cb20a00ea04a424c6073cd477ce1a_icgraph.png" border="0" usemap="#subr_8cc_aff4cb20a00ea04a424c6073cd477ce1a_icgraph" alt=""/></div>
+<map name="subr_8cc_aff4cb20a00ea04a424c6073cd477ce1a_icgraph" id="subr_8cc_aff4cb20a00ea04a424c6073cd477ce1a_icgraph">
+<area shape="rect" id="node2" href="subr_8cc.html#ad347cf1ddfd4e7e90ad97a076c29fd36" title="init_subr" alt="" coords="127,5,197,32"/><area shape="rect" id="node3" href="toplevel_8cc.html#afc3c3bee6c94b170a6feafbdf1b14295" title="toplevel" alt="" coords="245,5,315,32"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="ad347cf1ddfd4e7e90ad97a076c29fd36"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void init_subr </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classEnvironment.html">Environment</a>&#160;</td>
+          <td class="paramname"><em>subr_env</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Initialise environment with subroutines </p>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="subr_8cc_ad347cf1ddfd4e7e90ad97a076c29fd36_cgraph.png" border="0" usemap="#subr_8cc_ad347cf1ddfd4e7e90ad97a076c29fd36_cgraph" alt=""/></div>
+<map name="subr_8cc_ad347cf1ddfd4e7e90ad97a076c29fd36_cgraph" id="subr_8cc_ad347cf1ddfd4e7e90ad97a076c29fd36_cgraph">
+<area shape="rect" id="node2" href="subr_8cc.html#ad7a93d2016d5a23fbe4814f751d1dd27" title="bind_subr" alt="" coords="124,13,203,39"/><area shape="rect" id="node5" href="subr_8cc.html#aff4cb20a00ea04a424c6073cd477ce1a" title="do_read" alt="" coords="127,63,200,90"/><area shape="rect" id="node3" href="classEnvironment.html#aaa7f24d4804dd8e2e9e95506b7c5bf58" title="Environment::add_new\l_binding" alt="" coords="251,5,409,47"/><area shape="rect" id="node4" href="classFrame.html#aef63d90c2cd48dec6ac9b6dfd6f7d958" title="Frame::add_new_binding" alt="" coords="457,13,632,39"/></map>
+</div>
+</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="subr_8cc_ad347cf1ddfd4e7e90ad97a076c29fd36_icgraph.png" border="0" usemap="#subr_8cc_ad347cf1ddfd4e7e90ad97a076c29fd36_icgraph" alt=""/></div>
+<map name="subr_8cc_ad347cf1ddfd4e7e90ad97a076c29fd36_icgraph" id="subr_8cc_ad347cf1ddfd4e7e90ad97a076c29fd36_icgraph">
+<area shape="rect" id="node2" href="toplevel_8cc.html#afc3c3bee6c94b170a6feafbdf1b14295" title="toplevel" alt="" coords="124,5,193,32"/></map>
+</div>
+</p>
+
+</div>
+</div>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

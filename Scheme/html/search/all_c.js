@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['set_5fnew_5fbinding',['set_new_binding',['../classFrame.html#a258655c409c6055a761ac8cc12fb2948',1,'Frame::set_new_binding()'],['../classEnvironment.html#adac8db22e668d2a78a2cc18d0528c396',1,'Environment::set_new_binding()']]],
-  ['subr_2ecc',['subr.cc',['../subr_8cc.html',1,'']]]
+  ['print',['print',['../classFrame.html#a5b0bcbaf2acba4166d94269a9b938834',1,'Frame::print()'],['../classEnvironment.html#a61952d5ef784bff91ce1a66d6a00dc99',1,'Environment::print()']]]
 ];

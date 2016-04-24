@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['print',['print',['../classFrame.html#a5b0bcbaf2acba4166d94269a9b938834',1,'Frame::print()'],['../classEnvironment.html#a61952d5ef784bff91ce1a66d6a00dc99',1,'Environment::print()']]]
+  ['make_5fclosure',['make_closure',['../classEnvironment.html#a852ae1aa43ba278c27a91e8dcc968086',1,'Environment']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['handle_5fdirective',['handle_directive',['../toplevel_8cc.html#a6ae0baaebcf8b71f80eab5771b50af35',1,'toplevel.cc']]]
+  ['get_5fobserving',['get_observing',['../classEnvironment.html#a73a2cb3642111c86485f48e70e5e4870',1,'Environment']]]
 ];
