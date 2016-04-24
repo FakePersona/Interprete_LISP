@@ -55,12 +55,16 @@ void toplevel()
     cout << eval(l, env) << endl;
     }
     catch (Continue_Directive){}
-    /* from this point onwards, it is all goind downhill... */
-    catch (Evaluation_Exception) {}
-    catch (No_Binding_Exception){
-      printf("not bound\n");
+    /* from this point onwards, it is all going downhill... */
+    catch (Evaluation_Exception e) {
+      e.error_message();
     }
-    catch (Zipping_Exception){}
+    catch (No_Binding_Exception e){
+      e.message();
+    }
+    catch (Zipping_Exception e){
+      e.error_message();
+    }
     catch (Not_Subr){}
   } while (!end_input());
 }

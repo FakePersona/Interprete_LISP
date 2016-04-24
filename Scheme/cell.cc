@@ -141,7 +141,7 @@ static ostream& print_cell_pointer_aux(ostream& s, const Cell *p) {
   assert(p -> is_pair());
   for (const Cell *pp = p;; pp = pp -> to_pair_next()) {
     if (pp == Cell::nil()) break;
-    if (pp->is_frame()) // Let's try not to get circulaar printing ...
+    if (pp->is_frame()) // Let's try not to get circular printing ...
       {
         s << "<env> " << flush;
         break;
