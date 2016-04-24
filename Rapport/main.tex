@@ -177,7 +177,7 @@ l'utilisation de l'encapsulation précédemment mentionnée pour mieux compartim
 les différentes parties de l'évaluation. Nous avons utilisé la programmation 
 par exception afin de s'assurer que chacune des ces parties se déroulent 
 correctement. Par exemple, lors de l'évaluation d'un symbole, on fait appel 
-à une fonction qui parcours l'environnement courant afin de trouver une liaison 
+à une fonction qui parcourt l'environnement courant afin de trouver une liaison 
 correspondante, et renvoie une exception en cas d'échec. Cela nous permet de 
 repérer lorsque l'utilisateur cherche à évaluer un symbole qui n'est pas attribué.
 
@@ -227,14 +227,14 @@ code utilisé demeure dans le dossier \texttt{Copie}
 \begin{attention}
   Une difficulté rencontrée avec l'utilisation d'instances de \texttt{Binding}
   au lieu de pointeurs dans les blocs d'environnements a été la création
-  implicite de copies que nous avons du tracer à l'aide d'impressions de
+  implicite de copies que nous avons dû tracer à l'aide d'impressions de
   pointeurs. L'utilisation d'un setter a permis de remédier à ces problèmes.
 \end{attention}
 
 \subsection{Première liaison statique}
 
 Nous nous sommes dans un premier temps contentés de créer une nouvelle méthode
-\texttt{set\_new\_binding} qui parcours l'environnement à la
+\texttt{set\_new\_binding} qui parcourt l'environnement à la
 recherche d'une liaison faisant intervenir le nom de liaison qu'on veut ajouter.
 Si on trouve une telle liaison, on modifie physiquement la liaison trouvée.
 Sinon on rajoute une nouvelle liaison.
@@ -254,7 +254,7 @@ cette façon de procéder, les fonctions sont typiquement protégées de leur
 environnement d'exécution.
 
 Là où la situation devient plus épineuse est quand on veut pouvoir modifier
-physiquement une variable déjà définie. Si il peut paraître en première approche
+physiquement une variable déjà définie. S'il peut paraître en première approche
 qu'il \og suffirait\fg de parcourir toutes les clôtures pour modifier les
 informations à l'intérieur, cette idée n'est pas concluante  puisqu'une telle clôture
 rendrait l'environnement circulaire. Nous n'avons pas trouvé de solution
@@ -295,7 +295,7 @@ Procéder de la sorte nous semble présenter certains avantages: de cette maniè
 il est complètement naturel de créer des frames intermédiaires, et il y a
 séparation claire des structures de stockage de liaisons et de frames.
 
-Un aspect particulièrement intéressant de la gestion par frame est la limitation
+Un aspect particulièrement intéressant de la gestion par frames est la limitation
 de l'action de certaines méthodes (comme \texttt{set\_new\_binding}) à la frame
 locale tandis que d'autres s'appliquent à l'ensemble des frames en cascade
 défini par l'enchaînement des frames.
@@ -358,9 +358,9 @@ de copie) et celle sans.
  Le travail effectué sur la version Scheme de l'interprète consistait à implémenter 
  une gestion plus efficace et naturelle des clotûre au travers des frames. Cet 
  objectif a été rempli et les frames semblent fonctionner comme prévu. Une nouvelle
- frame est créée à chaque clotûre, et la recherche de liaison au sein d'une clotûre 
+ frame est créée à chaque clôture, et la recherche de liaison au sein d'une clotûre 
  s'effectue dans la frame capturée puis dans les frames vers lesquelles elle pointe. 
- Cela permet la définition de fonctions récursive et mutuellement récursives sans 
+ Cela permet la définition de fonctions récursives et mutuellement récursives sans 
  passer par des placeholders. Pour mieux nous en rendre compte, nous avons
  modifié l'impression d'environnement pour faire apparaître un chevron >> au
  passage à une nouvelle frame ce qui permet de bien vérifier la bonne création
@@ -386,7 +386,7 @@ global
 (setq f (lambda (n) (if (= n 0) 0 (g (- n 1))))) | (f n) retourne 0 si n impair
 (setq g (lambda (n) (if (= n 0) 1 (f (- n 1))))) | (g n) retourne 1 si n pair
 
-(setq fact (lambda (n) (if (= n 0) 1 (* n (f (- n 1)))))) | retourne !n
+(setq fact (lambda (n) (if (= n 0) 1 (* n (f (- n 1)))))) | retourne n!
 \end{lstlisting}
  
  Cependant, cet interprète ne permet pas de gérer la continuation. Il faudrait pour 
@@ -406,7 +406,7 @@ La gestion de l'environnement, n'utilisant pas les structures pré-programmées 
 la \texttt{STL} a été l'occasion de faire un travail plus bas niveau que ce qui
 est normalement fait en C++, la preuve en étant la faible utilisation de
 notion propres à C++ (par rapport à C). En ce sens, le code original écrit
-pourrait très bien être adapté en une librairie C++ \texttt{Environment}
+pourrait très bien être adapté en une librairie C++ \texttt{Environment}.
 
 L'interprète ayant été codé en C++, une réflexion de notre travail fut la gestion de la 
 mémoire et l’utilisation des pointeurs. Comme nous l'avons vu plus haut, utiliser 
@@ -430,7 +430,7 @@ paresseuse, qui permettrait notamment une optimisation des calculs sur les liste
 L'implémentation des clôtures et liaisons par frames dans un interprète lisp en
 C++ a posé des problèmes de définitions qui ont demandé de revoir légèrement le
 squelette de code fournit, tout comme la manipulation de fonctions en tant
-qu'objets qui a du, étrangement, se faire par la manipulation des structures
+qu'objets qui a dû, étrangement, se faire par la manipulation des structures
 plus archaïques C (langage impératif). La notion de liaison statique et de clôture a posé de
 grandes questions quant à son implémentation, en particulier sur la façon
 d'implémenter une clôture en se passant de pointeurs, ce qui compliquerait
