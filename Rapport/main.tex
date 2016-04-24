@@ -39,6 +39,7 @@
 
 \lstset{%
   basicstyle=\sffamily,%
+  showstringspaces = false,
   columns=fullflexible,%
   language=c,%
   frame=lb,%
@@ -139,18 +140,18 @@ Nous nous somme fixés les objectifs intermédiaires suivants:
   Nous avons encapsulé la gestion des entrées dans un \texttt{toplevel}, 
  appelé par la fonction \texttt{main}. Ce toplevel gère la directive \texttt{setq}, qui
  permet de modifier l'environnement. 
- Elle fait appel à une fonction \texttt{add\_new\_binding} que nous avonsx
+ Elle fait appel à une fonction \texttt{add\_new\_binding} que nous avons
  implémenté, qui permet de créer un nouvel objet
   \texttt{Binding} (qui comporte deux éléments : un
  symbole et la valeur qui lui est associée) que l'on ajoute à l'environnement courant. 
- Dans le code original, les environnement sont traités comme des vecteurs de pointeurs 
+ Dans le code original, les environnements sont traités comme des vecteurs de pointeurs 
  vers des
  \texttt{Binding}.
 
  \subsubsection{Subroutines}
  
   Dans le code fourni, quelques subroutines étaient traitées dans la fonction 
-  \texttt{eval} de l'interprète. Nous avons encapsulé les subroutines pour qu'elles soient 
+  \texttt{apply} de l'interprète. Nous avons encapsulé les subroutines pour qu'elles soient 
   traitées de manière séparée, afin de pouvoir facilement en ajouter de nouvelles. 
   Les opérations de bases sur les nombres, ainsi que les fonctions \texttt{car}, 
   \texttt{cdr}, \texttt{cons}, \texttt{concat}, \texttt{newline} et \texttt{read} 
@@ -164,7 +165,7 @@ Nous nous somme fixés les objectifs intermédiaires suivants:
   une fonction). Pour ce faire, nous avons fait usage des pointeurs de fonctions
   (et non de foncteurs dont l'utilisation ne se justifiait pas vraiment ici).
   Une fonction \texttt{init\_subr} permet d'ajouter à l'environnement de départ
-  les subroutines définies. Il convient de noter qu'on a du modifier les
+  les subroutines définies. Il convient de noter qu'on a dû modifier les
   méthodes d'impression et d'ajout de liaisons pour ne pas imprimer ou modifier 
   les liaisons faisant
   intervenir une subroutine.
@@ -180,7 +181,7 @@ correctement. Par exemple, lors de l'évaluation d'un symbole, on fait appel
 correspondante, et renvoie une exception en cas d'échec. Cela nous permet de 
 repérer lorsque l'utilisateur cherche à évaluer un symbole qui n'est pas attribué.
 
-Nous avons aussi aussi implémenté un dispositif de trace via la commande 
+Nous avons aussi implémenté un dispositif de trace via la commande 
 \texttt{debug} et d'impression de l'environnement via \texttt{printenv}, 
 pour permettre à l'utilisateur de suivre l'évolution de l'environnement courant.
 
@@ -248,7 +249,7 @@ l'environnement courant au moment de la définition d'une clôture. La création
 d'une telle clôture, bien que fastidieuse ne pose pas de difficultés
 particulières: la principale difficulté rencontrée a été le fait qu'on ne peut
 pas passer de \texttt{Binding} en argument dans un type union. Il a donc été
-nécessaire d'improviser à partir du type pair pour stockers des liaisons. Avec
+nécessaire d'improviser à partir du type pair pour stocker des liaisons. Avec
 cette façon de procéder, les fonctions sont typiquement protégées de leur
 environnement d'exécution.
 
@@ -329,7 +330,7 @@ capturées.
  l'utilisateur via les exceptions. La programmation défensive utilisée dans le 
  code original permet de s'assurer que tout fonctionne comme prévu, mais en cas 
  d'erreur, la fonction \texttt{assert} qui a été utilisée stoppe le processus de 
- l'interprète et empêche de rattraper certaines exceptions comme nous voulions le faire.
+ l'interprète ce qui permet de remarquer des erreurs dans la structure du code.
  Cet interprète permet aussi les dépassement d'entier, ce qui est étonnant car 
  les calculs sur les nombres, effectués via le code C++, devraient lever une 
  exception lors de tels dépassements. Nous n'avons pas découvert la source de 
@@ -348,7 +349,7 @@ code lisp suivant:
 (f 3)
 \end{lstlisting}
 
-Valgrind montre une différence d'une centaine de bytes entre la version avec
+Valgrind montre une différence d'une centaine de bytes de fuite mémoire entre la version avec
 gestion mémoire de l'environnement (surcharge du destructeur et de l'opérateur
 de copie) et celle sans.
 
@@ -370,16 +371,16 @@ de copie) et celle sans.
  nombreuses erreurs, notamment au niveau de la mémoire, ce qui a demandé un gros 
  travail de debug pour que cette gestion s'effectue comme nous l'espérions. Un travail 
  supplémentaire a aussi été fourni sur la programmation défensive et la gestion des
- assertionS, ce qui nous a permis de rattraper un certain nombre d'exceptions pour les 
+ assertions, ce qui nous a permis de rattraper un certain nombre d'exceptions pour les 
  gérer directement à travers l'interprète.
 
  Nous avons vérifié rapidement la bonne marche des fonctions suivantes entre
  autre choses:
 
 \begin{lstlisting}
-(setq f (lambda () a)) | (f) retourne la valeur de a dans l'environement global
+(setq f (lambda () a)) | (f) retourne la valeur de a dans l'environnement global
 
-(setq g (lambda (a) (f))) | (g 3) retourne la valeur de a dans l'environement
+(setq g (lambda (a) (f))) | (g 3) retourne la valeur de a dans l'environnement
 global
 
 (setq f (lambda (n) (if (= n 0) 0 (g (- n 1))))) | (f n) retourne 0 si n impair
@@ -419,7 +420,7 @@ qui nous a conduit à l'implémentation actuelle des frames, qui s'est montré p
 malgré les dangers liés à l'utilisation des pointeurs.
 
 Mais l'utilisation des frames seules présente elle aussi des limites, puisqu'en l'état 
-notre interprète ne peux pas gérer la continuation. Cela pourrait faire l'objet d'une 
+notre interprète ne peut pas gérer la continuation. Cela pourrait faire l'objet d'une 
 prolongation de notre travail, qui permettrait à l'interprète de se hisser au niveau 
 d'un interprète Scheme classique. Il serait aussi possible d'implémenter une évaluation 
 paresseuse, qui permettrait notamment une optimisation des calculs sur les listes.
@@ -434,7 +435,7 @@ plus archaïques C (langage impératif). La notion de liaison statique et de cl�
 grandes questions quant à son implémentation, en particulier sur la façon
 d'implémenter une clôture en se passant de pointeurs, ce qui compliquerait
 inutilement la clôture.
-En retraçant les fonctions de test proposées dans les TD Lisp, nous avons tenté
+En retraçant les fonctions de test proposées dans les TDs Lisp, nous avons tenté
 d'établir le bon fonctionnement de notre interprète Lisp. De nombreux bugs ont
 été mis en évidence de cette façon, et la mise en œuvre de mécanismes de trace
 a été nécessaire pour retracer la source des problèmes. Cela a été l'occasion
@@ -451,28 +452,27 @@ envisagées qui n'aident vraiment que dans le cas d'une clôture par copie compl
 
 \subsubsection*{Points forts}
 \begin{itemize}
-\item Gestion naturelle des récursions grâce aux frames
-\item Émulation d'une manipulation des subroutines en tant qu'objets
-\item Clôture par pointeur plus efficace qu'une clôture par copie
+\item Gestion naturelle des récursions grâce aux frames.
+\item Émulation d'une manipulation des subroutines en tant qu'objets.
+\item Clôture par pointeur plus efficace qu'une clôture par copie.
 \end{itemize}
 
 \subsubsection*{Points faibles}
 \begin{itemize}
-\item Gestion des fuites mémoires non satisfaisante
-\item Manque de directives \texttt{call/cc} pour gérer la continuation
+\item Gestion des fuites mémoires non satisfaisante.
+\item Manque de directives \texttt{call/cc} pour gérer la continuation.
 \end{itemize}
 
 \subsubsection*{Améliorations possibles}
 \begin{itemize}
-\item Conception d'un garbage collector
-\item Création d'une directive \texttt{call/cc}
-\item Remplacement des asserts par des levées d'exceptions spécialisées.
+\item Conception d'un garbage collector.
+\item Création d'une directive \texttt{call/cc}.
 \end{itemize}
 
 \subsubsection*{Difficultés à anticiper}
 \begin{itemize}
 \item On travaille principalement sur une seule grande frame.
-\item La structure par frames s'extrait de l'environnement d'évaluation par sa construction
+\item La structure par frames s'extrait de l'environnement d'évaluation par sa construction.
 \end{itemize}
 
 \section{Remerciements et bibliographie}
