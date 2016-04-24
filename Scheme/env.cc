@@ -97,7 +97,14 @@ void Frame::set_new_binding(string name, Object value) {
   try
     {
       Binding* target = find_block(name)->get_content();
-      target->set_value(value);
+      if (target->get_value()->is_subr())
+        {
+          printf("That's a subroutine...\n");
+        }
+      else
+        {
+          target->set_value(value);
+        }
     }
   catch (No_Binding_Exception) {
     add_new_binding(name,value);
