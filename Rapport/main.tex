@@ -62,22 +62,44 @@
 
 \maketitle
 
+\begin{abstract}
+  L'interprétation du langage Lisp par un langage non fonctionnel comme C++
+  demande d'adapter la gestion intuitive des structures mises en jeu. En
+  implémentant une liaison lexicale et une clôture à la manière de
+  l'implémentation Scheme de lisp, nous avons particuliérement travaillé sur la
+  gestion de l'environnement et les différentes façon de gérer sa structure. Par
+  des tests d'implémentation de fonctions, nous avons ensuite démontré la bonne
+  marche de notre interprète.
+\end{abstract}
+
 \section{Introduction}
 
 Le Lisp est un langage fonctionnel interprété permettant des implémentations
 différentes. 2 tels implémentations en Ocaml ont été vues en TD de
 programmation. Ocaml étant un langage fonctionnel, cette implémentation est
-relativement naturel.
+relativement naturelle.
 
 Au travers de ce projet, nous nous intéressons à l'implémentation d'un
-interprète Lisp en C++, et nous attachons plus particulièrement à
+interprète Lisp en C++, ce qui pose de sérieuses questions puisque le langage
+d'implémentation n'est alors plus un langage où on peut traiter les fonctions
+comme des citoyens de première classe. Nous nous sommes plus particulièrement attachés à
 l'implémentation d'une gestion d'environnements et de clôtures proches de celles
-très souples de Scheme.
+très souples de Scheme. 
+
+Deux versions de code sont proposée dans le code rendu. La version définitive
+est le code \texttt{Scheme}, mais le code \texttt{Copie} relève d'une version du
+code où nous avions voulu explorer une implémentation différente de la clôture
+qui avait simplement été étudiée en TD. Cela a été l'occasion de réaliser les
+grandes limitations de cette implémentation, et pourquoi l'implémentation
+proposée en TD était grandement préférable et généralement celle choisie.
+
+Une documentation du code \texttt{Scheme} générée par doxygen est proposée avec
+le code.
 
 \section{Objectif}
 
 L'objectif que nous nous sommes fixés pour ce projet était de construire un
-interprète Lisp gérant les liaisons à la manière de Scheme. Plus
+interprète Lisp gérant les liaisons et clôtures à la manière de \texttt{Scheme}. Plus
 particulièrement, nous étions intéressés par la gestion de liste chaînées de
 frames, et par la façon dont on pouvait représenter ces frames pour permettre la
 création d'un tel interpréteur.
@@ -100,7 +122,7 @@ Nous nous somme fixés les objectifs intermédiaires suivant:
   nombreux problèmes que cela pose (mais aussi de ce qu'il est possible de
   faire) nous avons créé une autre clôture utilisant des pointeurs
   d'environnement.
-\item Implémenter la gestion de frames, adapter la clôture Scheme.
+\item Implémenter la gestion de frames, adapter la clôture \texttt{Scheme}.
 \end{itemize}
 
 
@@ -151,16 +173,12 @@ qui possède les principale fonctions Lisp, avec une gestion dynamique de l'envi
   nécéssaire de prendre des moyens détournés.
   Pour nous rapprocher de l'interprète original, nous avons modifié la classe
   \texttt{Cell} pour créer un type de cellule contenant une subroutine (qui est
-  une fonction). Pour ce faire, nous avons fais usage des pointeurs de fonctions
+  une fonction). Pour ce faire, nous avons fait usage des pointeurs de fonctions
   (et non de foncteurs dont l'utilisation ne se justifiait pas vraiment ici).
   Une fonction \texttt{init\_subr} permet d'ajouter à l'environement de départ
   les subroutines définies. Il convient de noter qu'on a du modifier les
   méthodes d'impression de liaisons pour ne pas imprimer les liaisons faisant
   intervenir une subroutine.
-  
-  Nous avons d'autre part pu remarquer l'utilité de l'encapsulation déjà effectuée, 
-  car il nous a suffit de réutiliser les fonctions de la classe \texttt{read} 
-  pour implémenter la subroutine \texttt{read}.
   
  \subsubsection{Eval}
  
@@ -204,7 +222,7 @@ d'utiliser des pointeurs de \texttt{Binding}.
 
 \subsubsection{Environnement = Bloc?}
 
-La principale question qui s'est posée est la suivante : considère-t-on qu'un
+La principale question qui s'est posée est la suivante :considère-t-on qu'un
 environnement est un bloc (le bloc de \og tête\fg) ou considère-t-on que
 l'environnement est quelque chose d'autre que la somme individuelle de ses
 parties?
@@ -214,10 +232,11 @@ proprement l'allocation dynamique en mémoire de blocs d'environnement. De plus,
 cela rendait beaucoup plus facile la destruction des blocs d'environnements
 alloués en mémoire ainsi que la création de copies indépendantes (créant aussi
 de nouveaux blocs). Cette gestion des copies s'est révélée par la suite sans
-grand intérêt, mais le code utilisé demeure dans le dossier \texttt{Copie}
+grand intérêt et avait principalement un sens dans l'optique d'un dédoublement
+de l'environnement au moment de la clôture (approche depuis abandonnée), mais le code utilisé demeure dans le dossier \texttt{Copie}
 
 C'est cette macro-structure qui s'occupe de la gestion des ajouts et
-consultations de \texttt{Binding} :c'est elle qui fournit l'interface publique
+consultations de \texttt{Binding} : elle qui fournit l'interface publique
 de l'environnement.
 
 \begin{attention}
@@ -245,11 +264,11 @@ Nous étions dans un
 premier temps parti dans l'idée d'essayer de voir ce que permettait le stockage complet de
 l'environnement courant au moment de la définition d'une clôture. La création
 d'une telle clôture, bien que fastidieuse ne pose pas de difficultés
-particulières: créer une clôture contenant assez d'informations pour
-reconstruire l'environnement est assez naturel, tout comme l'extraction
-d'informations à partir d'une clôture que nous avons nous-même construits.
-On vérifie bien qu'il n'est plus possible de capturer dynamiquement une variable à l'intérieur
-d'une fonction.
+particulières: la principale difficulté rencontrée a été le fait qu'on ne peut
+pas passer de \texttt{Binding} en arguement dans un type union. Il a donc été
+nécessaire d'improviser à partir du type pair pour stockers des laisons. Avec
+cette façon de procéder, les fonctions sont typiquement protégée de leur
+environement d'exécution.
 
 Là où la situation devient plus épineuse est quand on veut pouvoir modifier
 physiquement une variable déjà définie. Si il peut paraître en première approche
@@ -268,11 +287,11 @@ récursives.
 
 Nous avons donc du reprogrammer la clôture en stockant un pointeur vers le bloc
 environnement courant au moment de la clôture. Il suffira alors de créer un
-environnement pointant vers le bloc environnement au moment de la reconstruction.
+environnement pointant vers le bloc d'environnement au moment de la reconstruction.
 Une légère difficulté est que simplement ajouter une valeur pointant vers un
 environnement peut créer une situation où il y a des inclusions circulaires de
-fichiers puisque la classe environnement dépend de la classe cellule.
-Heureusement, une forward declaration de la classe environnement dans la classe
+fichiers puisque la classe \texttt{Environment} dépend de la classe \texttt{Cell}.
+Heureusement, une forward declaration de la classe \texttt{Environment} dans la classe
 \texttt{Cell} permet de remédier à cela.
 
 Avec cette méthode, il est possible de créer des fonctions mutuellement
@@ -280,7 +299,7 @@ récursives et des fonctions récursives sans problèmes apparents. Par contre i
 faut encore gérer un problème posé par la définition circulaire des clôtures.
 En effet, cela pose de gros problèmes si on veut afficher l'environnement. La
 solution adoptée a été le remplacement d'objets environnement par une chaîne
-<env>.
+\texttt{<env>}.
 
 \subsection{Passage en frames}
 
@@ -323,7 +342,9 @@ capturées.
 \section{Vérification}
  
  \subsection{Interprète dynamique}
- Les fonctions de l'interprète dynamique fonctionnent correctement et permettent 
+
+ Les fonctions de l'interprète dynamique présentée en exemple dans le premier TD
+ de lisp fonctionnent correctement et permettent 
  une utilisation classique de Lisp.  
  Le seul problème est la gestion des erreurs de 
  l'utilisateur via les exceptions. La programmation défensive utilisée dans le 
@@ -339,21 +360,40 @@ capturées.
  ce problème.
  
  \subsection{Interprète Scheme}
+
  Le travail effectué sur la version Scheme de l'interprète consistait à implémenter 
  une gestion plus efficace et naturelle des clotûre au travers des frames. Cet 
  objectif a été rempli et les frames semblent fonctionner comme prévu. Une nouvelle
  frame est créée à chaque clotûre, et la recherche de liaison au sein d'une clotûre 
  s'effectue dans la frame capturée puis dans les frames vers lesquelles elle pointe. 
  Cela permet la définition de fonctions récursive et mutuellement récursives sans 
- passer par des placeholders.
+ passer par des placeholders. Pour mieux nous en rendre compte, nous avons
+ modifié l'impression d'environnement pour faire apparaître un chevron >> au
+ passage à une nouvelle frame ce qui permet de bien vérifier la bonne création
+ et manipulation des frames.
  
  De plus la gestion par pointeur permet de limiter la taille occupée par les frames 
- à une table raisonnable. L'utilisation des pointeurs a cependant été la source de 
+ à une taille raisonnable. L'utilisation des pointeurs a cependant été la source de 
  nombreuses erreurs, notamment au niveau de la mémoire, ce qui a demandé un gros 
  travail de debug pour que cette gestion s'effectue comme nous l'espérions. Un travail 
  supplémentaire a aussi été fourni sur la programmation défensive et la gestion des
  assertion, ce qui nous a permis de rattraper un certain nombre d'exceptions pour les 
  gérer directement à travers l'interprète.
+
+ Nous avons vérifié rapidement la bonne marche des fonctions suivantes entre
+ autre choses:
+
+\begin{lstlisting}
+(setq f (lambda () a)) | (f) retourne la valeur de a dans l'environement global
+
+(setq g (lambda (a) (f))) | (g 3) retourne la valeur de a dans l'environement
+global
+
+(setq f (lambda (n) (if (= n 0) 0 (g (- n 1))))) | (f n) retourne 0 si n impair
+(setq g (lambda (n) (if (= n 0) 1 (f (- n 1))))) | (g n) retourne 1 si n pair
+
+(setq fact (lambda (n) (if (= n 0) 1 (* n (f (- n 1)))))) | retourne !n
+\end{lstlisting}
  
  Cependant, cet interprète ne permet pas de gérer la continuation. Il faudrait pour 
  cela implémenter la construction call/cc de Scheme, ce qui demanderait une travail 
@@ -361,26 +401,33 @@ capturées.
 
 
 \section{Contribution}
+
 Ce projet nous a permis d'explorer les différentes possibilités d'implémentation 
 Lisp, en particulier en ce qui concerne la gestion de l'environnement. Nous avons pu 
 tester les différents niveaux de complexité liés à cette gestion, des liaisons physiques
 de l'interprète dynamique aux frames Scheme qui permettent une gestion plus naturelle des
 naturelles des clôtures.
 
-L'interprète ayant été codé en C++, une réflexion de nôtre travail fut la gestion de la 
+La gestion de l'environnement, n'utilisant pas les structures pré-programmées de
+la \texttt{STL} a été l'occasion de faire un travail plus bas niveau que ce qui
+est normalement fait en C++, la preuve en étant la faible utilisation de
+notion propres à C++ (par rapport à C). En ce sens, le code original écrit
+pourrait très bien être adapté en une librairie C++ \texttt{Environment}
+
+L'interprète ayant été codé en C++, une réflexion de notre travail fut la gestion de la 
 mémoire et l’utilisation des pointeurs. Comme nous l'avons vu plus haut, utiliser 
-des pointeur peut générer de nombreuses erreur et par conséquent alourdir grandement la charge 
+des pointeurs peut générer de nombreuses erreurs et par conséquent alourdir grandement la charge 
 de travail. C'est la raison pour laquelle nous avons expérimenté une clôture par stockage 
 complet de l'environnement, qui bien que gourmande en allocation mémoire, offrait l'avantage 
 d'éviter d'être confronté à ces problèmes. Cela nous a permis de constater qu'une telle 
-implémentation avait elle aussi des limites, et était la source de problème plus théorique 
+implémentation avait elle aussi des limites, et était la source de problèmes plus théoriques 
 (comme la modification d'une liaison dans une environnement circulaire). C'est cette réflexion 
 qui nous a conduit à l'implémentation actuelle des frames, qui s'est montré plus efficace 
 malgré les dangers liés à l'utilisation des pointeurs.
 
 Mais l'utilisation des frames seules présente elle aussi des limites, puisqu'en l'état 
 notre interprète ne peux pas gérer la continuation. Cela pourrait faire l'objet d'une 
-prolongation de nôtre travail, qui permettrait à l'interprète de se hisser au niveau 
+prolongation de notre travail, qui permettrait à l'interprète de se hisser au niveau 
 d'un interprète Scheme classique. Il serait aussi possible d'implémenter une évaluation 
 paresseuse, qui permettrait notamment une optimisation des calculs sur les listes.
 
