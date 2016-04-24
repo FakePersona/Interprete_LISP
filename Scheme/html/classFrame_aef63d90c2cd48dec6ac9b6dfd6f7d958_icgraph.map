@@ -1,9 +1,11 @@
 <map id="Frame::add_new_binding" name="Frame::add_new_binding">
-<area shape="rect" id="node2" href="$classFrame.html#a258655c409c6055a761ac8cc12fb2948" title="Frame::set_new_binding" alt="" coords="228,35,397,61"/>
-<area shape="rect" id="node8" href="$classEnvironment.html#aaa7f24d4804dd8e2e9e95506b7c5bf58" title="Environment::add_new\l_binding" alt="" coords="233,86,392,127"/>
-<area shape="rect" id="node3" href="$classFrame.html#a60853a5572534d23b5cf480c6217b9b8" title="Frame::extend_env" alt="" coords="453,5,591,32"/>
-<area shape="rect" id="node5" href="$classEnvironment.html#adac8db22e668d2a78a2cc18d0528c396" title="Environment::set_new\l_binding" alt="" coords="445,57,599,98"/>
+<area shape="rect" id="node2" href="$classFrame.html#a258655c409c6055a761ac8cc12fb2948" title="Frame::set_new_binding" alt="" coords="228,71,397,97"/>
+<area shape="rect" id="node8" href="$classEnvironment.html#aaa7f24d4804dd8e2e9e95506b7c5bf58" title="Environment::add_new\l_binding" alt="" coords="233,130,392,171"/>
+<area shape="rect" id="node3" href="$classFrame.html#a60853a5572534d23b5cf480c6217b9b8" title="Frame::extend_env" alt="" coords="453,8,591,35"/>
+<area shape="rect" id="node5" href="$classEnvironment.html#adac8db22e668d2a78a2cc18d0528c396" title="Environment::set_new\l_binding" alt="" coords="445,63,599,105"/>
 <area shape="rect" id="node4" href="$classEnvironment.html#a29feed86a6e592d20f8c8882fcd35d6c" title="Environment::extend_env" alt="" coords="647,5,820,32"/>
-<area shape="rect" id="node6" href="$toplevel_8cc.html#a6ae0baaebcf8b71f80eab5771b50af35" title="handle_directive" alt="" coords="673,60,794,87"/>
-<area shape="rect" id="node7" href="$toplevel_8cc.html#afc3c3bee6c94b170a6feafbdf1b14295" title="toplevel" alt="" coords="868,85,937,112"/>
+<area shape="rect" id="node6" href="$toplevel_8cc.html#a6ae0baaebcf8b71f80eab5771b50af35" title="handle_directive" alt="" coords="673,56,794,83"/>
+<area shape="rect" id="node7" href="$toplevel_8cc.html#afc3c3bee6c94b170a6feafbdf1b14295" title="toplevel" alt="" coords="868,107,937,133"/>
+<area shape="rect" id="node9" href="$subr_8cc.html#ad7a93d2016d5a23fbe4814f751d1dd27" title="bind_subr" alt="" coords="483,155,561,181"/>
+<area shape="rect" id="node10" href="$subr_8cc.html#ad347cf1ddfd4e7e90ad97a076c29fd36" title="init_subr" alt="" coords="698,157,769,184"/>
 </map>

@@ -1,0 +1,6 @@
+<map id="init_subr" name="init_subr">
+<area shape="rect" id="node2" href="$subr_8cc.html#ad7a93d2016d5a23fbe4814f751d1dd27" title="bind_subr" alt="" coords="124,13,203,39"/>
+<area shape="rect" id="node5" href="$subr_8cc.html#aff4cb20a00ea04a424c6073cd477ce1a" title="do_read" alt="" coords="127,63,200,90"/>
+<area shape="rect" id="node3" href="$classEnvironment.html#aaa7f24d4804dd8e2e9e95506b7c5bf58" title="Environment::add_new\l_binding" alt="" coords="251,5,409,47"/>
+<area shape="rect" id="node4" href="$classFrame.html#aef63d90c2cd48dec6ac9b6dfd6f7d958" title="Frame::add_new_binding" alt="" coords="457,13,632,39"/>
+</map>

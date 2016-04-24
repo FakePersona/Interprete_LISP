@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['main_2ecc',['main.cc',['../main_8cc.html',1,'']]],
-  ['make_5fclosure',['make_closure',['../classEnvironment.html#a852ae1aa43ba278c27a91e8dcc968086',1,'Environment']]]
+  ['handle_5fdirective',['handle_directive',['../toplevel_8cc.html#a6ae0baaebcf8b71f80eab5771b50af35',1,'toplevel.cc']]]
 ];
