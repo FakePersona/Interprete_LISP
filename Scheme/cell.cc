@@ -1,3 +1,5 @@
+/*! \file cell.cc */ 
+
 #include <iostream>
 #include <cassert>
 #include <string>
@@ -6,7 +8,11 @@
 
 using namespace std;
 
-void Cell::check() {} // To be filled up!
+void Cell::check() {}
+
+/**********************/
+/* Cell type checkers */
+/**********************/
 
 Cell::cell_sort Cell::get_sort() const {
   return sort;
@@ -33,6 +39,10 @@ bool Cell::is_frame() const {
 bool Cell::is_subr() const {
   return sort == SUBR;
 }
+
+/********************/
+/* Value converters */
+/********************/
 
 int Cell::to_number() const {
   assert(is_number());
@@ -77,6 +87,10 @@ Cell::Cell() {
   check();
 }
 
+/**************************/
+/* Cell type transformers */
+/**************************/
+
 void Cell::make_cell_number(int a) {
   sort = NUMBER;
   value.as_number = a;
@@ -114,13 +128,20 @@ void Cell::make_cell_subr(Cell*(*sub)(Cell* lvals)) {
 
 Cell Cell::cell_nil = Cell();
 
+/******************/
+/* Print function */
+/******************/
+
 static ostream& print_cell_pointer(ostream& s, const Cell *p);
 
+//!
+//! Used to process printing of lists
+//!
 static ostream& print_cell_pointer_aux(ostream& s, const Cell *p) {
   assert(p -> is_pair());
   for (const Cell *pp = p;; pp = pp -> to_pair_next()) {
     if (pp == Cell::nil()) break;
-    if (pp->is_frame())
+    if (pp->is_frame()) // Let's try not to get circulaar printing ...
       {
         s << "<env> " << flush;
         break;
@@ -132,6 +153,9 @@ static ostream& print_cell_pointer_aux(ostream& s, const Cell *p) {
   return s;
 }
 
+//!
+//! Prints contents of an object
+//!
 static ostream& print_cell_pointer(ostream& s, const Cell *p) {
   if (p == Cell::nil()) return s << "nil" << flush;
   if (p -> is_number()) return s << p -> to_number() << flush;

@@ -1,3 +1,5 @@
+/*! \file eval.cc */ 
+
 #include <stdexcept>
 #include <string>
 #include <cassert>
@@ -7,6 +9,10 @@
 #include "exception.hh"
 
 using namespace std;
+
+/*****************************/
+/* Basic Object manipulators */
+/*****************************/
 
 bool numberp(Object l) {
   return l -> is_number();
@@ -44,9 +50,15 @@ Object cadddr(Object l) {
   return car(cdddr(l));
 }
 
+/****************************/
+/* Pertaining to evaluation */
+/****************************/
+
 Object eval(Object l, Environment env);
 Object apply(Object f, Object lvals, Environment env);
 Object eval_list(Object largs, Environment env);
+
+/* Auxiliarry functions called in evaluation */
 
 Object do_progn(Object lvals, Environment env) {
   if (null(cdr(lvals)))
@@ -102,6 +114,11 @@ Object do_cond(Object lvals, Environment env) {
     }
 }
 
+/* Actual evaluating functions */
+
+//!
+//! This function does the actual evaluating of object l in Environment env
+//!
 Object eval_aux(Object l, Environment env) {
 
   if (null(l)) return l;
@@ -113,7 +130,7 @@ Object eval_aux(Object l, Environment env) {
   if (symbolp(f)) {
     if (Object_to_string(f) == "lambda")
       {
-        return env.make_closure(l);;
+        return env.make_closure(l);; // We are capturing the environment
       }
     if (Object_to_string(f) == "quote") return cadr(l);
     if (Object_to_string(f) == "andthen") return do_andthen(cdr(l),env);
@@ -135,6 +152,9 @@ Object eval_aux(Object l, Environment env) {
   return apply(f, vals, env);
 }
 
+//!
+//! Wrapper functions mainly in charge of tracing evaluation if necessary.
+//!
 Object eval(Object l, Environment env) {
   if (!debug)
     {
@@ -163,12 +183,21 @@ Object eval(Object l, Environment env) {
     }
 }
 
+//!
+//! Evaluates the elements of the list
+//!
 Object eval_list(Object largs, Environment env) {
   if (null(largs)) return largs;
   return cons(eval(car(largs), env), eval_list(cdr(largs), env));
 }
 
+/*********************/
+/* Apllying function */
+/*********************/
 
+//!
+//! Tries to apply f to lvals in Environment env
+//!
 Object apply(Object f, Object lvals, Environment env) {
 
   if (null(f)) throw Evaluation_Exception(f, env, "Cannot apply nil");
@@ -176,14 +205,14 @@ Object apply(Object f, Object lvals, Environment env) {
   if (stringp(f)) throw Evaluation_Exception(f, env, "Cannot apply a string");
   if (symbolp(f)) {
 		Object new_f = env.find_value(Object_to_string(f));
-    if (new_f->is_subr())
+    if (new_f->is_subr()) // f needs to be handled separately if it is a subr
       return (new_f->to_subr())(lvals);
 		return apply(new_f, lvals, env);
   }
   if (Object_to_string(car(f)) == "lambda") {
     Object lpars = cadr(f);
     Object body = caddr(f);
-    Frame* new_frame = new Frame(env.get_observing());
+    Frame* new_frame = new Frame(env.get_observing()); // we cannot branch directly on the captured frame
     Environment new_env = Environment(new_frame);
     new_env.extend_env(lpars, lvals);
     return eval(body, new_env);

@@ -1,3 +1,5 @@
+/*! \file env.cc */ 
+
 #include <iostream>
 #include <cassert>
 #include <string>
@@ -117,7 +119,7 @@ void Frame::extend_env(Object lpars, Object lvals) {
 //! Finds the EnvBlock in the current frame containing the binding pertaining to name
 //!
 EnvBlock* Frame::find_block(string name) {
-  EnvBlock* searching = head;
+  EnvBlock* searching = head; //< This is the block we are investigating currently
 
   while (searching)
     {

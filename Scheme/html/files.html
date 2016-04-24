@@ -4,10 +4,17 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>My Project: File List</title>
+<title>Almost Scheme but not quite: File List</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
 <script type="text/javascript">
@@ -22,7 +29,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">My Project
+   <div id="projectname">Almost Scheme but not quite
    </div>
   </td>
  </tr>
@@ -60,15 +67,30 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
       <li class="current"><a href="files.html"><span>File&#160;List</span></a></li>
+      <li><a href="globals.html"><span>File&#160;Members</span></a></li>
     </ul>
   </div>
 </div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('files.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -84,24 +106,35 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="contents">
 <div class="textblock">Here is a list of all documented files with brief descriptions:</div><div class="directory">
 <table class="directory">
-<tr id="row_0_" class="even"><td class="entry"><img src="ftv2node.png" alt="o" width="16" height="22" /><a href="cell_8hh_source.html"><img src="ftv2doc.png" alt="*" width="24" height="22" /></a><b>cell.hh</b></td><td class="desc"></td></tr>
-<tr id="row_1_"><td class="entry"><img src="ftv2node.png" alt="o" width="16" height="22" /><a href="env_8hh_source.html"><img src="ftv2doc.png" alt="*" width="24" height="22" /></a><b>env.hh</b></td><td class="desc"></td></tr>
-<tr id="row_2_" class="even"><td class="entry"><img src="ftv2node.png" alt="o" width="16" height="22" /><a href="eval_8hh_source.html"><img src="ftv2doc.png" alt="*" width="24" height="22" /></a><b>eval.hh</b></td><td class="desc"></td></tr>
-<tr id="row_3_"><td class="entry"><img src="ftv2node.png" alt="o" width="16" height="22" /><a href="exception_8hh_source.html"><img src="ftv2doc.png" alt="*" width="24" height="22" /></a><b>exception.hh</b></td><td class="desc"></td></tr>
-<tr id="row_4_" class="even"><td class="entry"><img src="ftv2node.png" alt="o" width="16" height="22" /><a href="lisp__yacc_8h_source.html"><img src="ftv2doc.png" alt="*" width="24" height="22" /></a><b>lisp_yacc.h</b></td><td class="desc"></td></tr>
-<tr id="row_5_"><td class="entry"><img src="ftv2node.png" alt="o" width="16" height="22" /><a href="main_8hh_source.html"><img src="ftv2doc.png" alt="*" width="24" height="22" /></a><b>main.hh</b></td><td class="desc"></td></tr>
-<tr id="row_6_" class="even"><td class="entry"><img src="ftv2node.png" alt="o" width="16" height="22" /><a href="object_8hh_source.html"><img src="ftv2doc.png" alt="*" width="24" height="22" /></a><b>object.hh</b></td><td class="desc"></td></tr>
-<tr id="row_7_"><td class="entry"><img src="ftv2node.png" alt="o" width="16" height="22" /><a href="read_8hh_source.html"><img src="ftv2doc.png" alt="*" width="24" height="22" /></a><b>read.hh</b></td><td class="desc"></td></tr>
-<tr id="row_8_" class="even"><td class="entry"><img src="ftv2node.png" alt="o" width="16" height="22" /><a href="subr_8hh_source.html"><img src="ftv2doc.png" alt="*" width="24" height="22" /></a><b>subr.hh</b></td><td class="desc"></td></tr>
-<tr id="row_9_"><td class="entry"><img src="ftv2lastnode.png" alt="\" width="16" height="22" /><a href="toplevel_8hh_source.html"><img src="ftv2doc.png" alt="*" width="24" height="22" /></a><b>toplevel.hh</b></td><td class="desc"></td></tr>
+<tr id="row_0_" class="even"><td class="entry"><img src="ftv2node.png" alt="o" width="16" height="22" /><img src="ftv2doc.png" alt="*" width="24" height="22" /><a class="el" href="cell_8cc.html" target="_self">cell.cc</a></td><td class="desc"></td></tr>
+<tr id="row_1_"><td class="entry"><img src="ftv2node.png" alt="o" width="16" height="22" /><a href="cell_8hh_source.html"><img src="ftv2doc.png" alt="*" width="24" height="22" /></a><b>cell.hh</b></td><td class="desc"></td></tr>
+<tr id="row_2_" class="even"><td class="entry"><img src="ftv2node.png" alt="o" width="16" height="22" /><img src="ftv2doc.png" alt="*" width="24" height="22" /><a class="el" href="env_8cc.html" target="_self">env.cc</a></td><td class="desc"></td></tr>
+<tr id="row_3_"><td class="entry"><img src="ftv2node.png" alt="o" width="16" height="22" /><a href="env_8hh_source.html"><img src="ftv2doc.png" alt="*" width="24" height="22" /></a><b>env.hh</b></td><td class="desc"></td></tr>
+<tr id="row_4_" class="even"><td class="entry"><img src="ftv2node.png" alt="o" width="16" height="22" /><img src="ftv2doc.png" alt="*" width="24" height="22" /><a class="el" href="eval_8cc.html" target="_self">eval.cc</a></td><td class="desc"></td></tr>
+<tr id="row_5_"><td class="entry"><img src="ftv2node.png" alt="o" width="16" height="22" /><a href="eval_8hh_source.html"><img src="ftv2doc.png" alt="*" width="24" height="22" /></a><b>eval.hh</b></td><td class="desc"></td></tr>
+<tr id="row_6_" class="even"><td class="entry"><img src="ftv2node.png" alt="o" width="16" height="22" /><a href="exception_8hh_source.html"><img src="ftv2doc.png" alt="*" width="24" height="22" /></a><a class="el" href="exception_8hh.html" target="_self">exception.hh</a></td><td class="desc"></td></tr>
+<tr id="row_7_"><td class="entry"><img src="ftv2node.png" alt="o" width="16" height="22" /><a href="lisp__yacc_8h_source.html"><img src="ftv2doc.png" alt="*" width="24" height="22" /></a><b>lisp_yacc.h</b></td><td class="desc"></td></tr>
+<tr id="row_8_" class="even"><td class="entry"><img src="ftv2node.png" alt="o" width="16" height="22" /><img src="ftv2doc.png" alt="*" width="24" height="22" /><a class="el" href="main_8cc.html" target="_self">main.cc</a></td><td class="desc"></td></tr>
+<tr id="row_9_"><td class="entry"><img src="ftv2node.png" alt="o" width="16" height="22" /><a href="main_8hh_source.html"><img src="ftv2doc.png" alt="*" width="24" height="22" /></a><b>main.hh</b></td><td class="desc"></td></tr>
+<tr id="row_10_" class="even"><td class="entry"><img src="ftv2node.png" alt="o" width="16" height="22" /><img src="ftv2doc.png" alt="*" width="24" height="22" /><a class="el" href="object_8cc.html" target="_self">object.cc</a></td><td class="desc"></td></tr>
+<tr id="row_11_"><td class="entry"><img src="ftv2node.png" alt="o" width="16" height="22" /><a href="object_8hh_source.html"><img src="ftv2doc.png" alt="*" width="24" height="22" /></a><b>object.hh</b></td><td class="desc"></td></tr>
+<tr id="row_12_" class="even"><td class="entry"><img src="ftv2node.png" alt="o" width="16" height="22" /><img src="ftv2doc.png" alt="*" width="24" height="22" /><a class="el" href="read_8cc.html" target="_self">read.cc</a></td><td class="desc"></td></tr>
+<tr id="row_13_"><td class="entry"><img src="ftv2node.png" alt="o" width="16" height="22" /><a href="read_8hh_source.html"><img src="ftv2doc.png" alt="*" width="24" height="22" /></a><b>read.hh</b></td><td class="desc"></td></tr>
+<tr id="row_14_" class="even"><td class="entry"><img src="ftv2node.png" alt="o" width="16" height="22" /><img src="ftv2doc.png" alt="*" width="24" height="22" /><a class="el" href="subr_8cc.html" target="_self">subr.cc</a></td><td class="desc"></td></tr>
+<tr id="row_15_"><td class="entry"><img src="ftv2node.png" alt="o" width="16" height="22" /><a href="subr_8hh_source.html"><img src="ftv2doc.png" alt="*" width="24" height="22" /></a><b>subr.hh</b></td><td class="desc"></td></tr>
+<tr id="row_16_" class="even"><td class="entry"><img src="ftv2node.png" alt="o" width="16" height="22" /><img src="ftv2doc.png" alt="*" width="24" height="22" /><a class="el" href="toplevel_8cc.html" target="_self">toplevel.cc</a></td><td class="desc"></td></tr>
+<tr id="row_17_"><td class="entry"><img src="ftv2lastnode.png" alt="\" width="16" height="22" /><a href="toplevel_8hh_source.html"><img src="ftv2doc.png" alt="*" width="24" height="22" /></a><b>toplevel.hh</b></td><td class="desc"></td></tr>
 </table>
 </div><!-- directory -->
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.6
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generated by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
+  </ul>
+</div>
 </body>
 </html>

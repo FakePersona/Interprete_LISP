@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['set_5fnew_5fbinding',['set_new_binding',['../classFrame.html#a258655c409c6055a761ac8cc12fb2948',1,'Frame']]]
+  ['main_2ecc',['main.cc',['../main_8cc.html',1,'']]],
+  ['make_5fclosure',['make_closure',['../classEnvironment.html#a852ae1aa43ba278c27a91e8dcc968086',1,'Environment']]]
 ];

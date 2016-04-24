@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['print',['print',['../classFrame.html#a5b0bcbaf2acba4166d94269a9b938834',1,'Frame']]]
+  ['handle_5fdirective',['handle_directive',['../toplevel_8cc.html#a6ae0baaebcf8b71f80eab5771b50af35',1,'toplevel.cc']]]
 ];

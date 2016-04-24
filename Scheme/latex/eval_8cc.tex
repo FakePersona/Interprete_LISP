@@ -1,0 +1,191 @@
+\hypertarget{eval_8cc}{\section{eval.\-cc File Reference}
+\label{eval_8cc}\index{eval.\-cc@{eval.\-cc}}
+}
+{\ttfamily \#include $<$stdexcept$>$}\\*
+{\ttfamily \#include $<$string$>$}\\*
+{\ttfamily \#include $<$cassert$>$}\\*
+{\ttfamily \#include \char`\"{}eval.\-hh\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}toplevel.\-hh\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}subr.\-hh\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}exception.\-hh\char`\"{}}\\*
+Include dependency graph for eval.\-cc\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{eval_8cc__incl}
+\end{center}
+\end{figure}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{eval_8cc_a52546d9deab1be3988d53179ce7ab471}{bool {\bfseries numberp} (\hyperlink{classCell}{Object} l)}\label{eval_8cc_a52546d9deab1be3988d53179ce7ab471}
+
+\item 
+\hypertarget{eval_8cc_a479fe0c2f20abecfcf87edf451c12779}{bool {\bfseries stringp} (\hyperlink{classCell}{Object} l)}\label{eval_8cc_a479fe0c2f20abecfcf87edf451c12779}
+
+\item 
+\hypertarget{eval_8cc_a753bfefedf06076aaf93fa31191f2ee4}{bool {\bfseries symbolp} (\hyperlink{classCell}{Object} l)}\label{eval_8cc_a753bfefedf06076aaf93fa31191f2ee4}
+
+\item 
+\hypertarget{eval_8cc_a5cef67698695f3ad3df74808b90a3827}{bool {\bfseries listp} (\hyperlink{classCell}{Object} l)}\label{eval_8cc_a5cef67698695f3ad3df74808b90a3827}
+
+\item 
+\hypertarget{eval_8cc_a9bbd025c2192f314a3db87d17aa00c52}{\hyperlink{classCell}{Object} {\bfseries cadr} (\hyperlink{classCell}{Object} l)}\label{eval_8cc_a9bbd025c2192f314a3db87d17aa00c52}
+
+\item 
+\hypertarget{eval_8cc_a798557710853460fd9ebc1e4c4fc2ac6}{\hyperlink{classCell}{Object} {\bfseries cddr} (\hyperlink{classCell}{Object} l)}\label{eval_8cc_a798557710853460fd9ebc1e4c4fc2ac6}
+
+\item 
+\hypertarget{eval_8cc_af370f2a2d635c19ba7d70f07c3986b5f}{\hyperlink{classCell}{Object} {\bfseries caddr} (\hyperlink{classCell}{Object} l)}\label{eval_8cc_af370f2a2d635c19ba7d70f07c3986b5f}
+
+\item 
+\hypertarget{eval_8cc_a6a9bf7a94ff3538c68009209e5e261de}{\hyperlink{classCell}{Object} {\bfseries cdddr} (\hyperlink{classCell}{Object} l)}\label{eval_8cc_a6a9bf7a94ff3538c68009209e5e261de}
+
+\item 
+\hypertarget{eval_8cc_ac9e2cdf74bbb625bfbbdee7cb117ed91}{\hyperlink{classCell}{Object} {\bfseries cadddr} (\hyperlink{classCell}{Object} l)}\label{eval_8cc_ac9e2cdf74bbb625bfbbdee7cb117ed91}
+
+\item 
+\hyperlink{classCell}{Object} \hyperlink{eval_8cc_ad032552d26c29a328226c32b2d877685}{eval} (\hyperlink{classCell}{Object} l, \hyperlink{classEnvironment}{Environment} env)
+\item 
+\hyperlink{classCell}{Object} \hyperlink{eval_8cc_a9196d0a652edc39e70a584007b940d0f}{apply} (\hyperlink{classCell}{Object} f, \hyperlink{classCell}{Object} lvals, \hyperlink{classEnvironment}{Environment} env)
+\item 
+\hyperlink{classCell}{Object} \hyperlink{eval_8cc_a89930fbab5b72d49ac101580f8f8729d}{eval\-\_\-list} (\hyperlink{classCell}{Object} largs, \hyperlink{classEnvironment}{Environment} env)
+\item 
+\hypertarget{eval_8cc_a505621d68b34eba1409b4a45dddfa21f}{\hyperlink{classCell}{Object} {\bfseries do\-\_\-progn} (\hyperlink{classCell}{Object} lvals, \hyperlink{classEnvironment}{Environment} env)}\label{eval_8cc_a505621d68b34eba1409b4a45dddfa21f}
+
+\item 
+\hypertarget{eval_8cc_a951d3af39b862af16db47aa167b7b263}{\hyperlink{classCell}{Object} {\bfseries do\-\_\-if} (\hyperlink{classCell}{Object} lvals, \hyperlink{classEnvironment}{Environment} env)}\label{eval_8cc_a951d3af39b862af16db47aa167b7b263}
+
+\item 
+\hypertarget{eval_8cc_a2d0c3e387713f2877b589129cb8640b9}{\hyperlink{classCell}{Object} {\bfseries do\-\_\-andthen} (\hyperlink{classCell}{Object} lvals, \hyperlink{classEnvironment}{Environment} env)}\label{eval_8cc_a2d0c3e387713f2877b589129cb8640b9}
+
+\item 
+\hypertarget{eval_8cc_a9ec7623c33cc892200c9406853721dbc}{\hyperlink{classCell}{Object} {\bfseries do\-\_\-cond} (\hyperlink{classCell}{Object} lvals, \hyperlink{classEnvironment}{Environment} env)}\label{eval_8cc_a9ec7623c33cc892200c9406853721dbc}
+
+\item 
+\hyperlink{classCell}{Object} \hyperlink{eval_8cc_acdca207c0f395e563d6bf6628c8d933a}{eval\-\_\-aux} (\hyperlink{classCell}{Object} l, \hyperlink{classEnvironment}{Environment} env)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\hypertarget{eval_8cc_a9196d0a652edc39e70a584007b940d0f}{\index{eval.\-cc@{eval.\-cc}!apply@{apply}}
+\index{apply@{apply}!eval.cc@{eval.\-cc}}
+\subsubsection[{apply}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Object} apply (
+\begin{DoxyParamCaption}
+\item[{{\bf Object}}]{f, }
+\item[{{\bf Object}}]{lvals, }
+\item[{{\bf Environment}}]{env}
+\end{DoxyParamCaption}
+)}}\label{eval_8cc_a9196d0a652edc39e70a584007b940d0f}
+Tries to apply f to lvals in \hyperlink{classEnvironment}{Environment} env 
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{eval_8cc_a9196d0a652edc39e70a584007b940d0f_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{eval_8cc_a9196d0a652edc39e70a584007b940d0f_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{eval_8cc_ad032552d26c29a328226c32b2d877685}{\index{eval.\-cc@{eval.\-cc}!eval@{eval}}
+\index{eval@{eval}!eval.cc@{eval.\-cc}}
+\subsubsection[{eval}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Object} eval (
+\begin{DoxyParamCaption}
+\item[{{\bf Object}}]{l, }
+\item[{{\bf Environment}}]{env}
+\end{DoxyParamCaption}
+)}}\label{eval_8cc_ad032552d26c29a328226c32b2d877685}
+Wrapper functions mainly in charge of tracing evaluation if necessary. 
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{eval_8cc_ad032552d26c29a328226c32b2d877685_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=337pt]{eval_8cc_ad032552d26c29a328226c32b2d877685_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{eval_8cc_acdca207c0f395e563d6bf6628c8d933a}{\index{eval.\-cc@{eval.\-cc}!eval\-\_\-aux@{eval\-\_\-aux}}
+\index{eval\-\_\-aux@{eval\-\_\-aux}!eval.cc@{eval.\-cc}}
+\subsubsection[{eval\-\_\-aux}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Object} eval\-\_\-aux (
+\begin{DoxyParamCaption}
+\item[{{\bf Object}}]{l, }
+\item[{{\bf Environment}}]{env}
+\end{DoxyParamCaption}
+)}}\label{eval_8cc_acdca207c0f395e563d6bf6628c8d933a}
+This function does the actual evaluating of object l in \hyperlink{classEnvironment}{Environment} env 
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{eval_8cc_acdca207c0f395e563d6bf6628c8d933a_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{eval_8cc_acdca207c0f395e563d6bf6628c8d933a_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{eval_8cc_a89930fbab5b72d49ac101580f8f8729d}{\index{eval.\-cc@{eval.\-cc}!eval\-\_\-list@{eval\-\_\-list}}
+\index{eval\-\_\-list@{eval\-\_\-list}!eval.cc@{eval.\-cc}}
+\subsubsection[{eval\-\_\-list}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Object} eval\-\_\-list (
+\begin{DoxyParamCaption}
+\item[{{\bf Object}}]{largs, }
+\item[{{\bf Environment}}]{env}
+\end{DoxyParamCaption}
+)}}\label{eval_8cc_a89930fbab5b72d49ac101580f8f8729d}
+Evaluates the elements of the list 
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{eval_8cc_a89930fbab5b72d49ac101580f8f8729d_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{eval_8cc_a89930fbab5b72d49ac101580f8f8729d_icgraph}
+\end{center}
+\end{figure}
+
+

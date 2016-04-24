@@ -4,10 +4,17 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>My Project: Environment Class Reference</title>
+<title>Almost Scheme but not quite: Environment Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
 <script type="text/javascript">
@@ -22,7 +29,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">My Project
+   <div id="projectname">Almost Scheme but not quite
    </div>
   </td>
  </tr>
@@ -61,16 +68,31 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
       <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
-      <li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a></li>
+      <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
       <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('classEnvironment.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -79,7 +101,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
@@ -91,44 +112,339 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:acdb77ec0b3bc9b6b48ce430a8ff8d16d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acdb77ec0b3bc9b6b48ce430a8ff8d16d"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Environment</b> (<a class="el" href="classFrame.html">Frame</a> *obs)</td></tr>
+<tr class="memitem:a8b427c4448d8b7536666837521b9e83d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEnvironment.html#a8b427c4448d8b7536666837521b9e83d">Environment</a> ()</td></tr>
+<tr class="separator:a8b427c4448d8b7536666837521b9e83d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acdb77ec0b3bc9b6b48ce430a8ff8d16d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEnvironment.html#acdb77ec0b3bc9b6b48ce430a8ff8d16d">Environment</a> (<a class="el" href="classFrame.html">Frame</a> *obs)</td></tr>
 <tr class="separator:acdb77ec0b3bc9b6b48ce430a8ff8d16d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a73a2cb3642111c86485f48e70e5e4870"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a73a2cb3642111c86485f48e70e5e4870"></a>
-<a class="el" href="classFrame.html">Frame</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>get_observing</b> ()</td></tr>
+<tr class="memitem:a73a2cb3642111c86485f48e70e5e4870"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classFrame.html">Frame</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEnvironment.html#a73a2cb3642111c86485f48e70e5e4870">get_observing</a> ()</td></tr>
 <tr class="separator:a73a2cb3642111c86485f48e70e5e4870"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adac8db22e668d2a78a2cc18d0528c396"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adac8db22e668d2a78a2cc18d0528c396"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>set_new_binding</b> (string name, <a class="el" href="classCell.html">Object</a> value)</td></tr>
+<tr class="memitem:adac8db22e668d2a78a2cc18d0528c396"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEnvironment.html#adac8db22e668d2a78a2cc18d0528c396">set_new_binding</a> (string name, <a class="el" href="classCell.html">Object</a> value)</td></tr>
 <tr class="separator:adac8db22e668d2a78a2cc18d0528c396"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaa7f24d4804dd8e2e9e95506b7c5bf58"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aaa7f24d4804dd8e2e9e95506b7c5bf58"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>add_new_binding</b> (string name, <a class="el" href="classCell.html">Object</a> value)</td></tr>
+<tr class="memitem:aaa7f24d4804dd8e2e9e95506b7c5bf58"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEnvironment.html#aaa7f24d4804dd8e2e9e95506b7c5bf58">add_new_binding</a> (string name, <a class="el" href="classCell.html">Object</a> value)</td></tr>
 <tr class="separator:aaa7f24d4804dd8e2e9e95506b7c5bf58"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a29feed86a6e592d20f8c8882fcd35d6c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a29feed86a6e592d20f8c8882fcd35d6c"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>extend_env</b> (<a class="el" href="classCell.html">Object</a> lpars, <a class="el" href="classCell.html">Object</a> lvals)</td></tr>
+<tr class="memitem:a29feed86a6e592d20f8c8882fcd35d6c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEnvironment.html#a29feed86a6e592d20f8c8882fcd35d6c">extend_env</a> (<a class="el" href="classCell.html">Object</a> lpars, <a class="el" href="classCell.html">Object</a> lvals)</td></tr>
 <tr class="separator:a29feed86a6e592d20f8c8882fcd35d6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaa0fcf257cf27f961e51a9602cc2cb48"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aaa0fcf257cf27f961e51a9602cc2cb48"></a>
-<a class="el" href="classCell.html">Object</a>&#160;</td><td class="memItemRight" valign="bottom"><b>find_value</b> (string name)</td></tr>
+<tr class="memitem:aaa0fcf257cf27f961e51a9602cc2cb48"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCell.html">Object</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEnvironment.html#aaa0fcf257cf27f961e51a9602cc2cb48">find_value</a> (string name)</td></tr>
 <tr class="separator:aaa0fcf257cf27f961e51a9602cc2cb48"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a61952d5ef784bff91ce1a66d6a00dc99"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a61952d5ef784bff91ce1a66d6a00dc99"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>print</b> (ostream &amp;s)</td></tr>
+<tr class="memitem:a61952d5ef784bff91ce1a66d6a00dc99"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEnvironment.html#a61952d5ef784bff91ce1a66d6a00dc99">print</a> (ostream &amp;s)</td></tr>
 <tr class="separator:a61952d5ef784bff91ce1a66d6a00dc99"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ace71e43a313cdeefb1e445ecef61825b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ace71e43a313cdeefb1e445ecef61825b"></a>
-<a class="el" href="classCell.html">Object</a>&#160;</td><td class="memItemRight" valign="bottom"><b>to_Object</b> ()</td></tr>
+<tr class="memitem:ace71e43a313cdeefb1e445ecef61825b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCell.html">Object</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEnvironment.html#ace71e43a313cdeefb1e445ecef61825b">to_Object</a> ()</td></tr>
 <tr class="separator:ace71e43a313cdeefb1e445ecef61825b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a852ae1aa43ba278c27a91e8dcc968086"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a852ae1aa43ba278c27a91e8dcc968086"></a>
-<a class="el" href="classCell.html">Object</a>&#160;</td><td class="memItemRight" valign="bottom"><b>make_closure</b> (<a class="el" href="classCell.html">Object</a> body)</td></tr>
+<tr class="memitem:a852ae1aa43ba278c27a91e8dcc968086"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCell.html">Object</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEnvironment.html#a852ae1aa43ba278c27a91e8dcc968086">make_closure</a> (<a class="el" href="classCell.html">Object</a> body)</td></tr>
 <tr class="separator:a852ae1aa43ba278c27a91e8dcc968086"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a8b427c4448d8b7536666837521b9e83d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Environment::Environment </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Creates a new <a class="el" href="classEnvironment.html">Environment</a> observing an empty frame (dynamically allocated) </p>
+
+</div>
+</div>
+<a class="anchor" id="acdb77ec0b3bc9b6b48ce430a8ff8d16d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Environment::Environment </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classFrame.html">Frame</a> *&#160;</td>
+          <td class="paramname"><em>obs</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Creates a new <a class="el" href="classEnvironment.html">Environment</a> observing the frame located at obs </p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="aaa7f24d4804dd8e2e9e95506b7c5bf58"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Environment::add_new_binding </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classCell.html">Object</a>&#160;</td>
+          <td class="paramname"><em>value</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Dynamically binds in the observed frame </p>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classEnvironment_aaa7f24d4804dd8e2e9e95506b7c5bf58_cgraph.png" border="0" usemap="#classEnvironment_aaa7f24d4804dd8e2e9e95506b7c5bf58_cgraph" alt=""/></div>
+<map name="classEnvironment_aaa7f24d4804dd8e2e9e95506b7c5bf58_cgraph" id="classEnvironment_aaa7f24d4804dd8e2e9e95506b7c5bf58_cgraph">
+<area shape="rect" id="node2" href="classFrame.html#aef63d90c2cd48dec6ac9b6dfd6f7d958" title="Frame::add_new_binding" alt="" coords="212,13,387,39"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a29feed86a6e592d20f8c8882fcd35d6c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Environment::extend_env </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classCell.html">Object</a>&#160;</td>
+          <td class="paramname"><em>lpars</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classCell.html">Object</a>&#160;</td>
+          <td class="paramname"><em>lvals</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Extends the observed frame </p>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classEnvironment_a29feed86a6e592d20f8c8882fcd35d6c_cgraph.png" border="0" usemap="#classEnvironment_a29feed86a6e592d20f8c8882fcd35d6c_cgraph" alt=""/></div>
+<map name="classEnvironment_a29feed86a6e592d20f8c8882fcd35d6c_cgraph" id="classEnvironment_a29feed86a6e592d20f8c8882fcd35d6c_cgraph">
+<area shape="rect" id="node2" href="classFrame.html#a60853a5572534d23b5cf480c6217b9b8" title="Frame::extend_env" alt="" coords="227,31,365,57"/><area shape="rect" id="node3" href="classFrame.html#a258655c409c6055a761ac8cc12fb2948" title="Frame::set_new_binding" alt="" coords="413,31,583,57"/><area shape="rect" id="node4" href="classFrame.html#abe6a8a4589d130373c89147b660de034" title="Frame::find_block" alt="" coords="653,5,783,32"/><area shape="rect" id="node5" href="classFrame.html#aef63d90c2cd48dec6ac9b6dfd6f7d958" title="Frame::add_new_binding" alt="" coords="631,56,805,83"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="aaa0fcf257cf27f961e51a9602cc2cb48"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCell.html">Object</a> Environment::find_value </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>name</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Looks for the value bound to name starting from the observed frame </p>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classEnvironment_aaa0fcf257cf27f961e51a9602cc2cb48_cgraph.png" border="0" usemap="#classEnvironment_aaa0fcf257cf27f961e51a9602cc2cb48_cgraph" alt=""/></div>
+<map name="classEnvironment_aaa0fcf257cf27f961e51a9602cc2cb48_cgraph" id="classEnvironment_aaa0fcf257cf27f961e51a9602cc2cb48_cgraph">
+<area shape="rect" id="node2" href="classFrame.html#a148a624be2406df10c0655c9d87d0544" title="Frame::find_value" alt="" coords="217,29,348,56"/></map>
+</div>
+</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classEnvironment_aaa0fcf257cf27f961e51a9602cc2cb48_icgraph.png" border="0" usemap="#classEnvironment_aaa0fcf257cf27f961e51a9602cc2cb48_icgraph" alt=""/></div>
+<map name="classEnvironment_aaa0fcf257cf27f961e51a9602cc2cb48_icgraph" id="classEnvironment_aaa0fcf257cf27f961e51a9602cc2cb48_icgraph">
+<area shape="rect" id="node2" href="eval_8cc.html#acdca207c0f395e563d6bf6628c8d933a" title="eval_aux" alt="" coords="217,81,295,108"/><area shape="rect" id="node5" href="eval_8cc.html#a9196d0a652edc39e70a584007b940d0f" title="apply" alt="" coords="472,157,527,184"/><area shape="rect" id="node3" href="eval_8cc.html#ad032552d26c29a328226c32b2d877685" title="eval" alt="" coords="343,56,391,83"/><area shape="rect" id="node4" href="eval_8cc.html#a89930fbab5b72d49ac101580f8f8729d" title="eval_list" alt="" coords="464,5,535,32"/><area shape="rect" id="node6" href="toplevel_8cc.html#a6ae0baaebcf8b71f80eab5771b50af35" title="handle_directive" alt="" coords="439,56,560,83"/><area shape="rect" id="node7" href="toplevel_8cc.html#afc3c3bee6c94b170a6feafbdf1b14295" title="toplevel" alt="" coords="608,81,677,108"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a73a2cb3642111c86485f48e70e5e4870"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classFrame.html">Frame</a> * Environment::get_observing </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Returns the pointer of the <a class="el" href="classFrame.html">Frame</a> the environment is observing </p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classEnvironment_a73a2cb3642111c86485f48e70e5e4870_icgraph.png" border="0" usemap="#classEnvironment_a73a2cb3642111c86485f48e70e5e4870_icgraph" alt=""/></div>
+<map name="classEnvironment_a73a2cb3642111c86485f48e70e5e4870_icgraph" id="classEnvironment_a73a2cb3642111c86485f48e70e5e4870_icgraph">
+<area shape="rect" id="node2" href="eval_8cc.html#a9196d0a652edc39e70a584007b940d0f" title="apply" alt="" coords="241,31,296,57"/><area shape="rect" id="node3" href="eval_8cc.html#acdca207c0f395e563d6bf6628c8d933a" title="eval_aux" alt="" coords="344,5,421,32"/><area shape="rect" id="node4" href="eval_8cc.html#ad032552d26c29a328226c32b2d877685" title="eval" alt="" coords="469,56,517,83"/><area shape="rect" id="node5" href="eval_8cc.html#a89930fbab5b72d49ac101580f8f8729d" title="eval_list" alt="" coords="591,5,661,32"/><area shape="rect" id="node6" href="toplevel_8cc.html#a6ae0baaebcf8b71f80eab5771b50af35" title="handle_directive" alt="" coords="565,56,687,83"/><area shape="rect" id="node7" href="toplevel_8cc.html#afc3c3bee6c94b170a6feafbdf1b14295" title="toplevel" alt="" coords="735,81,804,108"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a852ae1aa43ba278c27a91e8dcc968086"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCell.html">Object</a> Environment::make_closure </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classCell.html">Object</a>&#160;</td>
+          <td class="paramname"><em>body</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Creates a closure from the observed frame and the body </p>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classEnvironment_a852ae1aa43ba278c27a91e8dcc968086_cgraph.png" border="0" usemap="#classEnvironment_a852ae1aa43ba278c27a91e8dcc968086_cgraph" alt=""/></div>
+<map name="classEnvironment_a852ae1aa43ba278c27a91e8dcc968086_cgraph" id="classEnvironment_a852ae1aa43ba278c27a91e8dcc968086_cgraph">
+<area shape="rect" id="node2" href="classEnvironment.html#ace71e43a313cdeefb1e445ecef61825b" title="Environment::to_Object" alt="" coords="241,5,400,32"/></map>
+</div>
+</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classEnvironment_a852ae1aa43ba278c27a91e8dcc968086_icgraph.png" border="0" usemap="#classEnvironment_a852ae1aa43ba278c27a91e8dcc968086_icgraph" alt=""/></div>
+<map name="classEnvironment_a852ae1aa43ba278c27a91e8dcc968086_icgraph" id="classEnvironment_a852ae1aa43ba278c27a91e8dcc968086_icgraph">
+<area shape="rect" id="node2" href="eval_8cc.html#acdca207c0f395e563d6bf6628c8d933a" title="eval_aux" alt="" coords="241,95,319,121"/><area shape="rect" id="node3" href="eval_8cc.html#ad032552d26c29a328226c32b2d877685" title="eval" alt="" coords="367,95,415,121"/><area shape="rect" id="node4" href="eval_8cc.html#a89930fbab5b72d49ac101580f8f8729d" title="eval_list" alt="" coords="488,5,559,32"/><area shape="rect" id="node5" href="eval_8cc.html#a9196d0a652edc39e70a584007b940d0f" title="apply" alt="" coords="496,157,551,184"/><area shape="rect" id="node6" href="toplevel_8cc.html#a6ae0baaebcf8b71f80eab5771b50af35" title="handle_directive" alt="" coords="463,56,584,83"/><area shape="rect" id="node7" href="toplevel_8cc.html#afc3c3bee6c94b170a6feafbdf1b14295" title="toplevel" alt="" coords="632,81,701,108"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a61952d5ef784bff91ce1a66d6a00dc99"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Environment::print </td>
+          <td>(</td>
+          <td class="paramtype">ostream &amp;&#160;</td>
+          <td class="paramname"><em>s</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>prints the content of the observed frame and its successors </p>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classEnvironment_a61952d5ef784bff91ce1a66d6a00dc99_cgraph.png" border="0" usemap="#classEnvironment_a61952d5ef784bff91ce1a66d6a00dc99_cgraph" alt=""/></div>
+<map name="classEnvironment_a61952d5ef784bff91ce1a66d6a00dc99_cgraph" id="classEnvironment_a61952d5ef784bff91ce1a66d6a00dc99_cgraph">
+<area shape="rect" id="node2" href="classFrame.html#a5b0bcbaf2acba4166d94269a9b938834" title="Frame::print" alt="" coords="180,29,273,56"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="adac8db22e668d2a78a2cc18d0528c396"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Environment::set_new_binding </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classCell.html">Object</a>&#160;</td>
+          <td class="paramname"><em>value</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Lexically binds in the observed frame </p>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classEnvironment_adac8db22e668d2a78a2cc18d0528c396_cgraph.png" border="0" usemap="#classEnvironment_adac8db22e668d2a78a2cc18d0528c396_cgraph" alt=""/></div>
+<map name="classEnvironment_adac8db22e668d2a78a2cc18d0528c396_cgraph" id="classEnvironment_adac8db22e668d2a78a2cc18d0528c396_cgraph">
+<area shape="rect" id="node2" href="classFrame.html#a258655c409c6055a761ac8cc12fb2948" title="Frame::set_new_binding" alt="" coords="207,31,376,57"/><area shape="rect" id="node3" href="classFrame.html#abe6a8a4589d130373c89147b660de034" title="Frame::find_block" alt="" coords="447,5,576,32"/><area shape="rect" id="node4" href="classFrame.html#aef63d90c2cd48dec6ac9b6dfd6f7d958" title="Frame::add_new_binding" alt="" coords="424,56,599,83"/></map>
+</div>
+</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classEnvironment_adac8db22e668d2a78a2cc18d0528c396_icgraph.png" border="0" usemap="#classEnvironment_adac8db22e668d2a78a2cc18d0528c396_icgraph" alt=""/></div>
+<map name="classEnvironment_adac8db22e668d2a78a2cc18d0528c396_icgraph" id="classEnvironment_adac8db22e668d2a78a2cc18d0528c396_icgraph">
+<area shape="rect" id="node2" href="toplevel_8cc.html#a6ae0baaebcf8b71f80eab5771b50af35" title="handle_directive" alt="" coords="207,5,328,32"/><area shape="rect" id="node3" href="toplevel_8cc.html#afc3c3bee6c94b170a6feafbdf1b14295" title="toplevel" alt="" coords="376,31,445,57"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="ace71e43a313cdeefb1e445ecef61825b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCell.html">Object</a> Environment::to_Object </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Returns an object storing the adress of the observed frame </p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classEnvironment_ace71e43a313cdeefb1e445ecef61825b_icgraph.png" border="0" usemap="#classEnvironment_ace71e43a313cdeefb1e445ecef61825b_icgraph" alt=""/></div>
+<map name="classEnvironment_ace71e43a313cdeefb1e445ecef61825b_icgraph" id="classEnvironment_ace71e43a313cdeefb1e445ecef61825b_icgraph">
+<area shape="rect" id="node2" href="classEnvironment.html#a852ae1aa43ba278c27a91e8dcc968086" title="Environment::make_closure" alt="" coords="212,95,400,121"/><area shape="rect" id="node3" href="eval_8cc.html#acdca207c0f395e563d6bf6628c8d933a" title="eval_aux" alt="" coords="448,95,525,121"/><area shape="rect" id="node4" href="eval_8cc.html#ad032552d26c29a328226c32b2d877685" title="eval" alt="" coords="573,95,621,121"/><area shape="rect" id="node5" href="eval_8cc.html#a89930fbab5b72d49ac101580f8f8729d" title="eval_list" alt="" coords="695,5,765,32"/><area shape="rect" id="node6" href="eval_8cc.html#a9196d0a652edc39e70a584007b940d0f" title="apply" alt="" coords="703,157,757,184"/><area shape="rect" id="node7" href="toplevel_8cc.html#a6ae0baaebcf8b71f80eab5771b50af35" title="handle_directive" alt="" coords="669,56,791,83"/><area shape="rect" id="node8" href="toplevel_8cc.html#afc3c3bee6c94b170a6feafbdf1b14295" title="toplevel" alt="" coords="839,81,908,108"/></map>
+</div>
+</p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="env_8hh_source.html">env.hh</a></li>
-<li>env.cc</li>
+<li><a class="el" href="env_8cc.html">env.cc</a></li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.6
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="classEnvironment.html">Environment</a></li>
+    <li class="footer">Generated by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
+  </ul>
+</div>
 </body>
 </html>

@@ -1,0 +1,6 @@
+<map id="Environment::extend_env" name="Environment::extend_env">
+<area shape="rect" id="node2" href="$classFrame.html#a60853a5572534d23b5cf480c6217b9b8" title="Frame::extend_env" alt="" coords="227,31,365,57"/>
+<area shape="rect" id="node3" href="$classFrame.html#a258655c409c6055a761ac8cc12fb2948" title="Frame::set_new_binding" alt="" coords="413,31,583,57"/>
+<area shape="rect" id="node4" href="$classFrame.html#abe6a8a4589d130373c89147b660de034" title="Frame::find_block" alt="" coords="653,5,783,32"/>
+<area shape="rect" id="node5" href="$classFrame.html#aef63d90c2cd48dec6ac9b6dfd6f7d958" title="Frame::add_new_binding" alt="" coords="631,56,805,83"/>
+</map>

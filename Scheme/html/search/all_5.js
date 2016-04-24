@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['no_5fbinding_5fexception',['No_Binding_Exception',['../classNo__Binding__Exception.html',1,'']]],
-  ['not_5fsubr',['Not_Subr',['../classNot__Subr.html',1,'']]]
+  ['get_5fobserving',['get_observing',['../classEnvironment.html#a73a2cb3642111c86485f48e70e5e4870',1,'Environment']]]
 ];

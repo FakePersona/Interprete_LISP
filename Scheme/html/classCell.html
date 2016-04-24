@@ -4,10 +4,17 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>My Project: Cell Class Reference</title>
+<title>Almost Scheme but not quite: Cell Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
 <script type="text/javascript">
@@ -22,7 +29,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">My Project
+   <div id="projectname">Almost Scheme but not quite
    </div>
   </td>
  </tr>
@@ -61,16 +68,31 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
       <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
-      <li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a></li>
+      <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
       <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('classCell.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -79,17 +101,22 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="classCell-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">Cell Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+<div class="dynheader">
+Collaboration diagram for Cell:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCell__coll__graph.png" border="0" usemap="#Cell_coll__map" alt="Collaboration graph"/></div>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -108,6 +135,9 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>is_pair</b> () const 
 <tr class="memitem:aec416c3fd3e42f3f1561f0e4925ef079"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aec416c3fd3e42f3f1561f0e4925ef079"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>is_frame</b> () const </td></tr>
 <tr class="separator:aec416c3fd3e42f3f1561f0e4925ef079"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac7e168b8aadf2f45d70edaa07cce1bcf"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac7e168b8aadf2f45d70edaa07cce1bcf"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>is_subr</b> () const </td></tr>
+<tr class="separator:ac7e168b8aadf2f45d70edaa07cce1bcf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5feb82baf94f9ea40ab379ff40252057"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5feb82baf94f9ea40ab379ff40252057"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>to_number</b> () const </td></tr>
 <tr class="separator:a5feb82baf94f9ea40ab379ff40252057"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -141,23 +171,36 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>make_cell_pair</b> (<
 <tr class="memitem:a437be131a0192328669af7539be7acb7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a437be131a0192328669af7539be7acb7"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>make_cell_frame</b> (<a class="el" href="classFrame.html">Frame</a> *f)</td></tr>
 <tr class="separator:a437be131a0192328669af7539be7acb7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a500fdba838de252002c7200ed863807c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a500fdba838de252002c7200ed863807c"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>make_cell_subr</b> (<a class="el" href="classCell.html">Cell</a> *(*sub)(<a class="el" href="classCell.html">Cell</a> *lvals))</td></tr>
+<tr class="separator:a500fdba838de252002c7200ed863807c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:aaddcdd9cbc00527042f0a67b07cf20e1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aaddcdd9cbc00527042f0a67b07cf20e1"></a>
 static <a class="el" href="classCell.html">Cell</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>nil</b> ()</td></tr>
 <tr class="separator:aaddcdd9cbc00527042f0a67b07cf20e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:afb40fe5500f4e871d2a5ea82afd3dbf4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afb40fe5500f4e871d2a5ea82afd3dbf4"></a>
+<a class="el" href="classCell.html">Cell</a> *(*)(<a class="el" href="classCell.html">Cell</a> *)&#160;</td><td class="memItemRight" valign="bottom"><b>to_subr</b> ()</td></tr>
+<tr class="separator:afb40fe5500f4e871d2a5ea82afd3dbf4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="cell_8hh_source.html">cell.hh</a></li>
-<li>cell.cc</li>
+<li><a class="el" href="cell_8cc.html">cell.cc</a></li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.6
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="classCell.html">Cell</a></li>
+    <li class="footer">Generated by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
+  </ul>
+</div>
 </body>
 </html>

@@ -4,36 +4,229 @@
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classEnvironment_acdb77ec0b3bc9b6b48ce430a8ff8d16d}{{\bfseries Environment} (\hyperlink{classFrame}{Frame} $\ast$obs)}\label{classEnvironment_acdb77ec0b3bc9b6b48ce430a8ff8d16d}
-
+\hyperlink{classEnvironment_a8b427c4448d8b7536666837521b9e83d}{Environment} ()
 \item 
-\hypertarget{classEnvironment_a73a2cb3642111c86485f48e70e5e4870}{\hyperlink{classFrame}{Frame} $\ast$ {\bfseries get\-\_\-observing} ()}\label{classEnvironment_a73a2cb3642111c86485f48e70e5e4870}
-
+\hyperlink{classEnvironment_acdb77ec0b3bc9b6b48ce430a8ff8d16d}{Environment} (\hyperlink{classFrame}{Frame} $\ast$obs)
 \item 
-\hypertarget{classEnvironment_adac8db22e668d2a78a2cc18d0528c396}{void {\bfseries set\-\_\-new\-\_\-binding} (string name, \hyperlink{classCell}{Object} value)}\label{classEnvironment_adac8db22e668d2a78a2cc18d0528c396}
-
+\hyperlink{classFrame}{Frame} $\ast$ \hyperlink{classEnvironment_a73a2cb3642111c86485f48e70e5e4870}{get\-\_\-observing} ()
 \item 
-\hypertarget{classEnvironment_aaa7f24d4804dd8e2e9e95506b7c5bf58}{void {\bfseries add\-\_\-new\-\_\-binding} (string name, \hyperlink{classCell}{Object} value)}\label{classEnvironment_aaa7f24d4804dd8e2e9e95506b7c5bf58}
-
+void \hyperlink{classEnvironment_adac8db22e668d2a78a2cc18d0528c396}{set\-\_\-new\-\_\-binding} (string name, \hyperlink{classCell}{Object} value)
 \item 
-\hypertarget{classEnvironment_a29feed86a6e592d20f8c8882fcd35d6c}{void {\bfseries extend\-\_\-env} (\hyperlink{classCell}{Object} lpars, \hyperlink{classCell}{Object} lvals)}\label{classEnvironment_a29feed86a6e592d20f8c8882fcd35d6c}
-
+void \hyperlink{classEnvironment_aaa7f24d4804dd8e2e9e95506b7c5bf58}{add\-\_\-new\-\_\-binding} (string name, \hyperlink{classCell}{Object} value)
 \item 
-\hypertarget{classEnvironment_aaa0fcf257cf27f961e51a9602cc2cb48}{\hyperlink{classCell}{Object} {\bfseries find\-\_\-value} (string name)}\label{classEnvironment_aaa0fcf257cf27f961e51a9602cc2cb48}
-
+void \hyperlink{classEnvironment_a29feed86a6e592d20f8c8882fcd35d6c}{extend\-\_\-env} (\hyperlink{classCell}{Object} lpars, \hyperlink{classCell}{Object} lvals)
 \item 
-\hypertarget{classEnvironment_a61952d5ef784bff91ce1a66d6a00dc99}{void {\bfseries print} (ostream \&s)}\label{classEnvironment_a61952d5ef784bff91ce1a66d6a00dc99}
-
+\hyperlink{classCell}{Object} \hyperlink{classEnvironment_aaa0fcf257cf27f961e51a9602cc2cb48}{find\-\_\-value} (string name)
 \item 
-\hypertarget{classEnvironment_ace71e43a313cdeefb1e445ecef61825b}{\hyperlink{classCell}{Object} {\bfseries to\-\_\-\-Object} ()}\label{classEnvironment_ace71e43a313cdeefb1e445ecef61825b}
-
+void \hyperlink{classEnvironment_a61952d5ef784bff91ce1a66d6a00dc99}{print} (ostream \&s)
 \item 
-\hypertarget{classEnvironment_a852ae1aa43ba278c27a91e8dcc968086}{\hyperlink{classCell}{Object} {\bfseries make\-\_\-closure} (\hyperlink{classCell}{Object} body)}\label{classEnvironment_a852ae1aa43ba278c27a91e8dcc968086}
-
+\hyperlink{classCell}{Object} \hyperlink{classEnvironment_ace71e43a313cdeefb1e445ecef61825b}{to\-\_\-\-Object} ()
+\item 
+\hyperlink{classCell}{Object} \hyperlink{classEnvironment_a852ae1aa43ba278c27a91e8dcc968086}{make\-\_\-closure} (\hyperlink{classCell}{Object} body)
 \end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classEnvironment_a8b427c4448d8b7536666837521b9e83d}{\index{Environment@{Environment}!Environment@{Environment}}
+\index{Environment@{Environment}!Environment@{Environment}}
+\subsubsection[{Environment}]{\setlength{\rightskip}{0pt plus 5cm}Environment\-::\-Environment (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classEnvironment_a8b427c4448d8b7536666837521b9e83d}
+Creates a new \hyperlink{classEnvironment}{Environment} observing an empty frame (dynamically allocated) \hypertarget{classEnvironment_acdb77ec0b3bc9b6b48ce430a8ff8d16d}{\index{Environment@{Environment}!Environment@{Environment}}
+\index{Environment@{Environment}!Environment@{Environment}}
+\subsubsection[{Environment}]{\setlength{\rightskip}{0pt plus 5cm}Environment\-::\-Environment (
+\begin{DoxyParamCaption}
+\item[{{\bf Frame} $\ast$}]{obs}
+\end{DoxyParamCaption}
+)}}\label{classEnvironment_acdb77ec0b3bc9b6b48ce430a8ff8d16d}
+Creates a new \hyperlink{classEnvironment}{Environment} observing the frame located at obs 
+
+\subsection{Member Function Documentation}
+\hypertarget{classEnvironment_aaa7f24d4804dd8e2e9e95506b7c5bf58}{\index{Environment@{Environment}!add\-\_\-new\-\_\-binding@{add\-\_\-new\-\_\-binding}}
+\index{add\-\_\-new\-\_\-binding@{add\-\_\-new\-\_\-binding}!Environment@{Environment}}
+\subsubsection[{add\-\_\-new\-\_\-binding}]{\setlength{\rightskip}{0pt plus 5cm}void Environment\-::add\-\_\-new\-\_\-binding (
+\begin{DoxyParamCaption}
+\item[{string}]{name, }
+\item[{{\bf Object}}]{value}
+\end{DoxyParamCaption}
+)}}\label{classEnvironment_aaa7f24d4804dd8e2e9e95506b7c5bf58}
+Dynamically binds in the observed frame 
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classEnvironment_aaa7f24d4804dd8e2e9e95506b7c5bf58_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{classEnvironment_a29feed86a6e592d20f8c8882fcd35d6c}{\index{Environment@{Environment}!extend\-\_\-env@{extend\-\_\-env}}
+\index{extend\-\_\-env@{extend\-\_\-env}!Environment@{Environment}}
+\subsubsection[{extend\-\_\-env}]{\setlength{\rightskip}{0pt plus 5cm}void Environment\-::extend\-\_\-env (
+\begin{DoxyParamCaption}
+\item[{{\bf Object}}]{lpars, }
+\item[{{\bf Object}}]{lvals}
+\end{DoxyParamCaption}
+)}}\label{classEnvironment_a29feed86a6e592d20f8c8882fcd35d6c}
+Extends the observed frame 
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classEnvironment_a29feed86a6e592d20f8c8882fcd35d6c_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{classEnvironment_aaa0fcf257cf27f961e51a9602cc2cb48}{\index{Environment@{Environment}!find\-\_\-value@{find\-\_\-value}}
+\index{find\-\_\-value@{find\-\_\-value}!Environment@{Environment}}
+\subsubsection[{find\-\_\-value}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Object} Environment\-::find\-\_\-value (
+\begin{DoxyParamCaption}
+\item[{string}]{name}
+\end{DoxyParamCaption}
+)}}\label{classEnvironment_aaa0fcf257cf27f961e51a9602cc2cb48}
+Looks for the value bound to name starting from the observed frame 
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=337pt]{classEnvironment_aaa0fcf257cf27f961e51a9602cc2cb48_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classEnvironment_aaa0fcf257cf27f961e51a9602cc2cb48_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{classEnvironment_a73a2cb3642111c86485f48e70e5e4870}{\index{Environment@{Environment}!get\-\_\-observing@{get\-\_\-observing}}
+\index{get\-\_\-observing@{get\-\_\-observing}!Environment@{Environment}}
+\subsubsection[{get\-\_\-observing}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Frame} $\ast$ Environment\-::get\-\_\-observing (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classEnvironment_a73a2cb3642111c86485f48e70e5e4870}
+Returns the pointer of the \hyperlink{classFrame}{Frame} the environment is observing 
+
+Here is the caller graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classEnvironment_a73a2cb3642111c86485f48e70e5e4870_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{classEnvironment_a852ae1aa43ba278c27a91e8dcc968086}{\index{Environment@{Environment}!make\-\_\-closure@{make\-\_\-closure}}
+\index{make\-\_\-closure@{make\-\_\-closure}!Environment@{Environment}}
+\subsubsection[{make\-\_\-closure}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Object} Environment\-::make\-\_\-closure (
+\begin{DoxyParamCaption}
+\item[{{\bf Object}}]{body}
+\end{DoxyParamCaption}
+)}}\label{classEnvironment_a852ae1aa43ba278c27a91e8dcc968086}
+Creates a closure from the observed frame and the body 
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classEnvironment_a852ae1aa43ba278c27a91e8dcc968086_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classEnvironment_a852ae1aa43ba278c27a91e8dcc968086_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{classEnvironment_a61952d5ef784bff91ce1a66d6a00dc99}{\index{Environment@{Environment}!print@{print}}
+\index{print@{print}!Environment@{Environment}}
+\subsubsection[{print}]{\setlength{\rightskip}{0pt plus 5cm}void Environment\-::print (
+\begin{DoxyParamCaption}
+\item[{ostream \&}]{s}
+\end{DoxyParamCaption}
+)}}\label{classEnvironment_a61952d5ef784bff91ce1a66d6a00dc99}
+prints the content of the observed frame and its successors 
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=281pt]{classEnvironment_a61952d5ef784bff91ce1a66d6a00dc99_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{classEnvironment_adac8db22e668d2a78a2cc18d0528c396}{\index{Environment@{Environment}!set\-\_\-new\-\_\-binding@{set\-\_\-new\-\_\-binding}}
+\index{set\-\_\-new\-\_\-binding@{set\-\_\-new\-\_\-binding}!Environment@{Environment}}
+\subsubsection[{set\-\_\-new\-\_\-binding}]{\setlength{\rightskip}{0pt plus 5cm}void Environment\-::set\-\_\-new\-\_\-binding (
+\begin{DoxyParamCaption}
+\item[{string}]{name, }
+\item[{{\bf Object}}]{value}
+\end{DoxyParamCaption}
+)}}\label{classEnvironment_adac8db22e668d2a78a2cc18d0528c396}
+Lexically binds in the observed frame 
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classEnvironment_adac8db22e668d2a78a2cc18d0528c396_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classEnvironment_adac8db22e668d2a78a2cc18d0528c396_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{classEnvironment_ace71e43a313cdeefb1e445ecef61825b}{\index{Environment@{Environment}!to\-\_\-\-Object@{to\-\_\-\-Object}}
+\index{to\-\_\-\-Object@{to\-\_\-\-Object}!Environment@{Environment}}
+\subsubsection[{to\-\_\-\-Object}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Object} Environment\-::to\-\_\-\-Object (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classEnvironment_ace71e43a313cdeefb1e445ecef61825b}
+Returns an object storing the adress of the observed frame 
+
+Here is the caller graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classEnvironment_ace71e43a313cdeefb1e445ecef61825b_icgraph}
+\end{center}
+\end{figure}
+
+
 
 
 The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
 \item 
 env.\-hh\item 
-env.\-cc\end{DoxyCompactItemize}
+\hyperlink{env_8cc}{env.\-cc}\end{DoxyCompactItemize}

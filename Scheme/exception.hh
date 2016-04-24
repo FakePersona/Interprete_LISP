@@ -1,3 +1,5 @@
+/*! \file exception.hh */ 
+
 #include "object.hh"
 #include "env.hh"
 #include "eval.hh"

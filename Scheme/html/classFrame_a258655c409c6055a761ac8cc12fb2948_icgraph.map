@@ -1,0 +1,7 @@
+<map id="Frame::set_new_binding" name="Frame::set_new_binding">
+<area shape="rect" id="node2" href="$classFrame.html#a60853a5572534d23b5cf480c6217b9b8" title="Frame::extend_env" alt="" coords="230,5,369,32"/>
+<area shape="rect" id="node4" href="$classEnvironment.html#adac8db22e668d2a78a2cc18d0528c396" title="Environment::set_new\l_binding" alt="" coords="223,57,376,98"/>
+<area shape="rect" id="node3" href="$classEnvironment.html#a29feed86a6e592d20f8c8882fcd35d6c" title="Environment::extend_env" alt="" coords="424,5,597,32"/>
+<area shape="rect" id="node5" href="$toplevel_8cc.html#a6ae0baaebcf8b71f80eab5771b50af35" title="handle_directive" alt="" coords="450,60,571,87"/>
+<area shape="rect" id="node6" href="$toplevel_8cc.html#afc3c3bee6c94b170a6feafbdf1b14295" title="toplevel" alt="" coords="645,85,715,112"/>
+</map>

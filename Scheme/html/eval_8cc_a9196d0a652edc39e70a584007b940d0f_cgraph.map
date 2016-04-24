@@ -1,0 +1,11 @@
+<map id="apply" name="apply">
+<area shape="rect" id="node2" href="$classEnvironment.html#aaa0fcf257cf27f961e51a9602cc2cb48" title="Environment::find_value" alt="" coords="481,47,645,73"/>
+<area shape="rect" id="node4" href="$classEnvironment.html#a73a2cb3642111c86485f48e70e5e4870" title="Environment::get_observing" alt="" coords="108,47,296,73"/>
+<area shape="rect" id="node5" href="$eval_8cc.html#ad032552d26c29a328226c32b2d877685" title="eval" alt="" coords="178,199,226,225"/>
+<area shape="rect" id="node10" href="$env_8cc.html#aa068e84ca0c32a52095659e6a2ee3d8b" title="Object_to_env" alt="" coords="149,148,255,175"/>
+<area shape="rect" id="node3" href="$classFrame.html#a148a624be2406df10c0655c9d87d0544" title="Frame::find_value" alt="" coords="719,47,850,73"/>
+<area shape="rect" id="node6" href="$eval_8cc.html#acdca207c0f395e563d6bf6628c8d933a" title="eval_aux" alt="" coords="344,123,421,149"/>
+<area shape="rect" id="node7" href="$classEnvironment.html#a852ae1aa43ba278c27a91e8dcc968086" title="Environment::make_closure" alt="" coords="469,123,657,149"/>
+<area shape="rect" id="node9" href="$eval_8cc.html#a89930fbab5b72d49ac101580f8f8729d" title="eval_list" alt="" coords="528,180,599,207"/>
+<area shape="rect" id="node8" href="$classEnvironment.html#ace71e43a313cdeefb1e445ecef61825b" title="Environment::to_Object" alt="" coords="705,123,864,149"/>
+</map>
